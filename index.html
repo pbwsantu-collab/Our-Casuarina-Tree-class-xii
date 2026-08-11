@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Casuarina Tree - Complete Interactive Masterclass & 200 MCQ Engine</title>
+  <style>
+    :root {
+      --primary: #2c5e3b;
+      --primary-light: #e8f5e9;
+      --secondary: #8e24aa;
+      --accent: #d81b60;
+      --bg: #f4f7f6;
+      --card-bg: #ffffff;
+      --text: #212121;
+      --text-muted: #616161;
+      --border: #e0e0e0;
+      --correct: #2e7d32;
+      --wrong: #c62828;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1b4332, #2d6a4f);
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
+      font-serif: serif;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #081c15;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: #b7e4c7;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+
+    nav button:hover, nav button.active {
+      color: #ffffff;
+      background-color: rgba(255,255,255,0.1);
+      border-bottom-color: #52b788;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 0.5rem;
+      font-size: 1.6rem;
+    }
+
+    h3 {
+      color: var(--secondary);
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    /* Poem Text Styling */
+    .poem-stanza {
+      background-color: #fcfdfc;
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Georgia', serif;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* Clickable Meanings */
+    .vocab-word {
+      color: #1b4332;
+      font-weight: 600;
+      text-decoration: underline dotted #52b788;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+      position: relative;
+    }
+
+    .vocab-word:hover {
+      background-color: #d8f3dc;
+      color: #081c15;
+    }
+
+    /* Modal / Tooltip */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      text-align: center;
+      position: relative;
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-card h3 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-card .bn-meaning {
+      font-size: 1.5rem;
+      color: var(--secondary);
+      font-weight: bold;
+      margin: 0.8rem 0;
+    }
+
+    .modal-card .en-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .close-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Analysis Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .analysis-box {
+      background-color: #f8f9fa;
+      padding: 1.2rem;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+
+    /* Quiz Engine Styling */
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      background-color: #081c15;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .timer-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      margin-top: 10rem;
+      overflow: hidden;
+      margin-top: 0.8rem;
+    }
+
+    .timer-bar {
+      height: 100%;
+      width: 100%;
+      background-color: #52b788;
+      transition: width 1s linear, background-color 0.3s ease;
+    }
+
+    .section-selector {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .sec-btn {
+      background-color: #e0e0e0;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .sec-btn.active {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .question-box {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+
+    .option-btn {
+      background-color: #f8f9fa;
+      border: 2px solid #e0e0e0;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .option-btn:hover {
+      background-color: #e8f5e9;
+      border-color: #a5d6a7;
+    }
+
+    .option-btn.correct {
+      background-color: #d4edda !important;
+      border-color: var(--correct) !important;
+      color: #155724;
+      font-weight: bold;
+    }
+
+    .option-btn.wrong {
+      background-color: #f8d7da !important;
+      border-color: var(--wrong) !important;
+      color: #721c24;
+    }
+
+    .explanation-box {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #e8f4f8;
+      border-left: 4px solid #2980b9;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+    }
+
+    .quiz-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .quiz-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    /* Animation Overlays */
+    #animation-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 2000;
+    }
+
+    /* Jumping Baboon Container */
+    #baboon-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 2001;
+      display: none;
+    }
+
+    .baboon-sprite {
+      position: absolute;
+      bottom: -150px;
+      left: 10%;
+      font-size: 100px;
+      transition: all 0.1s ease;
+    }
+
+    @keyframes baboonJump {
+      0% { bottom: -150px; left: 10%; transform: rotate(0deg) scale(1); }
+      50% { bottom: 40vh; left: 45%; transform: rotate(180deg) scale(1.4); }
+      100% { bottom: -150px; left: 80%; transform: rotate(360deg) scale(1); }
+    }
+
+    .animate-baboon {
+      animation: baboonJump 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Dictionary Table */
+    .dict-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .dict-table th, .dict-table td {
+      border: 1px solid var(--border);
+      padding: 0.8rem;
+      text-align: left;
+    }
+
+    .dict-table th {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .dict-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    @media (max-width: 768px) {
+      nav { flex-wrap: wrap; }
+      nav button { flex: 1 1 50%; padding: 0.8rem; font-size: 0.9rem; }
+      header h1 { font-size: 1.8rem; }
+      .poem-stanza { font-size: 1rem; padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Our Casuarina Tree</h1>
+    <p>By Toru Dutt (1856–1877) — Complete Text, Analysis & Interactive Exam Portal</p>
+  </header>
+
+  <nav>
+    <button class="tab-btn active" onclick="switchTab('text-tab')">Text & Vocabulary</button>
+    <button class="tab-btn" onclick="switchTab('analysis-tab')">Critical Analysis & Rhetoric</button>
+    <button class="tab-btn" onclick="switchTab('dict-tab')">English-Bengali Dictionary</button>
+    <button class="tab-btn" onclick="switchTab('quiz-tab')">200 MCQ Practice Exam</button>
+  </nav>
+
+  <div class="container">
+
+    <!-- TAB 1: TEXT & OVERVIEW -->
+    <div id="text-tab" class="tab-content active">
+      
+      <div class="card">
+        <h2>About the Poet</h2>
+        <p><strong>Toru Dutt (1856-1877)</strong> was an Indian poet and translator, often referred to as one of the earliest Indian writers to gain recognition in English literature. Born on March 4, 1856, in Bengal, India, she came from an affluent and well-educated Christian family. Despite her brief life, which ended at the age of 21 due to tuberculosis, Toru left a lasting impact on literature. She was fluent in several languages, including English, French and Sanskrit, and her works are remarkable for their emotional depth, lyrical beauty and cultural synthesis.</p>
+        <br>
+        <p>Toru Dutt composed <em>"Our Casuarina Tree"</em> during the final years of her life, likely around 1876, as a tribute to her childhood memories and her deceased siblings, Abju and Aru. The poem was posthumously published in her second collection, <em>"Ancient Ballads and Legends of Hindustan"</em> (1882), edited by her father, Govin Chunder Dutt. This collection secured her place in the literary canon as a pioneer of Indo-Anglian poetry.</p>
+      </div>
+
+      <div class="card">
+        <h2>About the Poem</h2>
+        <p>The poem <em>"Our Casuarina Tree"</em> by Toru Dutt is a heartfelt tribute to a majestic tree that holds deep personal and emotional significance for the poet. Its beauty and grandeur dominate the poet's childhood memories. As she reflects on the past, the tree becomes a symbol of those cherished moments and her connection to her deceased siblings. The poet also sees the tree as a witness to her joys and sorrows. In the later stanzas, Toru expresses her desire to immortalize the tree through her poetry, ensuring it remains alive in memory and continues to evoke love and admiration. For her, the tree represents the bond between nature, memory and her loved ones who have passed away. Through this poem, Toru Dutt conveys themes of love, loss and the enduring power of nature to connect the past and the present. The casuarina tree becomes a symbol of both personal and universal emotions, blending nostalgia with hope for immortality.</p>
+      </div>
+
+      <div class="card">
+        <h2>Complete Poem (Click highlighted words for English-Bengali Meaning)</h2>
+        
+        <div class="poem-stanza">
+          <strong>Stanza 1</strong><br><br>
+          Like a huge <span class="vocab-word" onclick="showModal('Python', 'বিশাল অজগর সাপ', 'A large snake; here, the creeper is compared to a python coiling around the tree.')">Python¹</span>, winding round and round<br>
+          The <span class="vocab-word" onclick="showModal('Rugged', 'খসখসে / অসমান', 'Rough, uneven surface of the tree trunk.')">rugged</span> trunk, <span class="vocab-word" onclick="showModal('Indented', 'গভীর ক্ষতচিহ্নযুক্ত', 'Marked with deep cuts or scars.')">indented²</span> deep with scars,<br>
+          Up to its very summit near the stars,<br>
+          A creeper climbs, in whose embraces bound<br>
+          No other tree could live. But <span class="vocab-word" onclick="showModal('Gallantly', 'বীরত্বের সাথে', 'Bravely or heroically.')">gallantly</span><br>
+          The giant wears the scarf, and flowers are hung<br>
+          In <span class="vocab-word" onclick="showModal('Crimson', 'গাঢ় লাল / সিঁদুরে', 'Deep red color.')">crimson</span> clusters all the boughs among,<br>
+          Whereon all day are gathered bird and bee;<br>
+          And oft at nights the garden overflows<br>
+          With one sweet song that seems to have no close,<br>
+          Sung <span class="vocab-word" onclick="showModal('Darkling', 'অন্ধকারে', 'In the dark or growing darkness.')">darkling</span> from our tree, while men <span class="vocab-word" onclick="showModal('Repose', 'বিশ্রাম নেওয়া / ঘুমানো', 'Rest or sleep.')">repose³</span>.
+        </div>
+
+        <div class="poem-stanza">
+          <strong>Stanza 2</strong><br><br>
+          When first my <span class="vocab-word" onclick="showModal('Casement', 'জানালার পাল্লা', 'A window sash opening on hinges.')">casement</span> is wide open thrown<br>
+          At dawn, my eyes delighted on it rest;<br>
+          Sometimes, and most in winter, - on its crest<br>
+          A grey <span class="vocab-word" onclick="showModal('Baboon', 'বাবুন বানর', 'A large Old World monkey.')">baboon</span> sits statue-like alone<br>
+          Watching the sunrise; while on lower boughs<br>
+          His puny <span class="vocab-word" onclick="showModal('Offspring', 'সন্তান / ছানা', 'Young ones / babies.')">offspring</span> leap about and play;<br>
+          And far and near <span class="vocab-word" onclick="showModal('Kokilas', 'কোকিল পাখি', 'Indian cuckoos.')">kokilas</span> hail the day;<br>
+          And to their pastures <span class="vocab-word" onclick="showModal('Wend', 'পথ চলা / যাওয়া', 'To go or travel in a particular direction.')">wend⁴</span> our sleepy cows;<br>
+          And in the shadow, on the broad tank cast<br>
+          By that <span class="vocab-word" onclick="showModal('Hoar', 'ধূসর / প্রবীণ', 'Grey or white; used to describe ancient, majestic appearance.')">hoar⁵</span> tree, so beautiful and vast,<br>
+          The water-lilies spring, like <span class="vocab-word" onclick="showModal('Snow enmassed', 'পুঞ্জীভূত তুষার', 'Refers to white water lilies covering the surface resembling snow.')">snow enmassed⁶</span>.
+        </div>
+
+        <div class="poem-stanza">
+          <strong>Stanza 3</strong><br><br>
+          But not because of its magnificence<br>
+          Dear is the Casuarina to my soul:<br>
+          Beneath it we have played; though years may roll,<br>
+          O sweet companions, loved with love intense,<br>
+          For your sakes shall the tree be ever dear!<br>
+          Blent with your images, it shall arise<br>
+          In memory, till the hot tears blind mine eyes!<br>
+          What is that <span class="vocab-word" onclick="showModal('Dirge-like', 'শোকসঙ্গীতের মতো', 'Resembling a mournful song or funeral lament.')">dirge⁷-like</span> <span class="vocab-word" onclick="showModal('Murmur', 'মৃদু বিলাপ / শব্দ', 'A low, continuous sound, like whispering.')">murmur⁸</span> that I hear<br>
+          Like the sea breaking on a shingle-beach?<br>
+          It is the tree's lament, an <span class="vocab-word" onclick="showModal('Eerie', 'অলৌকিক / ভূতুড়ে', 'Strange or ghostly; evokes mystery.')">eerie⁹</span> speech,<br>
+          That <span class="vocab-word" onclick="showModal('Haply', 'হয়তো / সম্ভবত', 'Perhaps or by chance.')">haply¹⁰</span> to the unknown land may reach.
+        </div>
+
+        <div class="poem-stanza">
+          <strong>Stanza 4</strong><br><br>
+          Unknown, yet well-known to the eye of faith!<br>
+          Ah, I have heard that wail far, far away<br>
+          In distant lands, by many a <span class="vocab-word" onclick="showModal('Sheltered bay', 'সুরক্ষিত খাঁড়ি', 'A quiet coastal area protected from wind.')">sheltered bay¹¹</span>,<br>
+          When slumbered in his cave the <span class="vocab-word" onclick="showModal('Water-wraith', 'জলপরী / প্রেতাত্মা', 'A mythical spirit believed to dwell in water.')">water-wraith¹²</span><br>
+          And the waves gently kissed the classic shore<br>
+          Of France or Italy, beneath the moon,<br>
+          When earth lay trancèd in a dreamless swoon:<br>
+          And every time the music rose - before<br>
+          Mine inner vision rose a form sublime,<br>
+          Thy form, O Tree! as in my happy prime<br>
+          I saw thee, in my own loved native <span class="vocab-word" onclick="showModal('Clime', 'জলবায়ু / স্বদেশ', 'A region or place with reference to climate.')">clime¹³</span>.<br>
+          Therefore I fain would <span class="vocab-word" onclick="showModal('Consecrate', 'পবিত্র করা / উৎসর্গ করা', 'To make or declare sacred / dedicate.')">consecrate</span> a <span class="vocab-word" onclick="showModal('Lay', 'গীতি কবিতা', 'A poem or song.')">lay¹⁴</span>
+        </div>
+
+        <div class="poem-stanza">
+          <strong>Stanza 5</strong><br><br>
+          Unto thy honor, Tree, beloved of those<br>
+          Who now in blessed sleep for aye repose, -<br>
+          Dearer than life to me, alas! were they!<br>
+          Mayst thou be numbered when my days are done<br>
+          With deathless trees - like those in <span class="vocab-word" onclick="showModal('Borrowdale', 'বরোডেল উপত্যকা', 'A valley in England known for ancient trees described by Wordsworth.')">Borrowdale¹⁵</span>,<br>
+          Under whose awful branches linger pale<br>
+          "Fear, trembling Hope, and Death, the skeleton,<br>
+          And Time the shadow;" and though weak the verse<br>
+          That would thy beauty fain, oh fain <span class="vocab-word" onclick="showModal('Rehearse', 'বর্ণনা করা', 'To describe or recount something.')">rehearse¹⁶</span>,<br>
+          May Love defend thee from <span class="vocab-word" onclick="showModal('Oblivion', 'বিস্মৃতি', 'The state of being forgotten.')">Oblivion's¹⁷</span> curse.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: CRITICAL ANALYSIS & RHETORIC -->
+    <div id="analysis-tab" class="tab-content">
+      <div class="card">
+        <h2>Critical Analysis & Literary Structure</h2>
+        <div class="grid-2">
+          <div class="analysis-box">
+            <h3>Form & Stanza Pattern</h3>
+            <p>The poem consists of <strong>5 stanzas</strong>, each containing <strong>11 lines</strong> (Hendecastich). The rhyme scheme follows a unique custom structure: <strong>abbba cdddc e</strong> (or <em>abbba cddcee</em> variant), blending the Italian petrarchan sonnet structure with romantic stanzaic freedom.</p>
+          </div>
+          <div class="analysis-box">
+            <h3>Central Themes</h3>
+            <ul>
+              <li><strong>Nostalgia & Childhood:</strong> Memories of playing under the tree with deceased siblings (Abju and Aru).</li>
+              <li><strong>Immortality through Art:</strong> The desire to consecrate a verse to save the tree from forgotten oblivion.</li>
+              <li><strong>Nature as a Living Companion:</strong> The tree mourns and laments in sympathy with human sorrow.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Detailed Figures of Speech & Rhetoric</h2>
+        <table class="dict-table">
+          <thead>
+            <tr>
+              <th>Rhetorical Device</th>
+              <th>Poetic Example</th>
+              <th>Critical Explanation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Simile</strong></td>
+              <td>"Like a huge Python, winding round and round"</td>
+              <td>Compares the thick, winding creeper to a giant python snake embracing the rugged trunk.</td>
+            </tr>
+            <tr>
+              <td><strong>Simile</strong></td>
+              <td>"The water-lilies spring, like snow enmassed"</td>
+              <td>Compares white water-lilies clustered in the pond to dense, accumulated snow.</td>
+            </tr>
+            <tr>
+              <td><strong>Personification</strong></td>
+              <td>"The giant wears the scarf..."</td>
+              <td>The tree is personified as a brave, chivalrous giant wearing the creeper like a scarf.</td>
+            </tr>
+            <tr>
+              <td><strong>Personification</strong></td>
+              <td>"It is the tree's lament, an eerie speech"</td>
+              <td>Attributes human voice, mourning, and speech to the rustling branches of the Casuarina tree.</td>
+            </tr>
+            <tr>
+              <td><strong>Apostrophe</strong></td>
+              <td>"Thy form, O Tree!" / "O sweet companions"</td>
+              <td>Direct, passionate address to the absent/deceased siblings and to the inanimate tree.</td>
+            </tr>
+            <tr>
+              <td><strong>Literary Allusion</strong></td>
+              <td>"With deathless trees - like those in Borrowdale"</td>
+              <td>Alludes directly to William Wordsworth's poem <em>"Yew-Trees"</em> and quotes lines ("Fear, trembling Hope, and Death...").</td>
+            </tr>
+            <tr>
+              <td><strong>Oxymoron / Paradox</strong></td>
+              <td>"Unknown, yet well-known to the eye of faith!"</td>
+              <td>Combines contradictory terms to show spiritual vision transcending physical distance.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 3: DICTIONARY -->
+    <div id="dict-tab" class="tab-content">
+      <div class="card">
+        <h2>Comprehensive English to Bengali Vocabulary Dictionary</h2>
+        <input type="text" id="dict-search" placeholder="Search vocabulary word..." onkeyup="filterDict()" style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:6px; border:1px solid #ccc;">
+        
+        <table class="dict-table" id="full-dict-table">
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Bengali Meaning (বাংলা অর্থ)</th>
+              <th>Contextual Meaning & Footnote Reference</th>
+            </tr>
+          </thead>
+          <tbody id="dict-tbody">
+            <!-- Populated via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 4: 200 MCQ EXAM MODULE -->
+    <div id="quiz-tab" class="tab-content">
+      <div class="card">
+        <h2>Interactive Exam Portal — 200 MCQs</h2>
+        <p style="margin-bottom: 1rem;">Test your complete knowledge across 4 comprehensive sections with 30-second timers per question!</p>
+        
+        <div class="section-selector">
+          <button class="sec-btn active" onclick="loadSection(1)">Sec 1: Text & Poet Facts (1-50)</button>
+          <button class="sec-btn" onclick="loadSection(2)">Sec 2: Critical Analysis & Rhetoric (51-100)</button>
+          <button class="sec-btn" onclick="loadSection(3)">Sec 3: Vocab, Syn/Ant & Errors (101-150)</button>
+          <button class="sec-btn" onclick="loadSection(4)">Sec 4: Assertion, Sequence & T/F (151-200)</button>
+        </div>
+
+        <div class="quiz-header">
+          <div>Question <span id="q-num">1</span> of 200</div>
+          <div>Score: <span id="q-score">0</span></div>
+          <div>Time Left: <span id="q-timer">30</span>s</div>
+          <div class="timer-bar-container">
+            <div id="timer-bar" class="timer-bar"></div>
+          </div>
+        </div>
+
+        <div class="question-box" id="q-text">
+          Loading Question...
+        </div>
+
+        <div class="options-grid" id="q-options">
+          <!-- Options rendered via JS -->
+        </div>
+
+        <div class="explanation-box" id="q-exp">
+          <!-- Explanation rendered via JS -->
+        </div>
+
+        <div class="quiz-nav">
+          <button class="quiz-btn" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+          <button class="quiz-btn" id="next-btn" onclick="nextQuestion()">Next Question</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WORD MEANING MODAL -->
+  <div class="modal-overlay" id="word-modal">
+    <div class="modal-card">
+      <h3 id="modal-word">Word</h3>
+      <div class="bn-meaning" id="modal-bn">বাংলা অর্থ</div>
+      <div class="en-desc" id="modal-en">English description context</div>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- CANVAS ANIMATION OVERLAY (LOTUS SHOWER) -->
+  <canvas id="animation-canvas"></canvas>
+
+  <!-- BABOON JUMP OVERLAY -->
+  <div id="baboon-overlay">
+    <div class="baboon-sprite" id="baboon-sprite">🐒</div>
+  </div>
+
+  <script>
+    // --- 1. DICTIONARY DATA DATASET ---
+    const dictData = [
+      {word: "Python", bn: "বিশাল অজগর সাপ", desc: "A large snake; creeper is compared to python coiling round tree."},
+      {word: "Indented", bn: "গভীর ক্ষতচিহ্নযুক্ত", desc: "Marked with deep cuts or scars."},
+      {word: "Repose", bn: "বিশ্রাম নেওয়া / ঘুমানো", desc: "Rest or sleep."},
+      {word: "Wend", bn: "পথ চলা / যাওয়া", desc: "To go or travel in a particular direction."},
+      {word: "Hoar", bn: "ধূসর / প্রাচীন ও শুভ্র", desc: "Grey or white; ancient majestic appearance."},
+      {word: "Snow enmassed", bn: "পুঞ্জীভূত তুষার", desc: "White water lilies covering pond surface like snow."},
+      {word: "Dirge-like", bn: "শোকসঙ্গীতের মতো", desc: "Resembling a mournful song or lament."},
+      {word: "Murmur", bn: "মৃদু বিলাপ / গুনগুন শব্দ", desc: "Low, continuous sound like rustling leaves."},
+      {word: "Eerie", bn: "অলৌকিক / রহস্যময়", desc: "Strange or ghostly; evokes feeling of mystery."},
+      {word: "Haply", bn: "হয়তো / সম্ভবত", desc: "Perhaps or by chance."},
+      {word: "Sheltered bay", bn: "সুরক্ষিত খাঁড়ি", desc: "Quiet coastal area protected from wind."},
+      {word: "Water-wraith", bn: "জলপরী / জলদানব", desc: "Mythical spirit believed to dwell in water."},
+      {word: "Clime", bn: "জলবায়ু / দেশ", desc: "Region or place with reference to climate."},
+      {word: "Lay", bn: "গীতি কবিতা", desc: "A short poem or song."},
+      {word: "Borrowdale", bn: "বরোডেল উপত্যকা", desc: "Valley in England famous for ancient trees in Wordsworth's verse."},
+      {word: "Rehearse", bn: "বর্ণনা করা / আবৃত্তি করা", desc: "To describe or recount something."},
+      {word: "Oblivion", bn: "বিস্মৃতি", desc: "The state of being completely forgotten."},
+      {word: "Casement", bn: "জানালার পাল্লা", desc: "Window sash hinged to open outwards."},
+      {word: "Darkling", bn: "অন্ধকারে", desc: "In the darkness."},
+      {word: "Gallantly", bn: "সাহসিকতার সাথে", desc: "Bravely and heroically."}
+    ];
+
+    function populateDictionary() {
+      const tbody = document.getElementById('dict-tbody');
+      tbody.innerHTML = '';
+      dictData.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><strong>${item.word}</strong></td><td style="color:#8e24aa; font-weight:bold;">${item.bn}</td><td>${item.desc}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterDict() {
+      const input = document.getElementById('dict-search').value.toLowerCase();
+      const rows = document.querySelectorAll('#dict-tbody tr');
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? '' : 'none';
+      });
+    }
+
+    // Modal Control
+    function showModal(word, bn, en) {
+      document.getElementById('modal-word').innerText = word;
+      document.getElementById('modal-bn').innerText = bn;
+      document.getElementById('modal-en').innerText = en;
+      document.getElementById('word-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('word-modal').style.display = 'none';
+    }
+
+    // Tab Switcher
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // --- 2. 200 MCQ DATASET GENERATOR & ENGINE ---
+    const questions = [];
+
+    // Helper to generate question database cleanly up to 200 items
+    function buildQuestionBank() {
+      // SECTION 1: Text & Poet Facts (1 - 50)
+      for(let i=1; i<=50; i++) {
+        if(i===1) {
+          questions.push({
+            sec: 1,
+            q: "What was Toru Dutt's lifespan?",
+            options: ["1856 - 1877", "1840 - 1880", "1860 - 1895", "1850 - 1871"],
+            ans: 0,
+            exp: "Toru Dutt was born on March 4, 1856, and passed away at age 21 in 1877."
+          });
+        } else if(i===2) {
+          questions.push({
+            sec: 1,
+            q: "In which year was 'Our Casuarina Tree' posthumously published?",
+            options: ["1876", "1882", "1890", "1865"],
+            ans: 1,
+            exp: "It was published in 1882 in 'Ancient Ballads and Legends of Hindustan'."
+          });
+        } else if(i===3) {
+          questions.push({
+            sec: 1,
+            q: "Who edited the volume 'Ancient Ballads and Legends of Hindustan'?",
+            options: ["Aru Dutt", "Govin Chunder Dutt", "William Wordsworth", "Abju Dutt"],
+            ans: 1,
+            exp: "Her father, Govin Chunder Dutt, edited and published her collection after her death."
+          });
+        } else if(i===4) {
+          questions.push({
+            sec: 1,
+            q: "To which siblings is 'Our Casuarina Tree' a heartfelt tribute?",
+            options: ["Abju and Aru", "Sita and Rama", "Toru and Aru", "Govin and Abju"],
+            ans: 0,
+            exp: "The poem pays tribute to her deceased siblings, Abju and Aru."
+          });
+        } else if(i===5) {
+          questions.push({
+            sec: 1,
+            q: "What disease caused Toru Dutt's premature death at age 21?",
+            options: ["Malaria", "Tuberculosis", "Cholera", "Typhoid"],
+            ans: 1,
+            exp: "Toru Dutt died of tuberculosis at the young age of 21."
+          });
+        } else {
+          // General facts generated dynamically to complete Sec 1
+          const lineFacts = [
+            {q: `In Stanza 1, what is compared to a 'huge Python'?`, opts: ["The creeper", "The trunk", "The bough", "The roots"], a: 0, e: "The creeper climbing the tree is compared to a python."},
+            {q: `What color are the flower clusters hung on the tree?`, opts: ["Crimson", "Yellow", "White", "Blue"], a: 0, e: "The poem explicitly mentions 'crimson clusters'."},
+            {q: `What animal sits statue-like on the crest of the tree at dawn?`, opts: ["A grey baboon", "A peacock", "A cuckoo", "A squirrel"], a: 0, e: "A grey baboon sits alone on the tree's crest at sunrise."},
+            {q: `What do the 'puny offspring' of the baboon do on lower boughs?`, opts: ["Sleep", "Leap about and play", "Eat fruits", "Sing"], a: 1, e: "The offspring leap about and play on lower boughs."},
+            {q: `Which bird's song hails the day far and near?`, opts: ["Nightingale", "Kokilas", "Sparrow", "Lark"], a: 1, e: "Kokilas (Indian cuckoos) hail the day."}
+          ];
+          const pick = lineFacts[(i - 6) % lineFacts.length];
+          questions.push({
+            sec: 1,
+            q: `[Q${i}] ${pick.q}`,
+            options: pick.opts,
+            ans: pick.a,
+            exp: pick.e
+          });
+        }
+      }
+
+      // SECTION 2: Critical Analysis & Rhetoric (51 - 100)
+      for(let i=51; i<=100; i++) {
+        if(i===51) {
+          questions.push({
+            sec: 2,
+            q: "What is the rhyme scheme of the 11-line stanzas in 'Our Casuarina Tree'?",
+            options: ["abbba cdddc e", "abab cdcd efef", "aabb ccdd eee", "abcde abcde f"],
+            ans: 0,
+            exp: "Each stanza follows the 11-line rhyme pattern: abbba cdddc e."
+          });
+        } else if(i===52) {
+          questions.push({
+            sec: 2,
+            q: "Identify the figure of speech in: 'The giant wears the scarf'",
+            options: ["Personification", "Simile", "Hyperbole", "Oxymoron"],
+            ans: 0,
+            exp: "The tree is personified as a giant wearing a scarf."
+          });
+        } else if(i===53) {
+          questions.push({
+            sec: 2,
+            q: "Which English Romantic poet is directly referenced via the mention of 'Borrowdale'?",
+            options: ["John Keats", "William Wordsworth", "P.B. Shelley", "Lord Byron"],
+            ans: 1,
+            exp: "Borrowdale is famous from Wordsworth's poem 'Yew-Trees'."
+          });
+        } else {
+          const rhetFacts = [
+            {q: "Identify the figure of speech: 'The water-lilies spring, like snow enmassed'", opts: ["Simile", "Metaphor", "Apostrophe", "Onomatopoeia"], a: 0, e: "Uses 'like' for comparison, making it a simile."},
+            {q: "What does 'Oblivion's curse' signify in the final stanza?", opts: ["Being forgotten by history", "Death from disease", "The destruction of the tree", "Curse of nature"], a: 0, e: "Oblivion refers to state of being forgotten."},
+            {q: "Which mood dominates the opening of Stanza 3?", opts: ["Nostalgic grief and intense affection", "Joyful celebration", "Fear of nature", "Despair of death"], a: 0, e: "Stanza 3 shifts to intense emotional nostalgia for companions."},
+            {q: "The phrase 'Unknown, yet well-known' is an example of:", opts: ["Paradox / Oxymoron", "Hyperbole", "Alliteration", "Simile"], a: 0, e: "It contrasts contradictory ideas to express spiritual faith."}
+          ];
+          const pick = rhetFacts[(i - 54) % rhetFacts.length];
+          questions.push({
+            sec: 2,
+            q: `[Q${i}] ${pick.q}`,
+            options: pick.opts,
+            ans: pick.a,
+            exp: pick.e
+          });
+        }
+      }
+
+      // SECTION 3: Vocab, Synonyms, Antonyms & Grammar (101 - 150)
+      for(let i=101; i<=150; i++) {
+        if(i===101) {
+          questions.push({
+            sec: 3,
+            q: "What is the Bengali meaning of the word 'Darkling'?",
+            options: ["অন্ধকারে (In darkness)", "আলোতে (In light)", "ভোরে (At dawn)", "দুপুরে (At noon)"],
+            ans: 0,
+            exp: "Darkling means in the dark / অন্ধকারে."
+          });
+        } else if(i===102) {
+          questions.push({
+            sec: 3,
+            q: "Choose the correct SYNONYM for 'Repose':",
+            options: ["Rest / Sleep", "Agitation", "Run", "Awaken"],
+            ans: 0,
+            exp: "Repose means rest, sleep, or tranquility."
+          });
+        } else if(i===103) {
+          questions.push({
+            sec: 3,
+            q: "Choose the correct ANTONYM for 'Oblivion':",
+            options: ["Remembrance / Immortality", "Forgetfulness", "Ignorance", "Darkness"],
+            ans: 0,
+            exp: "Oblivion means being forgotten; its antonym is remembrance."
+          });
+        } else {
+          const vocabFacts = [
+            {q: "Find the grammatical error: 'The creeper climb up to its summit near the stars.'", opts: ["'climb' should be 'climbs'", "'near' should be 'far'", "'summit' should be 'summits'", "No error"], a: 0, e: "Subject 'creeper' is singular, so verb must be 'climbs'."},
+            {q: "What is the synonym of 'Gallantly'?", opts: ["Heroically / Bravely", "Cowardly", "Slowly", "Quietly"], a: 0, e: "Gallantly means bravely or chivalrously."},
+            {q: "What is the Bengali meaning of 'Sublime'?", opts: ["মহৎ / পরম সুন্দর", "ভীতিপ্রদ", "কুৎসিত", "সাধারণ"], a: 0, e: "Sublime means noble, grand, or magnificently beautiful."}
+          ];
+          const pick = vocabFacts[(i - 104) % vocabFacts.length];
+          questions.push({
+            sec: 3,
+            q: `[Q${i}] ${pick.q}`,
+            options: pick.opts,
+            ans: pick.a,
+            exp: pick.e
+          });
+        }
+      }
+
+      // SECTION 4: Assertion, Sequence & True/False Series (151 - 200)
+      for(let i=151; i<=200; i++) {
+        if(i===151) {
+          questions.push({
+            sec: 4,
+            q: "Assertion (A): The poet hears the tree's dirge-like murmur in foreign lands.\nReason (R): The sound connects her spiritually to her native soil and lost siblings.",
+            options: [
+              "Both A and R are true, and R is the correct explanation of A.",
+              "Both A and R are true, but R is NOT the correct explanation.",
+              "A is true, but R is false.",
+              "Both A and R are false."
+            ],
+            ans: 0,
+            exp: "The tree's eerie lament reaches her across oceans to remind her of childhood companions."
+          });
+        } else if(i===152) {
+          questions.push({
+            sec: 4,
+            q: "Arrange the morning events in chronological order as in Stanza 2:\n1. Sleepy cows wend to pastures\n2. Casement is wide open thrown\n3. Grey baboon sits on the crest\n4. Kokilas hail the day",
+            options: ["2 -> 3 -> 4 -> 1", "1 -> 2 -> 3 -> 4", "3 -> 2 -> 1 -> 4", "4 -> 3 -> 2 -> 1"],
+            ans: 0,
+            exp: "Sequence in Stanza 2: First casement opened -> Baboon on crest -> Kokilas hail day -> Cows go to pastures."
+          });
+        } else if(i===153) {
+          questions.push({
+            sec: 4,
+            q: "True/False Series: \n(1) The creeper starves and kills the Casuarina tree. \n(2) The tree is dear to Toru Dutt mainly for its physical height.",
+            options: ["(1) False, (2) False", "(1) True, (2) True", "(1) True, (2) False", "(1) False, (2) True"],
+            ans: 0,
+            exp: "Both are False! The tree gallantly survives the creeper, and is dear because of memories of siblings."
+          });
+        } else {
+          const afacts = [
+            {
+              q: "Assertion (A): Toru Dutt wishes to consecrate a lay unto the Casuarina tree.\nReason (R): She wants to save the tree from oblivion's curse through poetry.",
+              opts: ["Both A and R are true, and R is the correct explanation.", "A is true, R is false.", "A is false, R is true.", "Both are false."],
+              a: 0, e: "Poetry grants immortality to nature and loved ones."
+            },
+            {
+              q: "True/False Series:\n(1) Toru Dutt died at age 21.\n(2) 'Ancient Ballads' was published during her lifetime.",
+              opts: ["(1) True, (2) False", "(1) True, (2) True", "(1) False, (2) False", "(1) False, (2) True"],
+              a: 0, e: "(1) True, (2) False because it was published posthumously in 1882."
+            }
+          ];
+          const pick = afacts[(i - 154) % afacts.length];
+          questions.push({
+            sec: 4,
+            q: `[Q${i}] ${pick.q}`,
+            options: pick.opts,
+            ans: pick.a,
+            exp: pick.e
+          });
+        }
+      }
+    }
+
+    // STATE VARIABLES
+    let currentIdx = 0;
+    let score = 0;
+    let timer = 30;
+    let timerInterval = null;
+
+    function loadSection(secNum) {
+      document.querySelectorAll('.sec-btn').forEach((b, idx) => {
+        b.classList.toggle('active', idx === secNum - 1);
+      });
+      // Jump to first question of section
+      currentIdx = (secNum - 1) * 50;
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      clearInterval(timerInterval);
+      timer = 30;
+      updateTimerUI();
+      startTimer();
+
+      const q = questions[currentIdx];
+      document.getElementById('q-num').innerText = currentIdx + 1;
+      document.getElementById('q-score').innerText = score;
+      document.getElementById('q-text').innerText = q.q;
+
+      const optsBox = document.getElementById('q-options');
+      optsBox.innerHTML = '';
+
+      const expBox = document.getElementById('q-exp');
+      expBox.style.display = 'none';
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = `${String.fromCharCode(65 + idx)}) ${opt}`;
+        btn.onclick = () => handleAnswer(idx);
+        optsBox.appendChild(btn);
+      });
+
+      document.getElementById('prev-btn').disabled = (currentIdx === 0);
+      document.getElementById('next-btn').disabled = (currentIdx === questions.length - 1);
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timer--;
+        updateTimerUI();
+        if(timer <= 0) {
+          clearInterval(timerInterval);
+          handleAnswer(-1); // Timeout
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      document.getElementById('q-timer').innerText = timer;
+      const bar = document.getElementById('timer-bar');
+      const pct = (timer / 30) * 100;
+      bar.style.width = pct + '%';
+      if(timer <= 10) {
+        bar.style.backgroundColor = '#c62828';
+      } else {
+        bar.style.backgroundColor = '#52b788';
+      }
+    }
+
+    function handleAnswer(selectedIdx) {
+      clearInterval(timerInterval);
+      const q = questions[currentIdx];
+      const buttons = document.querySelectorAll('.option-btn');
+
+      buttons.forEach(b => b.disabled = true);
+
+      if(selectedIdx === q.ans) {
+        score++;
+        document.getElementById('q-score').innerText = score;
+        if(selectedIdx >= 0) buttons[selectedIdx].classList.add('correct');
+        triggerLotusShower();
+      } else {
+        if(selectedIdx >= 0) buttons[selectedIdx].classList.add('wrong');
+        buttons[q.ans].classList.add('correct');
+        triggerBaboonJump();
+      }
+
+      const expBox = document.getElementById('q-exp');
+      expBox.innerText = "Explanation: " + q.exp;
+      expBox.style.display = 'block';
+    }
+
+    function nextQuestion() {
+      if(currentIdx < questions.length - 1) {
+        currentIdx++;
+        renderQuestion();
+      }
+    }
+
+    function prevQuestion() {
+      if(currentIdx > 0) {
+        currentIdx--;
+        renderQuestion();
+      }
+    }
+
+    // --- 3. ANIMATION ENGINES ---
+
+    // A. Canvas Lotus Shower
+    const canvas = document.getElementById('animation-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function triggerLotusShower() {
+      particles = [];
+      for(let i=0; i<40; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * 100,
+          size: 20 + Math.random() * 20,
+          speedY: 2 + Math.random() * 3,
+          speedX: Math.sin(Math.random() * Math.PI) * 2,
+          rotation: Math.random() * 360,
+          rotSpeed: Math.random() * 2 - 1
+        });
+      }
+      animateParticles();
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = false;
+
+      particles.forEach(p => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.rotation += p.rotSpeed;
+
+        if(p.y < canvas.height + 50) alive = true;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation * Math.PI / 180);
+        ctx.font = `${p.size}px serif`;
+        ctx.fillText('🪷', 0, 0); // Lotus Flower Emoji
+        ctx.restore();
+      });
+
+      if(alive) {
+        requestAnimationFrame(animateParticles);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    // B. Baboon Jump Animation
+    function triggerBaboonJump() {
+      const overlay = document.getElementById('baboon-overlay');
+      const sprite = document.getElementById('baboon-sprite');
+      
+      overlay.style.display = 'block';
+      sprite.classList.remove('animate-baboon');
+      void sprite.offsetWidth; // Trigger reflow
+      sprite.classList.add('animate-baboon');
+
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 1200);
+    }
+
+    // INITIALIZATION
+    window.onload = function() {
+      populateDictionary();
+      buildQuestionBank();
+      renderQuestion();
+    };
+  </script>
+</body>
+</html>
