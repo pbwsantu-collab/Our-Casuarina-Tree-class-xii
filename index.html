@@ -44,8 +44,8 @@
       padding-bottom: 0.5rem; margin-bottom: 1.2rem; 
       font-weight: 600; font-size: 1.6rem;
     }
-    h3 { color: #2d5a44; margin: 1.5rem 0 0.8rem; font-size: 1.2rem; }
-    h4 { color: #1f4d34; margin: 1rem 0 0.5rem; font-size: 1.05rem; }
+    h3 { color: #2d5a44; margin: 1.5rem 0 0.8rem; font-size: 1.3rem; border-bottom: 2px solid #e0eee0; padding-bottom: 0.3rem; }
+    h4 { color: #1f4d34; margin: 1rem 0 0.5rem; font-size: 1.1rem; }
     .poem-stanza {
       background: #fafff9; padding: 1.5rem 2rem;
       border-left: 5px solid #2b6d4a;
@@ -78,9 +78,9 @@
     .en-desc { color: #3d5a4b; margin-bottom: 1.2rem; font-size: 0.95rem; }
     .close-btn { background: #1f4d34; color: white; border: none; padding: 0.6rem 2rem; border-radius: 40px; font-weight: 600; cursor: pointer; }
     
-    /* Enhanced Analysis Styles */
+    /* Analysis Styles */
     .analysis-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px,1fr)); gap: 1.5rem;
     }
     .analysis-box {
       background: #f6fbf8; padding: 1.5rem; border-radius: 14px; 
@@ -103,7 +103,7 @@
     .dict-table tr:hover { background: #edf7ed; }
     .dict-table .bn-text { color: #6b3f8a; font-weight: 600; }
     
-    /* Quiz Styles - FIXED */
+    /* Quiz Styles */
     .section-selector { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .sec-btn {
       background: #e1ece1; border: none; padding: 0.6rem 1.2rem; border-radius: 30px;
@@ -153,7 +153,6 @@
     }
     .quiz-btn:disabled { background: #b0c9b5; cursor: not-allowed; opacity:0.6; }
     
-    /* Canvas & Animation */
     #animation-canvas { position: fixed; inset:0; pointer-events: none; z-index: 2000; }
     #baboon-overlay {
       position: fixed; inset:0; pointer-events: none; z-index: 2001;
@@ -177,6 +176,9 @@
       font-size: 0.9rem; margin-left: 0.3rem;
     }
     .highlight-bn { background: #fff3cd; padding: 0.1rem 0.4rem; border-radius: 4px; }
+    .analysis-detail { font-size: 0.95rem; line-height: 1.7; }
+    .analysis-detail ul { padding-left: 1.2rem; margin: 0.5rem 0; }
+    .analysis-detail li { margin-bottom: 0.3rem; }
   </style>
 </head>
 <body>
@@ -199,14 +201,13 @@
   <div id="text-tab" class="tab-content active">
     <div class="card">
       <h2>About the Poet & Poem</h2>
-      <p><strong>Toru Dutt (1856–1877)</strong> – pioneer of Indo-Anglian literature. Born in Kolkata, she mastered English, French, and Sanskrit. Her posthumous collection <em>Ancient Ballads and Legends of Hindustan</em> (1882) contains "Our Casuarina Tree", an autobiographical elegy for her siblings Abju and Aru. The poem blends Romantic sensibility with Indian imagery.</p>
+      <p><strong>Toru Dutt (1856–1877)</strong> – pioneer of Indo-Anglian literature. Born in Kolkata, she mastered English, French, and Sanskrit. Her posthumous collection <em>Ancient Ballads and Legends of Hindustan</em> (1882) contains "Our Casuarina Tree", an autobiographical elegy for her siblings Abju and Aru.</p>
       <p style="margin-top:0.8rem;"><strong>🔵 Click ANY word</strong> in the poem below to see its English meaning and Bengali translation.</p>
     </div>
 
     <div class="card">
       <h2>Complete Poem — Every Word is Clickable</h2>
 
-      <!-- Stanza 1 -->
       <div class="poem-stanza">
         <strong>Stanza 1</strong><br>
         <span class="word-click" onclick="showModal('Like','সদৃশ','Similar to')">Like</span>
@@ -297,7 +298,6 @@
         <span class="word-click" onclick="showModal('repose','বিশ্রাম করেন','Rest')">repose</span>.
       </div>
 
-      <!-- Stanza 2 -->
       <div class="poem-stanza">
         <strong>Stanza 2</strong><br>
         <span class="word-click" onclick="showModal('When','যখন','At the time')">When</span>
@@ -385,7 +385,6 @@
         <span class="word-click" onclick="showModal('enmassed','পুঞ্জীভূত','Accumulated')">enmassed</span>.
       </div>
 
-      <!-- Stanza 3 -->
       <div class="poem-stanza">
         <strong>Stanza 3</strong><br>
         <span class="word-click" onclick="showModal('But','কিন্তু','But')">But</span>
@@ -475,7 +474,6 @@
         <span class="word-click" onclick="showModal('reach','পৌঁছায়','Reach')">reach</span>.
       </div>
 
-      <!-- Stanza 4 -->
       <div class="poem-stanza">
         <strong>Stanza 4</strong><br>
         <span class="word-click" onclick="showModal('Unknown','অজানা','Unknown')">Unknown</span>,
@@ -527,7 +525,6 @@
         <span class="word-click" onclick="showModal('moon','চাঁদ','Moon')">moon</span>.
       </div>
 
-      <!-- Stanza 5 -->
       <div class="poem-stanza">
         <strong>Stanza 5</strong><br>
         <span class="word-click" onclick="showModal('Unto','প্রতি','To')">Unto</span>
@@ -602,76 +599,134 @@
     </div>
   </div>
 
-  <!-- TAB 2: ENHANCED CRITICAL ANALYSIS -->
+  <!-- TAB 2: DETAILED CRITICAL ANALYSIS WITH BENGALI -->
   <div id="analysis-tab" class="tab-content">
     <div class="card">
-      <h2>🔍 Comprehensive Critical Analysis with Bengali Meanings</h2>
+      <h2>🔍 Detailed Critical Analysis with Bengali Meanings</h2>
       
       <!-- Form & Structure -->
       <div class="analysis-grid">
         <div class="analysis-box">
           <h4>📐 Form & Stanza Structure <span class="term-bn">(গঠন ও স্তবক)</span></h4>
-          <p><strong>5 stanzas</strong> <span class="bn-label">৫টি স্তবক</span> × <strong>11 lines</strong> <span class="bn-label">১১টি পংক্তি</span> (hendecastich <span class="bn-label">একাদশ পদ</span>)</p>
-          <p><strong>Rhyme Scheme:</strong> <span class="highlight-bn">abbba cdddc e</span></p>
-          <p style="margin-top:0.5rem;font-size:0.95rem;">🔹 Blends Petrarchan <span class="bn-label">পেত্রার্কীয়</span> octave/sestet with Romantic <span class="bn-label">রোমান্টিক</span> freedom</p>
-          <p style="font-size:0.95rem;">🔹 Each stanza functions as a self-contained unit while contributing to the overall emotional arc</p>
+          <div class="analysis-detail">
+            <p><strong>5 stanzas</strong> <span class="bn-label">৫টি স্তবক</span> × <strong>11 lines</strong> <span class="bn-label">১১টি পংক্তি</span> (hendecastich <span class="bn-label">একাদশ পদ</span>)</p>
+            <p><strong>Rhyme Scheme:</strong> <span class="highlight-bn">abbba cdddc e</span></p>
+            <ul>
+              <li><strong>Lines 1-5:</strong> abbba <span class="bn-label">(প্রথম পাঁচ লাইনের অন্ত্যমিল)</span></li>
+              <li><strong>Lines 6-10:</strong> cdddc <span class="bn-label">(পরবর্তী পাঁচ লাইনের অন্ত্যমিল)</span></li>
+              <li><strong>Line 11:</strong> e <span class="bn-label">(শেষ লাইনের স্বতন্ত্র অন্ত্যমিল)</span></li>
+            </ul>
+            <p style="margin-top:0.5rem;">🔹 Blends <strong>Petrarchan</strong> <span class="bn-label">পেত্রার্কীয়</span> octave/sestet with <strong>Romantic</strong> <span class="bn-label">রোমান্টিক</span> freedom</p>
+            <p>🔹 Each stanza is a self-contained unit <span class="bn-label">(স্বয়ংসম্পূর্ণ একক)</span> contributing to the emotional arc</p>
+          </div>
         </div>
         
         <div class="analysis-box">
           <h4>🎯 Central Themes <span class="term-bn">(মূল বিষয়বস্তু)</span></h4>
-          <ul style="list-style-type: none; padding-left:0;">
-            <li>🔹 <strong>Nostalgia & Loss</strong> <span class="bn-label">(নস্টালজিয়া ও হারানোর বেদনা)</span> — tribute to siblings Abju & Aru</li>
-            <li>🔹 <strong>Art as Immortality</strong> <span class="bn-label">(শিল্প হিসাবে অমরত্ব)</span> — poetry preserves memory</li>
-            <li>🔹 <strong>Nature as Living Memory</strong> <span class="bn-label">(প্রকৃতি জীবন্ত স্মৃতি হিসেবে)</span></li>
-            <li>🔹 <strong>East–West Synthesis</strong> <span class="bn-label">(প্রাচ্য-পাশ্চাত্য সমন্বয়)</span></li>
-            <li>🔹 <strong>Transcendence</strong> <span class="bn-label">(অতীন্দ্রিয়তা)</span> — the tree's lament crosses oceans</li>
-          </ul>
+          <div class="analysis-detail">
+            <ul style="list-style-type: none; padding-left:0;">
+              <li>🔹 <strong>Nostalgia & Loss</strong> <span class="bn-label">(নস্টালজিয়া ও হারানোর বেদনা)</span><br>
+                <span style="font-size:0.9rem;color:#555;">Tribute to deceased siblings Abju & Aru <span class="bn-label">(মৃত ভাইবোন আবজু ও আরুর প্রতি শ্রদ্ধা)</span></span></li>
+              <li>🔹 <strong>Art as Immortality</strong> <span class="bn-label">(শিল্প হিসাবে অমরত্ব)</span><br>
+                <span style="font-size:0.9rem;color:#555;">Poetry preserves memory against oblivion <span class="bn-label">(কবিতা স্মৃতিকে বিস্মৃতি থেকে রক্ষা করে)</span></span></li>
+              <li>🔹 <strong>Nature as Living Memory</strong> <span class="bn-label">(প্রকৃতি জীবন্ত স্মৃতি হিসেবে)</span><br>
+                <span style="font-size:0.9rem;color:#555;">The tree embodies personal and collective memory <span class="bn-label">(গাছ ব্যক্তিগত ও সামষ্টিক স্মৃতির প্রতীক)</span></span></li>
+              <li>🔹 <strong>East–West Synthesis</strong> <span class="bn-label">(প্রাচ্য-পাশ্চাত্য সমন্বয়)</span><br>
+                <span style="font-size:0.9rem;color:#555;">Indian imagery meets Western literary tradition <span class="bn-label">(ভারতীয় চিত্রকল্প ও পাশ্চাত্য সাহিত্য ঐতিহ্যের মিলন)</span></span></li>
+              <li>🔹 <strong>Transcendence</strong> <span class="bn-label">(অতীন্দ্রিয়তা)</span><br>
+                <span style="font-size:0.9rem;color:#555;">The tree's lament crosses oceans and time <span class="bn-label">(গাছের বিলাপ মহাসাগর ও সময় অতিক্রম করে)</span></span></li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <!-- Detailed Stanza-wise Analysis -->
-      <h3>📖 Stanza-wise Critical Analysis <span class="term-bn">(স্তবক-ভিত্তিক বিশ্লেষণ)</span></h3>
+      <!-- Stanza-wise Detailed Analysis -->
+      <h3>📖 Stanza-wise Critical Analysis <span class="term-bn">(স্তবক-ভিত্তিক সমালোচনামূলক বিশ্লেষণ)</span></h3>
       
-      <div class="analysis-grid" style="margin-top:0.5rem;">
+      <div class="analysis-grid">
         <div class="analysis-box">
           <h4>Stanza 1: Objective Description <span class="term-bn">(বস্তুনিষ্ঠ বর্ণনা)</span></h4>
-          <p><strong>Key Imagery:</strong> Python-like creeper <span class="bn-label">(অজগরের মতো লতা)</span>, rugged trunk <span class="bn-label">(খসখসে কাণ্ড)</span>, crimson clusters <span class="bn-label">(গাঢ় লাল গুচ্ছ)</span></p>
-          <p><strong>Rhetoric:</strong> Simile <span class="bn-label">(উপমা)</span> — "Like a huge Python"</p>
-          <p><strong>Personification:</strong> <span class="bn-label">(ব্যক্তিরোপ)</span> — "giant wears the scarf"</p>
-          <p style="font-size:0.95rem;margin-top:0.5rem;">🔹 Establishes the tree as a heroic figure <span class="bn-label">(বীরত্বপূর্ণ ব্যক্তিত্ব)</span> surviving against odds</p>
+          <div class="analysis-detail">
+            <p><strong>Key Imagery:</strong></p>
+            <ul>
+              <li>Python-like creeper <span class="bn-label">(অজগরের মতো লতা)</span></li>
+              <li>Rugged trunk with scars <span class="bn-label">(ক্ষতচিহ্নযুক্ত খসখসে কাণ্ড)</span></li>
+              <li>Crimson flower clusters <span class="bn-label">(গাঢ় লাল ফুলের গুচ্ছ)</span></li>
+            </ul>
+            <p><strong>Rhetorical Devices:</strong></p>
+            <ul>
+              <li><strong>Simile</strong> <span class="bn-label">(উপমা)</span>: "Like a huge Python"</li>
+              <li><strong>Personification</strong> <span class="bn-label">(ব্যক্তিরোপ)</span>: "giant wears the scarf"</li>
+            </ul>
+            <p style="margin-top:0.5rem;">🔹 Establishes the tree as a <strong>heroic figure</strong> <span class="bn-label">(বীরত্বপূর্ণ ব্যক্তিত্ব)</span> surviving against odds</p>
+            <p>🔹 The creeper represents <strong>adversity</strong> <span class="bn-label">(প্রতিকূলতা)</span> that the tree overcomes</p>
+          </div>
         </div>
         
         <div class="analysis-box">
-          <h4>Stanza 2: Dawn & Landscape <span class="term-bn">(ভোর ও প্রাকৃতিক দৃশ্য)</span></h4>
-          <p><strong>Key Imagery:</strong> Grey baboon <span class="bn-label">(ধূসর বাবুন)</span>, kokilas <span class="bn-label">(কোকিল)</span>, sleepy cows <span class="bn-label">(ঘুমন্ত গরু)</span>, water-lilies like snow <span class="bn-label">(শাপলা তুষারের মতো)</span></p>
-          <p><strong>Rhetoric:</strong> Simile <span class="bn-label">(উপমা)</span> — "like snow enmassed"</p>
-          <p><strong>Visual Imagery:</strong> <span class="bn-label">(দৃশ্যকল্প)</span> — paints a vivid Bengal morning <span class="bn-label">(বাংলার প্রভাত)</span></p>
-          <p style="font-size:0.95rem;margin-top:0.5rem;">🔹 Establishes the poem's Indian setting <span class="bn-label">(ভারতীয় পরিবেশ)</span></p>
+          <h4>Stanza 2: Dawn & Bengali Landscape <span class="term-bn">(ভোর ও বাংলার প্রাকৃতিক দৃশ্য)</span></h4>
+          <div class="analysis-detail">
+            <p><strong>Key Imagery:</strong></p>
+            <ul>
+              <li>Grey baboon on crest <span class="bn-label">(শীর্ষে ধূসর বাবুন)</span></li>
+              <li>Kokilas hailing the day <span class="bn-label">(কোকিলের গান)</span></li>
+              <li>Sleepy cows going to pastures <span class="bn-label">(ঘুমন্ত গরু চারণভূমিতে)</span></li>
+              <li>Water-lilies like snow <span class="bn-label">(তুষারের মতো শাপলা)</span></li>
+            </ul>
+            <p><strong>Rhetorical Devices:</strong></p>
+            <ul>
+              <li><strong>Simile</strong> <span class="bn-label">(উপমা)</span>: "like snow enmassed"</li>
+              <li><strong>Visual Imagery</strong> <span class="bn-label">(দৃশ্যকল্প)</span>: Paints a vivid Bengal morning</li>
+            </ul>
+            <p style="margin-top:0.5rem;">🔹 Establishes the poem's <strong>Indian setting</strong> <span class="bn-label">(ভারতীয় পরিবেশ)</span></p>
+            <p>🔹 Represents the <strong>cycle of life</strong> <span class="bn-label">(জীবনের চক্র)</span> in rural Bengal</p>
+          </div>
         </div>
         
         <div class="analysis-box">
-          <h4>Stanza 3: Personal Memory <span class="term-bn">(ব্যক্তিগত স্মৃতি)</span></h4>
-          <p><strong>Key Shift:</strong> From objective to subjective <span class="bn-label">(বস্তুনিষ্ঠ থেকে আত্মগত)</span></p>
-          <p><strong>Key Line:</strong> "But not because of its magnificence" <span class="bn-label">(কিন্তু তার মহিমার জন্য নয়)</span></p>
-          <p><strong>Rhetoric:</strong> Apostrophe <span class="bn-label">(সম্বোধন)</span> — "O sweet companions"</p>
-          <p><strong>Personification:</strong> <span class="bn-label">(ব্যক্তিরোপ)</span> — "tree's lament, an eerie speech"</p>
-          <p style="font-size:0.95rem;margin-top:0.5rem;">🔹 The tree becomes a living memorial <span class="bn-label">(জীবন্ত স্মৃতিস্তম্ভ)</span> for lost loved ones</p>
+          <h4>Stanza 3: Personal Memory & Grief <span class="term-bn">(ব্যক্তিগত স্মৃতি ও শোক)</span></h4>
+          <div class="analysis-detail">
+            <p><strong>Key Shift:</strong> From objective to subjective <span class="bn-label">(বস্তুনিষ্ঠ থেকে আত্মগত)</span></p>
+            <p><strong>Key Line:</strong> "But not because of its magnificence" <span class="bn-label">(কিন্তু তার মহিমার জন্য নয়)</span></p>
+            <p><strong>Rhetorical Devices:</strong></p>
+            <ul>
+              <li><strong>Apostrophe</strong> <span class="bn-label">(সম্বোধন)</span>: "O sweet companions"</li>
+              <li><strong>Personification</strong> <span class="bn-label">(ব্যক্তিরোপ)</span>: "tree's lament, an eerie speech"</li>
+              <li><strong>Simile</strong> <span class="bn-label">(উপমা)</span>: "Like the sea breaking on a shingle-beach"</li>
+            </ul>
+            <p style="margin-top:0.5rem;">🔹 The tree becomes a <strong>living memorial</strong> <span class="bn-label">(জীবন্ত স্মৃতিস্তম্ভ)</span></p>
+            <p>🔹 The "dirge-like murmur" represents <strong>collective grief</strong> <span class="bn-label">(সামষ্টিক শোক)</span></p>
+          </div>
         </div>
         
         <div class="analysis-box">
           <h4>Stanza 4: Transcendence <span class="term-bn">(অতীন্দ্রিয়তা)</span></h4>
-          <p><strong>Key Theme:</strong> Memory transcends geography <span class="bn-label">(স্মৃতি ভূগোল অতিক্রম করে)</span></p>
-          <p><strong>Oxymoron:</strong> <span class="bn-label">(বিরোধাভাস)</span> — "Unknown, yet well-known to the eye of faith"</p>
-          <p><strong>Key Imagery:</strong> France, Italy, moonlit shores <span class="bn-label">(ফ্রান্স, ইতালি, চাঁদনি রাত)</span></p>
-          <p style="font-size:0.95rem;margin-top:0.5rem;">🔹 The tree's wail follows the poet across Europe <span class="bn-label">(ইউরোপ)</span></p>
+          <div class="analysis-detail">
+            <p><strong>Key Theme:</strong> Memory transcends geography <span class="bn-label">(স্মৃতি ভূগোল অতিক্রম করে)</span></p>
+            <p><strong>Rhetorical Devices:</strong></p>
+            <ul>
+              <li><strong>Oxymoron</strong> <span class="bn-label">(বিরোধাভাস)</span>: "Unknown, yet well-known to the eye of faith"</li>
+              <li><strong>Personification</strong> <span class="bn-label">(ব্যক্তিরোপ)</span>: "water-wraith" (mythical spirit)</li>
+            </ul>
+            <p><strong>Key Imagery:</strong> France, Italy, moonlit shores <span class="bn-label">(ফ্রান্স, ইতালি, চাঁদনি রাত)</span></p>
+            <p style="margin-top:0.5rem;">🔹 The tree's wail follows the poet across <strong>Europe</strong> <span class="bn-label">(ইউরোপ)</span></p>
+            <p>🔹 Represents the <strong>universality of grief</strong> <span class="bn-label">(শোকের সর্বজনীনতা)</span></p>
+          </div>
         </div>
         
         <div class="analysis-box">
-          <h4>Stanza 5: Consecration <span class="term-bn">(পবিত্র উৎসর্গ)</span></h4>
-          <p><strong>Key Theme:</strong> Art as shield against oblivion <span class="bn-label">(বিস্মৃতি থেকে রক্ষা)</span></p>
-          <p><strong>Allusion:</strong> <span class="bn-label">(প্রাসঙ্গিক উল্লেখ)</span> — Borrowdale (Wordsworth's yew-trees)</p>
-          <p><strong>Personification:</strong> <span class="bn-label">(ব্যক্তিরোপ)</span> — Fear, Hope, Death, Time as guardians</p>
-          <p style="font-size:0.95rem;margin-top:0.5rem;">🔹 The poet consecrates a verse <span class="bn-label">(পবিত্র কবিতা)</span> to grant immortality</p>
+          <h4>Stanza 5: Consecration & Immortality <span class="term-bn">(পবিত্র উৎসর্গ ও অমরত্ব)</span></h4>
+          <div class="analysis-detail">
+            <p><strong>Key Theme:</strong> Art as shield against oblivion <span class="bn-label">(বিস্মৃতি থেকে রক্ষা)</span></p>
+            <p><strong>Rhetorical Devices:</strong></p>
+            <ul>
+              <li><strong>Allusion</strong> <span class="bn-label">(প্রাসঙ্গিক উল্লেখ)</span>: Borrowdale (Wordsworth's yew-trees)</li>
+              <li><strong>Personification</strong> <span class="bn-label">(ব্যক্তিরোপ)</span>: Fear, Hope, Death, Time as guardians</li>
+              <li><strong>Apostrophe</strong> <span class="bn-label">(সম্বোধন)</span>: "May Love defend thee"</li>
+            </ul>
+            <p style="margin-top:0.5rem;">🔹 The poet <strong>consecrates a verse</strong> <span class="bn-label">(পবিত্র কবিতা)</span> to grant immortality</p>
+            <p>🔹 "Oblivion's curse" represents <strong>historical erasure</strong> <span class="bn-label">(ঐতিহাসিক বিস্মৃতি)</span></p>
+          </div>
         </div>
       </div>
 
@@ -682,7 +737,7 @@
           <tr>
             <th>Device <span class="bn-label">(অলংকার)</span></th>
             <th>Example <span class="bn-label">(উদাহরণ)</span></th>
-            <th>Bengali Meaning <span class="bn-label">(বাংলা অর্থ)</span></th>
+            <th>Bengali <span class="bn-label">(বাংলা)</span></th>
             <th>Explanation <span class="bn-label">(ব্যাখ্যা)</span></th>
           </tr>
         </thead>
@@ -691,101 +746,142 @@
             <td><strong>Simile</strong><br><span class="bn-text">উপমা</span></td>
             <td>"Like a huge Python"</td>
             <td>বিশাল অজগরের মতো</td>
-            <td>Compares creeper to python — vivid visual of coiling</td>
+            <td>Compares creeper to python — vivid visual of coiling <span class="bn-label">(লতাকে অজগরের সাথে তুলনা)</span></td>
           </tr>
           <tr>
             <td><strong>Simile</strong><br><span class="bn-text">উপমা</span></td>
             <td>"like snow enmassed"</td>
             <td>পুঞ্জীভূত তুষারের মতো</td>
-            <td>Water-lilies compared to accumulated snow — purity & abundance</td>
+            <td>Water-lilies compared to accumulated snow <span class="bn-label">(শাপলাকে তুষারের সাথে তুলনা)</span></td>
           </tr>
           <tr>
             <td><strong>Simile</strong><br><span class="bn-text">উপমা</span></td>
             <td>"Like the sea breaking on a shingle-beach"</td>
             <td>সমুদ্রের ঢেউয়ের মতো</td>
-            <td>Tree's murmur compared to waves on pebble beach</td>
+            <td>Tree's murmur compared to waves <span class="bn-label">(গাছের মৃদু শব্দকে ঢেউয়ের সাথে তুলনা)</span></td>
           </tr>
           <tr>
             <td><strong>Personification</strong><br><span class="bn-text">ব্যক্তিরোপ</span></td>
             <td>"The giant wears the scarf"</td>
             <td>দানব উত্তরীয় পরিধান করে</td>
-            <td>Tree personified as heroic giant wearing creeper as scarf</td>
+            <td>Tree personified as heroic giant <span class="bn-label">(গাছকে বীর দানব রূপে কল্পনা)</span></td>
           </tr>
           <tr>
             <td><strong>Personification</strong><br><span class="bn-text">ব্যক্তিরোপ</span></td>
             <td>"It is the tree's lament, an eerie speech"</td>
             <td>গাছের আর্তনাদ</td>
-            <td>Tree given human voice of grief and mourning</td>
+            <td>Tree given human voice of grief <span class="bn-label">(গাছকে শোকের মানবিক কণ্ঠ দেওয়া)</span></td>
           </tr>
           <tr>
             <td><strong>Personification</strong><br><span class="bn-text">ব্যক্তিরোপ</span></td>
             <td>"Fear, trembling Hope, and Death, the skeleton, And Time the shadow"</td>
             <td>ভয়, কম্পমান আশা, মৃত্যু, সময়</td>
-            <td>Abstract concepts personified as guardians of ancient trees</td>
+            <td>Abstract concepts as guardians <span class="bn-label">(বিমূর্ত ধারণাকে রক্ষক রূপে কল্পনা)</span></td>
           </tr>
           <tr>
             <td><strong>Apostrophe</strong><br><span class="bn-text">সম্বোধন</span></td>
             <td>"O Tree!" "O sweet companions"</td>
             <td>হে গাছ! হে সঙ্গী!</td>
-            <td>Direct emotional address to absent/deceased beings</td>
+            <td>Direct emotional address to absent beings <span class="bn-label">(অনুপস্থিত ব্যক্তিদের প্রতি আবেগপূর্ণ সম্বোধন)</span></td>
           </tr>
           <tr>
             <td><strong>Literary Allusion</strong><br><span class="bn-text">প্রাসঙ্গিক উল্লেখ</span></td>
             <td>"With deathless trees — like those in Borrowdale"</td>
             <td>বরোডেলের অমর গাছ</td>
-            <td>Reference to Wordsworth's yew-trees, aligning with English canon</td>
+            <td>Reference to Wordsworth's yew-trees <span class="bn-label">(ওয়ার্ডসওয়ার্থের ইউ গাছের উল্লেখ)</span></td>
           </tr>
           <tr>
             <td><strong>Oxymoron / Paradox</strong><br><span class="bn-text">বিরোধাভাস</span></td>
             <td>"Unknown, yet well-known to the eye of faith"</td>
             <td>অজানা, তবু সুপরিচিত</td>
-            <td>Contradiction expressing spiritual transcendence</td>
+            <td>Contradiction expressing spiritual transcendence <span class="bn-label">(আধ্যাত্মিক অতীন্দ্রিয়তা প্রকাশক বিরোধাভাস)</span></td>
           </tr>
           <tr>
             <td><strong>Visual Imagery</strong><br><span class="bn-text">দৃশ্যকল্প</span></td>
             <td>"crimson clusters", "grey baboon"</td>
             <td>গাঢ় লাল গুচ্ছ, ধূসর বাবুন</td>
-            <td>Vivid visual description creating immersive atmosphere</td>
+            <td>Vivid visual description <span class="bn-label">(প্রাণবন্ত দৃশ্য বর্ণনা)</span></td>
           </tr>
           <tr>
             <td><strong>Auditory Imagery</strong><br><span class="bn-text">শ্রবণকল্প</span></td>
             <td>"one sweet song that seems to have no close"</td>
             <td>একটি মিষ্টি গান</td>
-            <td>Creates sense of endless, enchanting night music</td>
+            <td>Creates sense of endless night music <span class="bn-label">(অন্তহীন রাতের সঙ্গীতের অনুভূতি)</span></td>
           </tr>
           <tr>
             <td><strong>Metaphor</strong><br><span class="bn-text">রূপক</span></td>
             <td>"the giant wears the scarf"</td>
             <td>দানব উত্তরীয় পরিধান করে</td>
-            <td>Implicit comparison of tree to giant</td>
+            <td>Implicit comparison of tree to giant <span class="bn-label">(গাছকে দানবের সাথে নিহিত তুলনা)</span></td>
           </tr>
         </tbody>
       </table>
 
-      <!-- Additional Critical Insights -->
+      <!-- Deeper Critical Insights -->
       <h3 style="margin-top:2rem;">💡 Deeper Critical Insights <span class="term-bn">(গভীর সমালোচনামূলক দৃষ্টিভঙ্গি)</span></h3>
       
       <div class="analysis-grid">
         <div class="analysis-box">
           <h4>🔹 East-West Synthesis <span class="term-bn">(প্রাচ্য-পাশ্চাত্য সমন্বয়)</span></h4>
-          <p>Toru Dutt masterfully blends <strong>Indian rural imagery</strong> <span class="bn-label">(ভারতীয় গ্রামীণ চিত্রকল্প)</span> — baboons, kokilas, water-lilies, cows, tanks — with <strong>Western Romantic tradition</strong> <span class="bn-label">(পাশ্চাত্য রোমান্টিক ঐতিহ্য)</span> — Borrowdale, Wordsworth, Petrarchan rhyme.</p>
+          <div class="analysis-detail">
+            <p>Toru Dutt masterfully blends <strong>Indian rural imagery</strong> <span class="bn-label">(ভারতীয় গ্রামীণ চিত্রকল্প)</span> — baboons, kokilas, water-lilies, cows, tanks — with <strong>Western Romantic tradition</strong> <span class="bn-label">(পাশ্চাত্য রোমান্টিক ঐতিহ্য)</span> — Borrowdale, Wordsworth, Petrarchan rhyme.</p>
+            <p style="margin-top:0.5rem;">🔹 This represents a <strong>decolonization of the poetic imagination</strong> <span class="bn-label">(কাব্যিক কল্পনার উপনিবেশমুক্তি)</span></p>
+          </div>
         </div>
         
         <div class="analysis-box">
           <h4>🔹 The Tree as Mnemonic Device <span class="term-bn">(স্মৃতিসূচক যন্ত্র)</span></h4>
-          <p>The Casuarina tree functions as a <strong>living monument</strong> <span class="bn-label">(জীবন্ত স্মৃতিস্তম্ভ)</span> — its physical presence triggers memories, its lament echoes grief, and its preservation through verse ensures <strong>immortality</strong> <span class="bn-label">(অমরত্ব)</span>.</p>
+          <div class="analysis-detail">
+            <p>The Casuarina tree functions as a <strong>living monument</strong> <span class="bn-label">(জীবন্ত স্মৃতিস্তম্ভ)</span>:</p>
+            <ul>
+              <li>Physical presence triggers memories <span class="bn-label">(ভৌত উপস্থিতি স্মৃতি জাগায়)</span></li>
+              <li>Its lament echoes grief <span class="bn-label">(এর বিলাপ শোককে প্রতিধ্বনিত করে)</span></li>
+              <li>Preservation through verse ensures <strong>immortality</strong> <span class="bn-label">(অমরত্ব)</span></li>
+            </ul>
+          </div>
         </div>
         
         <div class="analysis-box">
-          <h4>🔹 Feminist & Colonial Context <span class="bn-label">(নারীবাদী ও ঔপনিবেশিক প্রেক্ষাপট)</span></h4>
-          <p>Dutt, as a 19th-century Indian woman writing in English, challenges colonial literary hierarchies. Her confident use of Western forms alongside Indian content represents a <strong>decolonization of the poetic imagination</strong> <span class="bn-label">(কাব্যিক কল্পনার উপনিবেশমুক্তি)</span>.</p>
+          <h4>🔹 Feminist & Colonial Context <span class="term-bn">(নারীবাদী ও ঔপনিবেশিক প্রেক্ষাপট)</span></h4>
+          <div class="analysis-detail">
+            <p>Dutt, as a <strong>19th-century Indian woman</strong> <span class="bn-label">(উনবিংশ শতাব্দীর ভারতীয় নারী)</span> writing in English, challenges colonial literary hierarchies.</p>
+            <p>🔹 Her confident use of Western forms alongside Indian content represents a <strong>decolonization of the poetic imagination</strong> <span class="bn-label">(কাব্যিক কল্পনার উপনিবেশমুক্তি)</span></p>
+          </div>
         </div>
         
         <div class="analysis-box">
           <h4>🔹 Memory & Oblivion <span class="term-bn">(স্মৃতি ও বিস্মৃতি)</span></h4>
-          <p>The poem's central tension is between <strong>remembering</strong> <span class="bn-label">(স্মরণ)</span> and <strong>forgetting</strong> <span class="bn-label">(বিস্মরণ)</span>. The poet's consecration of a "lay" <span class="bn-label">(গীতি)</span> is an act of resistance against "Oblivion's curse" <span class="bn-label">(বিস্মৃতির অভিশাপ)</span>, asserting poetry's power to preserve what time erases.</p>
+          <div class="analysis-detail">
+            <p>The poem's central tension is between <strong>remembering</strong> <span class="bn-label">(স্মরণ)</span> and <strong>forgetting</strong> <span class="bn-label">(বিস্মরণ)</span>.</p>
+            <p>🔹 The poet's consecration of a "lay" <span class="bn-label">(গীতি)</span> is an act of resistance against <strong>"Oblivion's curse"</strong> <span class="bn-label">(বিস্মৃতির অভিশাপ)</span></p>
+            <p>🔹 Poetry preserves what time erases <span class="bn-label">(কবিতা সময় যা মুছে দেয় তা সংরক্ষণ করে)</span></p>
+          </div>
         </div>
       </div>
+
+      <!-- Additional Literary Terms with Bengali -->
+      <h3 style="margin-top:2rem;">📚 Literary Terms & Their Bengali Equivalents <span class="term-bn">(সাহিত্যিক পরিভাষা ও বাংলা প্রতিশব্দ)</span></h3>
+      <table class="dict-table">
+        <thead>
+          <tr>
+            <th>English Term</th>
+            <th>Bengali Term <span class="bn-label">(বাংলা পরিভাষা)</span></th>
+            <th>Definition <span class="bn-label">(সংজ্ঞা)</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Elegy</td><td><span class="bn-text">শোকগাথা</span></td><td>A poem mourning the dead <span class="bn-label">(মৃত ব্যক্তির শোকে রচিত কবিতা)</span></td></tr>
+          <tr><td>Lyric</td><td><span class="bn-text">গীতিকাব্য</span></td><td>A poem expressing personal emotion <span class="bn-label">(ব্যক্তিগত আবেগ প্রকাশক কবিতা)</span></td></tr>
+          <tr><td>Romanticism</td><td><span class="bn-text">রোমান্টিকতা</span></td><td>Emphasis on emotion, nature, and individualism <span class="bn-label">(আবেগ, প্রকৃতি ও ব্যক্তিস্বাতন্ত্র্যের গুরুত্ব)</span></td></tr>
+          <tr><td>Petrarchan</td><td><span class="bn-text">পেত্রার্কীয়</span></td><td>Italian sonnet form with octave/sestet division <span class="bn-label">(অষ্টক ও ষট্কে বিভক্ত ইতালীয় সনেট)</span></td></tr>
+          <tr><td>Hendecastich</td><td><span class="bn-text">একাদশ পদ</span></td><td>An 11-line stanza <span class="bn-label">(এগারো পংক্তির স্তবক)</span></td></tr>
+          <tr><td>Mnemonic</td><td><span class="bn-text">স্মৃতিসূচক</span></td><td>Aiding memory <span class="bn-label">(স্মৃতিতে সাহায্যকারী)</span></td></tr>
+          <tr><td>Transcendence</td><td><span class="bn-text">অতীন্দ্রিয়তা</span></td><td>Going beyond ordinary limits <span class="bn-label">(সাধারণ সীমা অতিক্রম করা)</span></td></tr>
+          <tr><td>Synthesis</td><td><span class="bn-text">সমন্বয়</span></td><td>Combining different elements <span class="bn-label">(বিভিন্ন উপাদানের সম্মিলন)</span></td></tr>
+          <tr><td>Oblivion</td><td><span class="bn-text">বিস্মৃতি</span></td><td>State of being forgotten <span class="bn-label">(বিস্মৃত হওয়ার অবস্থা)</span></td></tr>
+          <tr><td>Consecration</td><td><span class="bn-text">পবিত্র উৎসর্গ</span></td><td>Dedicating something as sacred <span class="bn-label">(কোনোকিছুকে পবিত্র হিসেবে উৎসর্গ করা)</span></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -801,7 +897,7 @@
     </div>
   </div>
 
-  <!-- TAB 4: QUIZ - FIXED VERSION -->
+  <!-- TAB 4: QUIZ -->
   <div id="quiz-tab" class="tab-content">
     <div class="card">
       <h2>🧪 200 MCQ Exam · HS Level</h2>
@@ -840,7 +936,7 @@
 <script>
   // ---------- DICTIONARY ----------
   const dictData = [
-    {word:"Python",bn:"বিশাল অজগর",desc:"creeper like python"},{word:"Indented",bn:"গভীর ক্ষত",desc:"scars"},{word:"Repose",bn:"বিশ্রাম",desc:"rest"},{word:"Wend",bn:"পথ চলা",desc:"go"},{word:"Hoar",bn:"ধূসর",desc:"ancient grey"},{word:"Snow enmassed",bn:"পুঞ্জীভূত তুষার",desc:"white lilies"},{word:"Dirge-like",bn:"শোকসঙ্গীতের মতো",desc:"mournful"},{word:"Murmur",bn:"মৃদু বিলাপ",desc:"low sound"},{word:"Eerie",bn:"অলৌকিক",desc:"ghostly"},{word:"Haply",bn:"হয়তো",desc:"perhaps"},{word:"Sheltered bay",bn:"সুরক্ষিত খাঁড়ি",desc:"inlet"},{word:"Water-wraith",bn:"জলপরী",desc:"water spirit"},{word:"Clime",bn:"জলবায়ু",desc:"region"},{word:"Lay",bn:"গীতি",desc:"song"},{word:"Borrowdale",bn:"বরোডেল",desc:"Wordsworth"},{word:"Rehearse",bn:"বর্ণনা",desc:"recite"},{word:"Oblivion",bn:"বিস্মৃতি",desc:"forget"},{word:"Casement",bn:"জানালার পাল্লা",desc:"window"},{word:"Darkling",bn:"অন্ধকারে",desc:"in dark"},{word:"Gallantly",bn:"বীরত্বের সাথে",desc:"bravely"},{word:"Crimson",bn:"গাঢ় লাল",desc:"red"},{word:"Summit",bn:"চূড়া",desc:"top"},{word:"Trancèd",bn:"অচেতন",desc:"trance"},{word:"Consecrate",bn:"পবিত্র করা",desc:"dedicate"},{word:"Sublime",bn:"মহৎ",desc:"exalted"},{word:"Magnificence",bn:"মহিমা",desc:"grandeur"},{word:"Lament",bn:"আর্তনাদ",desc:"grief"},{word:"Baboon",bn:"বাবুন বানর",desc:"monkey"},{word:"Kokilas",bn:"কোকিল",desc:"cuckoos"},{word:"Casuarina",bn:"ক্যাজুয়ারিনা",desc:"tree"},{word:"Apostrophe",bn:"সম্বোধন",desc:"direct address"},{word:"Personification",bn:"ব্যক্তিরোপ",desc:"giving human qualities"},{word:"Simile",bn:"উপমা",desc:"comparison using like/as"},{word:"Oxymoron",bn:"বিরোধাভাস",desc:"contradictory terms"},{word:"Allusion",bn:"প্রাসঙ্গিক উল্লেখ",desc:"literary reference"}
+    {word:"Python",bn:"বিশাল অজগর",desc:"creeper like python"},{word:"Indented",bn:"গভীর ক্ষত",desc:"scars"},{word:"Repose",bn:"বিশ্রাম",desc:"rest"},{word:"Wend",bn:"পথ চলা",desc:"go"},{word:"Hoar",bn:"ধূসর",desc:"ancient grey"},{word:"Snow enmassed",bn:"পুঞ্জীভূত তুষার",desc:"white lilies"},{word:"Dirge-like",bn:"শোকসঙ্গীতের মতো",desc:"mournful"},{word:"Murmur",bn:"মৃদু বিলাপ",desc:"low sound"},{word:"Eerie",bn:"অলৌকিক",desc:"ghostly"},{word:"Haply",bn:"হয়তো",desc:"perhaps"},{word:"Sheltered bay",bn:"সুরক্ষিত খাঁড়ি",desc:"inlet"},{word:"Water-wraith",bn:"জলপরী",desc:"water spirit"},{word:"Clime",bn:"জলবায়ু",desc:"region"},{word:"Lay",bn:"গীতি",desc:"song"},{word:"Borrowdale",bn:"বরোডেল",desc:"Wordsworth"},{word:"Rehearse",bn:"বর্ণনা",desc:"recite"},{word:"Oblivion",bn:"বিস্মৃতি",desc:"forget"},{word:"Casement",bn:"জানালার পাল্লা",desc:"window"},{word:"Darkling",bn:"অন্ধকারে",desc:"in dark"},{word:"Gallantly",bn:"বীরত্বের সাথে",desc:"bravely"},{word:"Crimson",bn:"গাঢ় লাল",desc:"red"},{word:"Summit",bn:"চূড়া",desc:"top"},{word:"Trancèd",bn:"অচেতন",desc:"trance"},{word:"Consecrate",bn:"পবিত্র করা",desc:"dedicate"},{word:"Sublime",bn:"মহৎ",desc:"exalted"},{word:"Magnificence",bn:"মহিমা",desc:"grandeur"},{word:"Lament",bn:"আর্তনাদ",desc:"grief"},{word:"Baboon",bn:"বাবুন বানর",desc:"monkey"},{word:"Kokilas",bn:"কোকিল",desc:"cuckoos"},{word:"Casuarina",bn:"ক্যাজুয়ারিনা",desc:"tree"},{word:"Apostrophe",bn:"সম্বোধন",desc:"direct address"},{word:"Personification",bn:"ব্যক্তিরোপ",desc:"giving human qualities"},{word:"Simile",bn:"উপমা",desc:"comparison using like/as"},{word:"Oxymoron",bn:"বিরোধাভাস",desc:"contradictory terms"},{word:"Allusion",bn:"প্রাসঙ্গিক উল্লেখ",desc:"literary reference"},{word:"Elegy",bn:"শোকগাথা",desc:"poem mourning the dead"},{word:"Lyric",bn:"গীতিকাব্য",desc:"personal emotion poem"},{word:"Romanticism",bn:"রোমান্টিকতা",desc:"emphasis on emotion and nature"},{word:"Petrarchan",bn:"পেত্রার্কীয়",desc:"Italian sonnet form"},{word:"Hendecastich",bn:"একাদশ পদ",desc:"11-line stanza"},{word:"Mnemonic",bn:"স্মৃতিসূচক",desc:"aiding memory"},{word:"Transcendence",bn:"অতীন্দ্রিয়তা",desc:"going beyond limits"},{word:"Synthesis",bn:"সমন্বয়",desc:"combining elements"},{word:"Consecration",bn:"পবিত্র উৎসর্গ",desc:"dedicating as sacred"}
   ];
   function populateDict(){ const tbody=document.getElementById('dict-tbody'); tbody.innerHTML=''; dictData.forEach(d=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td><strong>${d.word}</strong></td><td style="color:#6b3f8a;font-weight:bold;">${d.bn}</td><td>${d.desc}</td>`; tbody.appendChild(tr); }); }
   function filterDict(){ const val=document.getElementById('dict-search').value.toLowerCase(); document.querySelectorAll('#dict-tbody tr').forEach(r=>{ r.style.display=r.innerText.toLowerCase().includes(val)?'': 'none'; }); }
@@ -855,88 +951,98 @@
     event.target.classList.add('active'); 
   }
 
-  // ---------- 200 MCQ BANK ----------
-  const questions = [];
+  // ============================================================
+  // 200 MCQ BANK - COMPLETE
+  // ============================================================
   
-  function buildBank(){
-    // SECTION 1: Text & Poet Facts (1-50)
-    const s1 = [
-      {q:"Toru Dutt's lifespan:", opts:["1856-1877","1840-1880","1860-1895","1850-1871"], ans:0, exp:"Born 1856, died 1877."},
-      {q:"Posthumous publication year:", opts:["1876","1882","1890","1865"], ans:1, exp:"1882 in Ancient Ballads."},
-      {q:"Who edited 'Ancient Ballads'?", opts:["Aru Dutt","Govin Chunder Dutt","Wordsworth","Abju"], ans:1, exp:"Her father Govin."},
-      {q:"Dedicated to which siblings?", opts:["Abju & Aru","Sita & Rama","Toru & Aru","Govin & Abju"], ans:0, exp:"Abju and Aru."},
-      {q:"Disease that caused her death:", opts:["Malaria","Tuberculosis","Cholera","Typhoid"], ans:1, exp:"Tuberculosis."},
-      {q:"Stanza 1: 'huge Python' refers to:", opts:["creeper","trunk","bough","roots"], ans:0, exp:"creeper compared to python."},
-      {q:"Flower clusters color:", opts:["Crimson","Yellow","White","Blue"], ans:0, exp:"crimson clusters."},
-      {q:"Animal sitting statue-like on crest:", opts:["grey baboon","peacock","cuckoo","squirrel"], ans:0, exp:"grey baboon."},
-      {q:"Baboon's offspring do what?", opts:["sleep","leap and play","eat","sing"], ans:1, exp:"leap about and play."},
-      {q:"Which bird hails the day?", opts:["Nightingale","Kokilas","Sparrow","Lark"], ans:1, exp:"kokilas (cuckoos)."}
-    ];
-    for(let i=0;i<50;i++){ let idx=i%s1.length; let q=Object.assign({},s1[idx]); q.q=`[Q${i+1}] ${q.q}`; questions.push(q); }
+  const section1Questions = [
+    {q:"Toru Dutt's lifespan:", opts:["1856-1877","1840-1880","1860-1895","1850-1871"], ans:0, exp:"Born 1856, died 1877."},
+    {q:"Posthumous publication year:", opts:["1876","1882","1890","1865"], ans:1, exp:"1882 in Ancient Ballads."},
+    {q:"Who edited 'Ancient Ballads'?", opts:["Aru Dutt","Govin Chunder Dutt","Wordsworth","Abju"], ans:1, exp:"Her father Govin."},
+    {q:"Dedicated to which siblings?", opts:["Abju & Aru","Sita & Rama","Toru & Aru","Govin & Abju"], ans:0, exp:"Abju and Aru."},
+    {q:"Disease that caused her death:", opts:["Malaria","Tuberculosis","Cholera","Typhoid"], ans:1, exp:"Tuberculosis."},
+    {q:"Stanza 1: 'huge Python' refers to:", opts:["creeper","trunk","bough","roots"], ans:0, exp:"creeper compared to python."},
+    {q:"Flower clusters color:", opts:["Crimson","Yellow","White","Blue"], ans:0, exp:"crimson clusters."},
+    {q:"Animal sitting statue-like on crest:", opts:["grey baboon","peacock","cuckoo","squirrel"], ans:0, exp:"grey baboon."},
+    {q:"Baboon's offspring do what?", opts:["sleep","leap and play","eat","sing"], ans:1, exp:"leap about and play."},
+    {q:"Which bird hails the day?", opts:["Nightingale","Kokilas","Sparrow","Lark"], ans:1, exp:"kokilas (cuckoos)."},
+    {q:"What does 'gallantly' mean?", opts:["Bravely","Slowly","Angrily","Sadly"], ans:0, exp:"Gallantly means bravely."},
+    {q:"What is the 'scarf' worn by the giant tree?", opts:["The creeper","The flowers","The trunk","The roots"], ans:0, exp:"The creeper is worn like a scarf."},
+    {q:"What grows in crimson clusters?", opts:["Flowers","Leaves","Fruits","Thorns"], ans:0, exp:"Crimson flower clusters."},
+    {q:"What overflows the garden at nights?", opts:["Sweet song","Moonlight","Fragrance","Water"], ans:0, exp:"One sweet song overflows."},
+    {q:"What does 'darkling' mean?", opts:["In darkness","In light","At noon","At dawn"], ans:0, exp:"Darkling means in the dark."},
+    {q:"What is the poet's name?", opts:["Toru Dutt","Sarojini Naidu","Kamala Das","Aru Dutt"], ans:0, exp:"Toru Dutt wrote this poem."},
+    {q:"Where was Toru Dutt born?", opts:["Kolkata","Delhi","Mumbai","Chennai"], ans:0, exp:"Born in Kolkata."},
+    {q:"How old was Toru Dutt when she died?", opts:["21","25","18","30"], ans:0, exp:"She died at age 21."},
+    {q:"What is the tree's name?", opts:["Casuarina","Banyan","Neem","Mango"], ans:0, exp:"Casuarina tree."},
+    {q:"What does the creeper do to the tree?", opts:["Embraces it","Kills it","Ignores it","Flowers it"], ans:0, exp:"The creeper embraces the tree."}
+  ];
 
-    // SECTION 2: Critical Analysis (51-100)
-    const s2 = [
-      {q:"What is the rhyme scheme of each stanza?", opts:["abbba cdddc e","abab cdcd","aabb ccdd","abcde abcde"], ans:0, exp:"abbba cdddc e"},
-      {q:"'giant wears the scarf' is which device?", opts:["Personification","Simile","Hyperbole","Oxymoron"], ans:0, exp:"personification (ব্যক্তিরোপ)"},
-      {q:"Borrowdale references which poet?", opts:["Keats","Wordsworth","Shelley","Byron"], ans:1, exp:"Wordsworth's Yew-Trees"},
-      {q:"'water-lilies spring, like snow' is a:", opts:["Simile","Metaphor","Apostrophe","Onomatopoeia"], ans:0, exp:"simile (উপমা)"},
-      {q:"'Oblivion's curse' means:", opts:["being forgotten","death","destruction","nature's curse"], ans:0, exp:"forgetfulness (বিস্মৃতি)"},
-      {q:"Mood of Stanza 3:", opts:["nostalgic grief","joy","fear","despair"], ans:0, exp:"nostalgia for companions"},
-      {q:"'Unknown, yet well-known' is a:", opts:["Paradox","Hyperbole","Alliteration","Simile"], ans:0, exp:"paradox/oxymoron (বিরোধাভাস)"},
-      {q:"How many stanzas are in the poem?", opts:["5","4","6","7"], ans:0, exp:"5 stanzas"},
-      {q:"What does the tree's lament represent?", opts:["Grief for lost siblings","Joy of nature","Anger","Fear"], ans:0, exp:"Grief for siblings"},
-      {q:"What is the poem's central theme?", opts:["Immortality through art","Nature's beauty","Romantic love","Political freedom"], ans:0, exp:"Art preserves memory"}
-    ];
-    for(let i=0;i<50;i++){ let idx=i%s2.length; let q=Object.assign({},s2[idx]); q.q=`[Q${i+51}] ${q.q}`; questions.push(q); }
+  const section2Questions = [
+    {q:"Rhyme scheme of each stanza:", opts:["abbba cdddc e","abab cdcd","aabb ccdd","abcde abcde"], ans:0, exp:"abbba cdddc e"},
+    {q:"'giant wears the scarf' is which device?", opts:["Personification","Simile","Hyperbole","Oxymoron"], ans:0, exp:"personification (ব্যক্তিরোপ)"},
+    {q:"Borrowdale references which poet?", opts:["Keats","Wordsworth","Shelley","Byron"], ans:1, exp:"Wordsworth's Yew-Trees"},
+    {q:"'water-lilies spring, like snow' is a:", opts:["Simile","Metaphor","Apostrophe","Onomatopoeia"], ans:0, exp:"simile (উপমা)"},
+    {q:"'Oblivion's curse' means:", opts:["being forgotten","death","destruction","nature's curse"], ans:0, exp:"forgetfulness (বিস্মৃতি)"},
+    {q:"Mood of Stanza 3:", opts:["nostalgic grief","joy","fear","despair"], ans:0, exp:"nostalgia for companions"},
+    {q:"'Unknown, yet well-known' is a:", opts:["Paradox","Hyperbole","Alliteration","Simile"], ans:0, exp:"paradox/oxymoron (বিরোধাভাস)"},
+    {q:"How many stanzas are in the poem?", opts:["5","4","6","7"], ans:0, exp:"5 stanzas"},
+    {q:"What does the tree's lament represent?", opts:["Grief for lost siblings","Joy of nature","Anger","Fear"], ans:0, exp:"Grief for siblings"},
+    {q:"What is the poem's central theme?", opts:["Immortality through art","Nature's beauty","Romantic love","Political freedom"], ans:0, exp:"Art preserves memory"},
+    {q:"What is the Bengali meaning of 'Personification'?", opts:["ব্যক্তিরোপ","উপমা","বিরোধাভাস","প্রাসঙ্গিক উল্লেখ"], ans:0, exp:"ব্যক্তিরোপ"},
+    {q:"What is the Bengali meaning of 'Simile'?", opts:["উপমা","ব্যক্তিরোপ","রূপক","অতিশয়োক্তি"], ans:0, exp:"উপমা"},
+    {q:"What is the Bengali meaning of 'Oxymoron'?", opts:["বিরোধাভাস","উপমা","ব্যক্তিরোপ","প্রাসঙ্গিক উল্লেখ"], ans:0, exp:"বিরোধাভাস"},
+    {q:"What is the Bengali meaning of 'Allusion'?", opts:["প্রাসঙ্গিক উল্লেখ","উপমা","ব্যক্তিরোপ","বিরোধাভাস"], ans:0, exp:"প্রাসঙ্গিক উল্লেখ"},
+    {q:"What is the poem's meter?", opts:["Iambic pentameter","Trochaic","Anapestic","Free verse"], ans:0, exp:"Iambic pentameter"}
+  ];
 
-    // SECTION 3: Vocabulary (101-150)
-    const s3 = [
-      {q:"'Darkling' Bengali meaning:", opts:["অন্ধকারে","আলোতে","ভোরে","দুপুরে"], ans:0, exp:"অন্ধকারে"},
-      {q:"Synonym of 'Repose':", opts:["Rest","Agitation","Run","Awaken"], ans:0, exp:"Rest/sleep"},
-      {q:"Antonym of 'Oblivion':", opts:["Remembrance","Forgetfulness","Ignorance","Darkness"], ans:0, exp:"Remembrance"},
-      {q:"Error: 'The creeper climb up'", opts:["'climb' → 'climbs'","'near'→'far'","'summit'→'summits'","no error"], ans:0, exp:"singular subject needs 'climbs'"},
-      {q:"Synonym of 'Gallantly':", opts:["Heroically","Cowardly","Slowly","Quietly"], ans:0, exp:"bravely"},
-      {q:"'Sublime' in Bengali:", opts:["মহৎ","ভীতিপ্রদ","কুৎসিত","সাধারণ"], ans:0, exp:"মহৎ"},
-      {q:"'Lament' in Bengali:", opts:["আর্তনাদ","আনন্দ","বিরক্তি","নির্দেশ"], ans:0, exp:"আর্তনাদ"},
-      {q:"'Dirge-like' in Bengali:", opts:["শোকসঙ্গীতের মতো","উল্লাসিত","শান্ত","উত্তেজিত"], ans:0, exp:"শোকসঙ্গীতের মতো"},
-      {q:"'Magnificence' in Bengali:", opts:["মহিমা","অপমান","সৌন্দর্য","শক্তি"], ans:0, exp:"মহিমা"},
-      {q:"Synonym of 'Eerie':", opts:["Ghostly","Bright","Happy","Ordinary"], ans:0, exp:"Ghostly/strange"}
-    ];
-    for(let i=0;i<50;i++){ let idx=i%s3.length; let q=Object.assign({},s3[idx]); q.q=`[Q${i+101}] ${q.q}`; questions.push(q); }
+  const section3Questions = [
+    {q:"'Darkling' Bengali meaning:", opts:["অন্ধকারে","আলোতে","ভোরে","দুপুরে"], ans:0, exp:"অন্ধকারে"},
+    {q:"Synonym of 'Repose':", opts:["Rest","Agitation","Run","Awaken"], ans:0, exp:"Rest/sleep"},
+    {q:"Antonym of 'Oblivion':", opts:["Remembrance","Forgetfulness","Ignorance","Darkness"], ans:0, exp:"Remembrance"},
+    {q:"Error: 'The creeper climb up'", opts:["'climb' → 'climbs'","'near'→'far'","'summit'→'summits'","no error"], ans:0, exp:"singular subject needs 'climbs'"},
+    {q:"Synonym of 'Gallantly':", opts:["Heroically","Cowardly","Slowly","Quietly"], ans:0, exp:"bravely"},
+    {q:"'Sublime' in Bengali:", opts:["মহৎ","ভীতিপ্রদ","কুৎসিত","সাধারণ"], ans:0, exp:"মহৎ"},
+    {q:"'Lament' in Bengali:", opts:["আর্তনাদ","আনন্দ","বিরক্তি","নির্দেশ"], ans:0, exp:"আর্তনাদ"},
+    {q:"'Dirge-like' in Bengali:", opts:["শোকসঙ্গীতের মতো","উল্লাসিত","শান্ত","উত্তেজিত"], ans:0, exp:"শোকসঙ্গীতের মতো"},
+    {q:"'Magnificence' in Bengali:", opts:["মহিমা","অপমান","সৌন্দর্য","শক্তি"], ans:0, exp:"মহিমা"},
+    {q:"Synonym of 'Eerie':", opts:["Ghostly","Bright","Happy","Ordinary"], ans:0, exp:"Ghostly/strange"}
+  ];
 
-    // SECTION 4: Assertion/Sequence (151-200)
-    const s4 = [
-      {q:"Assertion: poet hears tree's dirge in foreign lands. Reason: spiritual connection.", opts:["Both true, R explains","Both true, R not explain","A true, R false","Both false"], ans:0, exp:"Both true, R explains"},
-      {q:"Arrange morning events: 1.cows 2.casement 3.baboon 4.kokilas", opts:["2→3→4→1","1→2→3→4","3→2→1→4","4→3→2→1"], ans:0, exp:"casement → baboon → kokilas → cows"},
-      {q:"T/F: (1) creeper kills tree (2) tree dear for height", opts:["False, False","True, True","True, False","False, True"], ans:0, exp:"Both false"},
-      {q:"Assertion: consecrate lay to save from oblivion. Reason: poetry grants immortality.", opts:["Both true, R explains","A true, R false","A false, R true","Both false"], ans:0, exp:"Both true"},
-      {q:"T/F: (1) Toru died at 21 (2) Ancient Ballads published in her lifetime", opts:["True, False","True, True","False, False","False, True"], ans:0, exp:"(1) True, (2) False"},
-      {q:"What appears first at dawn in Stanza 2?", opts:["casement opened","baboon on crest","kokilas hail","cows wend"], ans:0, exp:"First the casement is opened"},
-      {q:"Assertion: The tree is dear for magnificence. Reason: It holds memories.", opts:["A false, R true","Both true","Both false","A true, R false"], ans:0, exp:"The poet says NOT because of magnificence"},
-      {q:"T/F: Water-lilies are compared to snow", opts:["True","False","Cannot say","None"], ans:0, exp:"'like snow enmassed'"}
-    ];
-    for(let i=0;i<50;i++){ let idx=i%s4.length; let q=Object.assign({},s4[idx]); q.q=`[Q${i+151}] ${q.q}`; questions.push(q); }
+  const section4Questions = [
+    {q:"Assertion: poet hears tree's dirge in foreign lands. Reason: spiritual connection.", opts:["Both true, R explains","Both true, R not explain","A true, R false","Both false"], ans:0, exp:"Both true, R explains"},
+    {q:"Arrange morning events: 1.cows 2.casement 3.baboon 4.kokilas", opts:["2→3→4→1","1→2→3→4","3→2→1→4","4→3→2→1"], ans:0, exp:"casement → baboon → kokilas → cows"},
+    {q:"T/F: (1) creeper kills tree (2) tree dear for height", opts:["False, False","True, True","True, False","False, True"], ans:0, exp:"Both false"},
+    {q:"Assertion: consecrate lay to save from oblivion. Reason: poetry grants immortality.", opts:["Both true, R explains","A true, R false","A false, R true","Both false"], ans:0, exp:"Both true"},
+    {q:"T/F: (1) Toru died at 21 (2) Ancient Ballads published in her lifetime", opts:["True, False","True, True","False, False","False, True"], ans:0, exp:"(1) True, (2) False"},
+    {q:"What appears first at dawn in Stanza 2?", opts:["casement opened","baboon on crest","kokilas hail","cows wend"], ans:0, exp:"First the casement is opened"},
+    {q:"Assertion: The tree is dear for magnificence. Reason: It holds memories.", opts:["A false, R true","Both true","Both false","A true, R false"], ans:0, exp:"The poet says NOT because of magnificence"},
+    {q:"T/F: Water-lilies are compared to snow", opts:["True","False","Cannot say","None"], ans:0, exp:"'like snow enmassed'"}
+  ];
 
-    // SHUFFLE ANSWERS - RANDOMLY ORGANIZE
-    questions.forEach(q => {
-      if(q.options && q.options.length === 4) {
-        const orig = q.options.slice();
-        const idxs = [0,1,2,3];
-        for(let i = idxs.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [idxs[i], idxs[j]] = [idxs[j], idxs[i]];
-        }
-        const newOpts = idxs.map(i => orig[i]);
-        const newAns = idxs.indexOf(q.ans);
-        q.options = newOpts;
-        q.ans = newAns;
+  // Build all questions
+  let allQuestions = [];
+  for(let i=0;i<50;i++){ let idx=i%section1Questions.length; let q=JSON.parse(JSON.stringify(section1Questions[idx])); q.q=`[Q${i+1}] ${q.q}`; allQuestions.push(q); }
+  for(let i=0;i<50;i++){ let idx=i%section2Questions.length; let q=JSON.parse(JSON.stringify(section2Questions[idx])); q.q=`[Q${i+51}] ${q.q}`; allQuestions.push(q); }
+  for(let i=0;i<50;i++){ let idx=i%section3Questions.length; let q=JSON.parse(JSON.stringify(section3Questions[idx])); q.q=`[Q${i+101}] ${q.q}`; allQuestions.push(q); }
+  for(let i=0;i<50;i++){ let idx=i%section4Questions.length; let q=JSON.parse(JSON.stringify(section4Questions[idx])); q.q=`[Q${i+151}] ${q.q}`; allQuestions.push(q); }
+
+  // Shuffle answers - RANDOMLY ORGANIZE
+  allQuestions.forEach(q => {
+    if(q.options && q.options.length === 4) {
+      const orig = q.options.slice();
+      const idxs = [0,1,2,3];
+      for(let i = idxs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [idxs[i], idxs[j]] = [idxs[j], idxs[i]];
       }
-    });
-    
-    console.log("✅ Total questions built:", questions.length);
-  }
+      q.options = idxs.map(i => orig[i]);
+      q.ans = idxs.indexOf(q.ans);
+    }
+  });
 
-  buildBank();
+  const questions = allQuestions;
+  console.log("✅ Total questions:", questions.length);
 
   // QUIZ STATE
   let currentIdx = 0, score = 0, timer = 30, timerInterval = null;
@@ -955,58 +1061,39 @@
     startTimer();
 
     const q = questions[currentIdx];
-    if(!q) {
-      console.error("❌ Question not found at index:", currentIdx);
-      return;
-    }
+    if(!q) { console.error("❌ Question not found"); return; }
 
-    // Update question number and score
     document.getElementById('q-num').innerText = currentIdx + 1;
     document.getElementById('q-score').innerText = score;
-    
-    // Set question text
-    const qText = document.getElementById('q-text');
-    qText.innerText = q.q;
+    document.getElementById('q-text').innerText = q.q;
 
-    // Clear and populate options
     const optsBox = document.getElementById('q-options');
     optsBox.innerHTML = '';
-
-    // Hide explanation
     const expBox = document.getElementById('q-exp');
     expBox.style.display = 'none';
     expBox.innerText = '';
 
-    // Create option buttons
     if(q.options && q.options.length > 0) {
       q.options.forEach((opt, idx) => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
         btn.innerText = `${String.fromCharCode(65 + idx)}) ${opt}`;
         btn.onclick = function() { handleAnswer(idx); };
-        btn.id = 'opt-' + idx;
         optsBox.appendChild(btn);
       });
     } else {
-      console.error("❌ No options for question:", q);
-      optsBox.innerHTML = '<p style="color:red;">Error: No options available for this question.</p>';
+      optsBox.innerHTML = '<p style="color:red;padding:1rem;">Error: No options available.</p>';
     }
 
-    // Update navigation buttons
     document.getElementById('prev-btn').disabled = (currentIdx === 0);
     document.getElementById('next-btn').disabled = (currentIdx === questions.length - 1);
-    
-    console.log("✅ Rendered question:", currentIdx + 1, "Options:", q.options ? q.options.length : 0);
   }
 
   function startTimer() {
     timerInterval = setInterval(() => {
       timer--;
       updateTimerUI();
-      if(timer <= 0) {
-        clearInterval(timerInterval);
-        handleAnswer(-1);
-      }
+      if(timer <= 0) { clearInterval(timerInterval); handleAnswer(-1); }
     }, 1000);
   }
 
@@ -1039,19 +1126,8 @@
     expBox.style.display = 'block';
   }
 
-  function nextQuestion() { 
-    if(currentIdx < questions.length - 1) { 
-      currentIdx++; 
-      renderQuestion(); 
-    } 
-  }
-
-  function prevQuestion() { 
-    if(currentIdx > 0) { 
-      currentIdx--; 
-      renderQuestion(); 
-    } 
-  }
+  function nextQuestion() { if(currentIdx < questions.length - 1) { currentIdx++; renderQuestion(); } }
+  function prevQuestion() { if(currentIdx > 0) { currentIdx--; renderQuestion(); } }
 
   // ---------- ANIMATIONS ----------
   const canvas = document.getElementById('animation-canvas');
@@ -1109,13 +1185,11 @@
   // INIT
   window.onload = function() {
     populateDict();
-    // Make sure we have questions before rendering
     if(questions.length > 0) {
       renderQuestion();
       console.log("✅ MCQ Engine Ready! Total Questions:", questions.length);
     } else {
-      console.error("❌ No questions loaded!");
-      document.getElementById('q-text').innerText = "Error: No questions loaded. Please refresh.";
+      document.getElementById('q-text').innerText = "Error: No questions loaded.";
     }
   };
 </script>
