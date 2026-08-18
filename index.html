@@ -1,1166 +1,836 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Casuarina Tree - Complete Interactive Masterclass & 200 MCQ Engine</title>
+  <title>Our Casuarina Tree · Every Word Clickable · 200 MCQ</title>
   <style>
-    :root {
-      --primary: #2c5e3b;
-      --primary-light: #e8f5e9;
-      --secondary: #8e24aa;
-      --accent: #d81b60;
-      --bg: #f4f7f6;
-      --card-bg: #ffffff;
-      --text: #212121;
-      --text-muted: #616161;
-      --border: #e0e0e0;
-      --correct: #2e7d32;
-      --wrong: #c62828;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding-bottom: 60px;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, system-ui, sans-serif; }
+    body { background: #f0f4f0; color: #1e2b2a; padding-bottom: 2rem; }
     header {
-      background: linear-gradient(135deg, #1b4332, #2d6a4f);
+      background: linear-gradient(145deg, #1a3b2e, #2b5a44);
       color: white;
+      padding: 2rem 1rem;
       text-align: center;
-      padding: 2.5rem 1rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 20px rgba(0,20,10,0.3);
     }
-
-    header h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0.5rem;
-      font-family: 'Georgia', serif;
-    }
-
-    header p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
+    header h1 { font-size: 2.6rem; font-weight: 300; letter-spacing: 2px; font-family: 'Georgia', serif; }
+    header p { opacity: 0.85; font-size: 1.1rem; }
     nav {
-      display: flex;
-      justify-content: center;
-      background-color: #081c15;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      display: flex; flex-wrap: wrap; justify-content: center;
+      background: #0f2a1e; position: sticky; top: 0; z-index: 50;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); gap: 2px;
     }
-
     nav button {
-      background: none;
-      border: none;
-      color: #b7e4c7;
-      padding: 1rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border-bottom: 3px solid transparent;
+      background: transparent; border: none; color: #b7dfc7;
+      padding: 0.9rem 1.6rem; font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; border-bottom: 3px solid transparent;
+      transition: 0.2s; flex: 1 0 auto;
     }
-
     nav button:hover, nav button.active {
-      color: #ffffff;
-      background-color: rgba(255,255,255,0.1);
-      border-bottom-color: #52b788;
+      background: #1e402e; color: white; border-bottom-color: #6fbf8a;
     }
-
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+    .tab-content { display: none; animation: fade 0.35s ease; }
+    .tab-content.active { display: block; }
+    @keyframes fade { from { opacity:0.3; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
     .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border: 1px solid var(--border);
+      background: white; border-radius: 18px; padding: 2rem;
+      margin-bottom: 2rem; box-shadow: 0 6px 18px rgba(0,20,0,0.06);
+      border: 1px solid #dce8dc;
     }
-
-    h2 {
-      color: var(--primary);
-      margin-bottom: 1.2rem;
-      border-bottom: 2px solid var(--primary-light);
-      padding-bottom: 0.5rem;
-      font-size: 1.6rem;
-    }
-
-    h3 {
-      color: var(--secondary);
-      margin: 1rem 0 0.5rem 0;
-    }
-
-    /* Poem Text Styling */
+    h2 { color: #1e4a33; border-bottom: 3px solid #c6e0d0; padding-bottom: 0.5rem; margin-bottom: 1.2rem; font-weight: 500; }
+    h3 { color: #2d5a44; margin: 1.2rem 0 0.4rem; }
     .poem-stanza {
-      background-color: #fcfdfc;
-      border-left: 4px solid var(--primary);
-      padding: 1.5rem 2rem;
-      margin-bottom: 1.5rem;
-      font-family: 'Georgia', serif;
-      font-size: 1.15rem;
-      line-height: 1.9;
-      border-radius: 0 8px 8px 0;
+      background: #fafff9; padding: 1.5rem 2rem;
+      border-left: 5px solid #2b6d4a;
+      font-family: 'Georgia', serif; font-size: 1.1rem; line-height: 2.2;
+      border-radius: 0 16px 16px 0; margin-bottom: 1.8rem;
+      box-shadow: inset 0 0 0 1px #e5efe5;
     }
-
-    /* Clickable Meanings */
-    .vocab-word {
-      color: #1b4332;
-      font-weight: 600;
-      text-decoration: underline dotted #52b788;
-      cursor: pointer;
-      padding: 2px 4px;
-      border-radius: 4px;
-      transition: background-color 0.2s ease;
-      position: relative;
+    .word-click {
+      color: #1a4d33; font-weight: 600;
+      cursor: pointer; padding: 0 2px; border-radius: 4px;
+      transition: 0.15s; border-bottom: 2px dotted #5f9d7a;
     }
-
-    .vocab-word:hover {
-      background-color: #d8f3dc;
-      color: #081c15;
+    .word-click:hover {
+      background: #d5f0dd; color: #07261a; border-bottom-color: #1a4d33;
     }
-
-    /* Modal / Tooltip */
+    /* modal */
     .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,20,8,0.6); z-index: 999;
+      justify-content: center; align-items: center;
     }
-
     .modal-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 450px;
-      width: 90%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      text-align: center;
-      position: relative;
-      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: white; padding: 2rem 2.2rem; border-radius: 24px;
+      max-width: 420px; width: 90%; text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: pop 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2);
     }
-
-    @keyframes popIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .modal-card h3 {
-      color: var(--primary);
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .modal-card .bn-meaning {
-      font-size: 1.5rem;
-      color: var(--secondary);
-      font-weight: bold;
-      margin: 0.8rem 0;
-    }
-
-    .modal-card .en-desc {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .close-btn {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.6rem 1.5rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    /* Analysis Grid */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .analysis-box {
-      background-color: #f8f9fa;
-      padding: 1.2rem;
-      border-radius: 8px;
-      border: 1px solid #e9ecef;
-    }
-
-    /* Quiz Engine Styling */
-    .quiz-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      background-color: #081c15;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-    }
-
-    .timer-bar-container {
-      width: 100%;
-      height: 8px;
-      background-color: rgba(255,255,255,0.2);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 0.8rem;
-    }
-
-    .timer-bar {
-      height: 100%;
-      width: 100%;
-      background-color: #52b788;
-      transition: width 1s linear, background-color 0.3s ease;
-    }
-
-    .section-selector {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      overflow-x: auto;
-      padding-bottom: 0.5rem;
-    }
-
+    @keyframes pop { from { transform: scale(0.8); opacity:0; } to { transform: scale(1); opacity:1; } }
+    .modal-card h3 { color: #16442c; font-size: 2rem; margin-bottom: 0.2rem; }
+    .bn-meaning { font-size: 1.8rem; color: #7b3f9a; font-weight: bold; margin: 0.4rem 0; }
+    .en-desc { color: #3d5a4b; margin-bottom: 1.2rem; font-size: 0.95rem; }
+    .close-btn { background: #1f4d34; color: white; border: none; padding: 0.6rem 2rem; border-radius: 40px; font-weight: 600; cursor: pointer; }
+    /* grid */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.5rem; }
+    .analysis-box { background: #f6fbf8; padding: 1.2rem; border-radius: 14px; border: 1px solid #cde0d0; }
+    .dict-table { width:100%; border-collapse: collapse; margin-top:1rem; }
+    .dict-table th { background: #1f4a33; color: white; padding: 0.7rem; text-align:left; }
+    .dict-table td { padding: 0.7rem; border-bottom:1px solid #dde8dd; }
+    .dict-table tr:nth-child(even) { background: #f8fcf9; }
+    /* quiz */
+    .section-selector { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .sec-btn {
-      background-color: #e0e0e0;
-      border: none;
-      padding: 0.6rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      white-space: nowrap;
-      transition: all 0.2s ease;
+      background: #e1ece1; border: none; padding: 0.6rem 1.2rem; border-radius: 30px;
+      font-weight: 600; cursor: pointer; transition: 0.2s;
     }
-
-    .sec-btn.active {
-      background-color: var(--primary);
-      color: white;
+    .sec-btn.active { background: #1f5a3c; color: white; }
+    .quiz-header {
+      background: #0f2a1e; color: white; padding: 0.8rem 1.5rem;
+      border-radius: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;
+      align-items: center; margin-bottom: 1.2rem;
     }
-
-    .question-box {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .options-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.8rem;
-    }
-
+    .timer-bar-container { width: 100%; height: 7px; background: #2f5a44; border-radius: 6px; margin-top: 0.5rem; overflow:hidden; }
+    .timer-bar { height: 100%; width: 100%; background: #6fbf8a; transition: width 0.8s linear; }
+    .question-box { font-size: 1.2rem; font-weight: 600; margin: 1.2rem 0; }
+    .options-grid { display: flex; flex-direction: column; gap: 0.7rem; }
     .option-btn {
-      background-color: #f8f9fa;
-      border: 2px solid #e0e0e0;
-      padding: 1rem;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
+      background: #f6faf6; border: 2px solid #d2e2d2; padding: 0.9rem 1.2rem;
+      border-radius: 40px; text-align: left; font-size: 1rem; cursor: pointer;
+      transition: 0.15s; display: flex; align-items: center;
     }
-
-    .option-btn:hover {
-      background-color: #e8f5e9;
-      border-color: #a5d6a7;
-    }
-
-    .option-btn.correct {
-      background-color: #d4edda !important;
-      border-color: var(--correct) !important;
-      color: #155724;
-      font-weight: bold;
-    }
-
-    .option-btn.wrong {
-      background-color: #f8d7da !important;
-      border-color: var(--wrong) !important;
-      color: #721c24;
-    }
-
-    .explanation-box {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background-color: #e8f4f8;
-      border-left: 4px solid #2980b9;
-      border-radius: 4px;
-      display: none;
-    }
-
-    .quiz-nav {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1.5rem;
-    }
-
+    .option-btn:hover { background: #deefdf; border-color: #6faf7a; }
+    .option-btn.correct { background: #c8f0d0 !important; border-color: #1f7a3a !important; }
+    .option-btn.wrong { background: #fcd8d8 !important; border-color: #b33a3a !important; }
+    .explanation-box { margin-top: 1.2rem; padding: 1rem; background: #e3f0ed; border-left: 5px solid #1e6f4a; border-radius: 12px; display: none; }
+    .quiz-nav { display: flex; justify-content: space-between; margin-top: 1.8rem; gap:1rem; }
     .quiz-btn {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.8rem;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
+      background: #1f5a3c; color: white; border: none; padding: 0.7rem 2rem;
+      border-radius: 40px; font-weight: 600; cursor: pointer;
     }
-
-    .quiz-btn:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-
-    /* Animation Overlays */
-    #animation-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      pointer-events: none;
-      z-index: 2000;
-    }
-
-    /* Jumping Baboon Container */
+    .quiz-btn:disabled { background: #b0c9b5; cursor: not-allowed; opacity:0.6; }
+    /* canvas */
+    #animation-canvas { position: fixed; inset:0; pointer-events: none; z-index: 2000; }
     #baboon-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      pointer-events: none;
-      z-index: 2001;
+      position: fixed; inset:0; pointer-events: none; z-index: 2001;
       display: none;
     }
-
     .baboon-sprite {
-      position: absolute;
-      bottom: -150px;
-      left: 10%;
-      font-size: 100px;
-      transition: all 0.1s ease;
+      position: absolute; bottom: -120px; left: 10%; font-size: 80px;
+      transition: none;
     }
-
     @keyframes baboonJump {
-      0% { bottom: -150px; left: 10%; transform: rotate(0deg) scale(1); }
-      50% { bottom: 40vh; left: 45%; transform: rotate(180deg) scale(1.4); }
-      100% { bottom: -150px; left: 80%; transform: rotate(360deg) scale(1); }
+      0% { bottom: -120px; left: 10%; transform: rotate(0deg) scale(1); }
+      50% { bottom: 45vh; left: 45%; transform: rotate(200deg) scale(1.5); }
+      100% { bottom: -120px; left: 80%; transform: rotate(380deg) scale(0.9); }
     }
-
-    .animate-baboon {
-      animation: baboonJump 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    /* Dictionary Table */
-    .dict-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-
-    .dict-table th, .dict-table td {
-      border: 1px solid var(--border);
-      padding: 0.8rem;
-      text-align: left;
-    }
-
-    .dict-table th {
-      background-color: var(--primary);
-      color: white;
-    }
-
-    .dict-table tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-
-    @media (max-width: 768px) {
-      nav { flex-wrap: wrap; }
-      nav button { flex: 1 1 50%; padding: 0.8rem; font-size: 0.9rem; }
-      header h1 { font-size: 1.8rem; }
-      .poem-stanza { font-size: 1rem; padding: 1rem; }
-    }
+    .animate-baboon { animation: baboonJump 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    @media (max-width:700px){ header h1{ font-size:1.8rem; } nav button{ padding:0.6rem; font-size:0.8rem; } }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Our Casuarina Tree</h1>
-    <p>By Toru Dutt (1856–1877) — Complete Text, Analysis & Interactive Exam Portal</p>
-  </header>
+<header>
+  <h1>🌳 Our Casuarina Tree</h1>
+  <p>Toru Dutt · Every Word Clickable · 200 MCQ Exam Engine</p>
+</header>
 
-  <nav>
-    <button class="tab-btn active" onclick="switchTab('text-tab')">Text & Vocabulary</button>
-    <button class="tab-btn" onclick="switchTab('analysis-tab')">Critical Analysis & Rhetoric</button>
-    <button class="tab-btn" onclick="switchTab('dict-tab')">English-Bengali Dictionary</button>
-    <button class="tab-btn" onclick="switchTab('quiz-tab')">200 MCQ Practice Exam</button>
-  </nav>
+<nav>
+  <button class="tab-btn active" onclick="switchTab('text-tab')">📖 Text & Every Word</button>
+  <button class="tab-btn" onclick="switchTab('analysis-tab')">🔍 Analysis & Rhetoric</button>
+  <button class="tab-btn" onclick="switchTab('dict-tab')">📘 Dictionary</button>
+  <button class="tab-btn" onclick="switchTab('quiz-tab')">🧪 200 MCQ Exam</button>
+</nav>
 
-  <div class="container">
+<div class="container">
 
-    <!-- TAB 1: TEXT & OVERVIEW -->
-    <div id="text-tab" class="tab-content active">
-      
-      <div class="card">
-        <h2>About the Poet</h2>
-        <p><strong>Toru Dutt (1856-1877)</strong> was a pioneering Indian poet and translator, often acclaimed as one of the founding figures of Indo-Anglian literature. Born on March 4, 1856, in Rambagan, Kolkata, into an affluent, highly educated, and culturally progressive Christian family, she was the youngest daughter of Govin Chunder Dutt. Despite living a tragic life cut short at the young age of 21 by tuberculosis, Toru achieved extraordinary literary milestones in both English and French.</p>
-        <br>
-        <p>Having traveled extensively across France and England during her youth, she possessed a fluent command of French, English, and Sanskrit. Her literary legacy includes <em>"A Sheaf Gleaned in French Fields"</em> (1876), a novel in French titled <em>"Le Journal de Mlle d'Arvers"</em>, and her masterpiece volume <em>"Ancient Ballads and Legends of Hindustan"</em> (1882), published posthumously by her father. "Our Casuarina Tree" stands out in this final collection as her most famous autobiographical lyric poem, seamlessly blending Western Romantic aesthetics with deep Indian sensibilities.</p>
-      </div>
-
-      <div class="card">
-        <h2>About the Poem</h2>
-        <p><em>"Our Casuarina Tree"</em> is an exquisite 55-line lyric poem structured into five 11-line stanzas. Composed around 1876, it serves as a passionate, nostalgic elegy dedicated to a majestic casuarina tree growing in the garden of Toru Dutt's ancestral home (Baugmaree, Kolkata). More than a physical feature of nature, the tree acts as a living monument connected to her happiest childhood memories and her beloved deceased siblings, Abju and Aru, who both succumbed to illness at early ages.</p>
-        <br>
-        <p>The poem unfolds through a deliberate progression of thought across its five stanzas:</p>
-        <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.8;">
-          <li><strong>Stanza 1 (Objective Description):</strong> Focuses on the grand physical architecture of the tree, its choked embrace by a python-like creeper, its red blossoms, and the wildlife (birds and bees) singing late into the night.</li>
-          <li><strong>Stanza 2 (Dawn Scene & Morning Landscape):</strong> Paints a vivid landscape of morning in Bengal — a grey baboon perched on the tree's crest, its offspring playing below, kokilas singing, cows moving to pastures, and white water-lilies blooming on the pond like snow.</li>
-          <li><strong>Stanza 3 (Shift to Subjectivity & Nostalgia):</strong> Declares that the tree is dear not merely for its external beauty, but because it is bound up with memories of her departed siblings. The poet hears a mournful, dirge-like murmur from the tree.</li>
-          <li><strong>Stanza 4 (Transcendence Across Space):</strong> Describes how this ghostly lament follows her across oceans to distant lands (France and Italy), evoking the inner vision of the tree as she knew it in her native home.</li>
-          <li><strong>Stanza 5 (Consecration & Immortality):</strong> The poet seeks to consecrate a verse to honor the tree, invoking the "deathless trees" of Borrowdale in Wordsworth's poetry, hoping that Love will preserve her beloved tree from the curse of Oblivion.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>Complete Poem (Click highlighted words for English-Bengali Meaning)</h2>
-        
-        <div class="poem-stanza">
-          <strong>Stanza 1</strong><br><br>
-          Like a <span class="vocab-word" onclick="showModal('Huge', 'বিশাল / প্রকাণ্ড', 'Enormous or vast in size.')">huge</span> <span class="vocab-word" onclick="showModal('Python', 'বিশাল অজগর সাপ', 'A large snake; here, the creeper is compared to a python coiling around the tree.')">Python</span>, <span class="vocab-word" onclick="showModal('Winding', 'পাকানো / পেঁচানো', 'Twisting or coiling around something.')">winding</span> round and round<br>
-          The <span class="vocab-word" onclick="showModal('Rugged', 'খসখসে / অসমান', 'Rough, uneven surface of the tree trunk.')">rugged</span> trunk, <span class="vocab-word" onclick="showModal('Indented', 'গভীর ক্ষতচিহ্নযুক্ত', 'Marked with deep cuts, grooves, or scars.')">indented</span> deep with <span class="vocab-word" onclick="showModal('Scars', 'ক্ষতচিহ্ন', 'Permanent marks left on the bark by the tight creeper.')">scars</span>,<br>
-          Up to its very <span class="vocab-word" onclick="showModal('Summit', 'চূড়া / শীর্ষদেশ', 'The highest point or peak of the tree.')">summit</span> near the stars,<br>
-          A creeper climbs, in whose <span class="vocab-word" onclick="showModal('Embraces', 'আলিঙ্গন', 'Tight hold or hugging clasp.')">embraces</span> <span class="vocab-word" onclick="showModal('Bound', 'আবদ্ধ / বাঁধা', 'Firmly tied or constrained.')">bound</span><br>
-          No other tree could live. But <span class="vocab-word" onclick="showModal('Gallantly', 'বীরত্বের সাথে', 'Bravely, heroically, or chivalrously.')">gallantly</span><br>
-          The <span class="vocab-word" onclick="showModal('Giant', 'দানবতুল্য মহীরুহ', 'Referring to the massive casuarina tree.')">giant</span> wears the <span class="vocab-word" onclick="showModal('Scarf', 'উত্তরীয় / স্কার্ফ', 'The creeper draped over the tree like a decorative scarf.')">scarf</span>, and flowers are hung<br>
-          In <span class="vocab-word" onclick="showModal('Crimson', 'গাঢ় লাল / সিঁদুরে', 'Deep rich red color.')">crimson</span> <span class="vocab-word" onclick="showModal('Clusters', 'গুচ্ছ', 'Groups of flowers growing closely together.')">clusters</span> all the <span class="vocab-word" onclick="showModal('Boughs', 'গাছের বড় শাখা', 'Main large branches of the tree.')">boughs</span> among,<br>
-          Whereon all day are gathered bird and bee;<br>
-          And <span class="vocab-word" onclick="showModal('Oft', 'প্রায়শই', 'Archaic poetic form for often.')">oft</span> at nights the garden <span class="vocab-word" onclick="showModal('Overflows', 'উপচে পড়া', 'Filled to overflowing with music.')">overflows</span><br>
-          With one sweet song that seems to have no close,<br>
-          Sung <span class="vocab-word" onclick="showModal('Darkling', 'অন্ধকারে', 'In the dark or growing darkness.')">darkling</span> from our tree, while men <span class="vocab-word" onclick="showModal('Repose', 'বিশ্রাম নেওয়া / ঘুমানো', 'Rest, sleep, or lie at peace.')">repose</span>.
-        </div>
-
-        <div class="poem-stanza">
-          <strong>Stanza 2</strong><br><br>
-          When first my <span class="vocab-word" onclick="showModal('Casement', 'জানালার পাল্লা', 'A window sash opening on hinges.')">casement</span> is wide open thrown<br>
-          At dawn, my eyes <span class="vocab-word" onclick="showModal('Delighted', 'আনন্দিত / প্রীত', 'Filled with delight or joy.')">delighted</span> on it rest;<br>
-          Sometimes, and most in winter, - on its <span class="vocab-word" onclick="showModal('Crest', 'শীর্ষ / চূড়া', 'The highest top portion of the tree.')">crest</span><br>
-          A grey <span class="vocab-word" onclick="showModal('Baboon', 'বাবুন বানর', 'A large Old World monkey.')">baboon</span> sits <span class="vocab-word" onclick="showModal('Statue-like', 'মূর্তির মতো নিশ্চল', 'Still, motionless like a sculpted statue.')">statue-like</span> alone<br>
-          Watching the sunrise; while on lower boughs<br>
-          His <span class="vocab-word" onclick="showModal('Puny', 'ক্ষুদ্র ও দুর্বল / ছোট', 'Small, weak, or tiny.')">puny</span> <span class="vocab-word" onclick="showModal('Offspring', 'সন্তান / ছানা', 'Young ones / babies of the baboon.')">offspring</span> leap about and play;<br>
-          And far and near <span class="vocab-word" onclick="showModal('Kokilas', 'কোকিল পাখি', 'Indian cuckoo birds known for sweet morning calls.')">kokilas</span> hail the day;<br>
-          And to their pastures <span class="vocab-word" onclick="showModal('Wend', 'পথ চলা / যাওয়া', 'To go, travel, or direct one\'s course.')">wend</span> our sleepy cows;<br>
-          And in the shadow, on the broad <span class="vocab-word" onclick="showModal('Tank', 'দিঘি / পুকুর', 'A large water pond or reservoir.')">tank</span> cast<br>
-          By that <span class="vocab-word" onclick="showModal('Hoar', 'ধূসর / প্রবীণ ও শুভ্র', 'Grey or white with age; majestic and ancient.')">hoar</span> tree, so beautiful and vast,<br>
-          The water-lilies spring, like <span class="vocab-word" onclick="showModal('Snow enmassed', 'পুঞ্জীভূত তুষার', 'Refers to white water lilies covering the surface resemblng accumulated snow.')">snow enmassed</span>.
-        </div>
-
-        <div class="poem-stanza">
-          <strong>Stanza 3</strong><br><br>
-          But not because of its <span class="vocab-word" onclick="showModal('Magnificence', 'মহিমা / জাকজমক', 'Grandeur, splendid appearance, or majesty.')">magnificence</span><br>
-          Dear is the Casuarina to my soul:<br>
-          Beneath it we have played; though years may roll,<br>
-          O sweet <span class="vocab-word" onclick="showModal('Companions', 'সঙ্গী / সহচর', 'Playmates; referring affectionately to her deceased siblings Abju and Aru.')">companions</span>, loved with love <span class="vocab-word" onclick="showModal('Intense', 'প্রবল / তীব্র', 'Deep, passionate, and extreme.')">intense</span>,<br>
-          For your sakes shall the tree be ever dear!<br>
-          <span class="vocab-word" onclick="showModal('Blent', 'মিশ্রিত / একীভূত', 'Poetic short form of blended; intertwined.')">Blent</span> with your images, it shall arise<br>
-          In memory, till the hot tears blind mine eyes!<br>
-          What is that <span class="vocab-word" onclick="showModal('Dirge-like', 'শোকসঙ্গীতের মতো', 'Resembling a mournful funeral song or lament.')">dirge-like</span> <span class="vocab-word" onclick="showModal('Murmur', 'মৃদু বিলাপ / শব্দ', 'A low, continuous, whisper-like mournful sound.')">murmur</span> that I hear<br>
-          Like the sea breaking on a <span class="vocab-word" onclick="showModal('Shingle-beach', 'নুড়িপাথরযুক্ত সৈকত', 'A beach covered with small rounded pebbles and gravel.')">shingle-beach</span>?<br>
-          It is the tree's <span class="vocab-word" onclick="showModal('Lament', 'আর্তনাদ / বিলাপ', 'Expression of grief, mourning, or sorrow.')">lament</span>, an <span class="vocab-word" onclick="showModal('Eerie', 'অলৌকিক / ভূতুড়ে', 'Strange, ghostly, and mysterious.')">eerie</span> speech,<br>
-          That <span class="vocab-word" onclick="showModal('Haply', 'হয়তো / সম্ভবত', 'Perhaps, perchance, or by good fortune.')">haply</span> to the unknown land may reach.
-        </div>
-
-        <div class="poem-stanza">
-          <strong>Stanza 4</strong><br><br>
-          Unknown, yet well-known to the eye of faith!<br>
-          Ah, I have heard that <span class="vocab-word" onclick="showModal('Wail', 'উচ্চস্বরে বিলাপ', 'A prolonged high-pitched cry of grief.')">wail</span> far, far away<br>
-          In distant lands, by many a <span class="vocab-word" onclick="showModal('Sheltered bay', 'সুরক্ষিত খাঁড়ি', 'A quiet coastal inlet protected from violent winds.')">sheltered bay</span>,<br>
-          When <span class="vocab-word" onclick="showModal('Slumbered', 'সুপ্ত / নিদ্রিত', 'Slept peacefully.')">slumbered</span> in his cave the <span class="vocab-word" onclick="showModal('Water-wraith', 'জলপরী / প্রেতাত্মা', 'A mythical spirit believed to inhabit water.')">water-wraith</span><br>
-          And the waves gently kissed the classic shore<br>
-          Of France or Italy, beneath the moon,<br>
-          When earth lay <span class="vocab-word" onclick="showModal('Trancèd', 'অচেতন / মোহাচ্ছন্ন', 'In a state of trance, sleep, or hypnotic stillness.')">trancèd</span> in a dreamless <span class="vocab-word" onclick="showModal('Swoon', 'মूर्ছা / গভীর সুপ্তি', 'A temporary faint or deep quiet unconscious state.')">swoon</span>:<br>
-          And every time the music rose - before<br>
-          Mine inner vision rose a form <span class="vocab-word" onclick="showModal('Sublime', 'মহৎ / পরম সুন্দর', 'Exalted, grand, spiritually uplifting beauty.')">sublime</span>,<br>
-          Thy form, O Tree! as in my happy <span class="vocab-word" onclick="showModal('Prime', 'যৌবন / স্বর্ণযুগ', 'Early life or peak period of youth and childhood.')">prime</span><br>
-          I saw thee, in my own loved native <span class="vocab-word" onclick="showModal('Clime', 'জলবায়ু / স্বদেশ', 'A region or homeland with reference to climate.')">clime</span>.<br>
-          Therefore I fain would <span class="vocab-word" onclick="showModal('Consecrate', 'পবিত্র করা / উৎসর্গ করা', 'To declare sacred, dedicate, or sanctify.')">consecrate</span> a <span class="vocab-word" onclick="showModal('Lay', 'গীতি কবিতা', 'A short song or narrative poem.')">lay</span>
-        </div>
-
-        <div class="poem-stanza">
-          <strong>Stanza 5</strong><br><br>
-          Unto thy honor, Tree, beloved of those<br>
-          Who now in <span class="vocab-word" onclick="showModal('Blessed sleep', 'পবিত্র চিরনিদ্রা', 'The peaceful sleep of death.')">blessed sleep</span> for <span class="vocab-word" onclick="showModal('Aye', 'সর্বদা / চিরকাল', 'Archaic term meaning forever or always.')">aye</span> repose, -<br>
-          Dearer than life to me, alas! were they!<br>
-          <span class="vocab-word" onclick="showModal('Mayst thou', 'তুমি যেন হও', 'Archaic phrase meaning "May you be".')">Mayst thou</span> be numbered when my days are done<br>
-          With <span class="vocab-word" onclick="showModal('Deathless', 'অমর', 'Immortal or impervious to death.')">deathless</span> trees - like those in <span class="vocab-word" onclick="showModal('Borrowdale', 'বরোডেল উপত্যকা', 'A valley in England famous for ancient yew-trees described by Wordsworth.')">Borrowdale</span>,<br>
-          Under whose <span class="vocab-word" onclick="showModal('Awful', 'ভীতিজাগানিয়া মহিমাময়', 'Inspiring awe, reverence, or solemn terror.')">awful</span> branches linger pale<br>
-          "<span class="vocab-word" onclick="showModal('Fear', 'ভয়', 'Personification of human terror.')">Fear</span>, trembling <span class="vocab-word" onclick="showModal('Hope', 'আশা', 'Personification of human hope.')">Hope</span>, and <span class="vocab-word" onclick="showModal('Death', 'মৃত্যু', 'Personification of mortality as a skeleton.')">Death</span>, the skeleton,<br>
-          And <span class="vocab-word" onclick="showModal('Time', 'কাল / সময়', 'Personification of time as an elusive shadow.')">Time</span> the shadow;" and though weak the verse<br>
-          That would thy beauty fain, oh <span class="vocab-word" onclick="showModal('Fain', 'আনন্দের সাথে', 'Gladly, eagerly, or willingly.')">fain</span> <span class="vocab-word" onclick="showModal('Rehearse', 'বর্ণনা করা / আবৃত্তি করা', 'To recite, recount, or describe in detail.')">rehearse</span>,<br>
-          May Love defend thee from <span class="vocab-word" onclick="showModal('Oblivion', 'বিস্মৃতি', 'The state of being completely forgotten by history.')">Oblivion's</span> curse.
-        </div>
-      </div>
-
+  <!-- TAB 1: TEXT WITH EVERY WORD CLICKABLE -->
+  <div id="text-tab" class="tab-content active">
+    <div class="card">
+      <h2>About the Poet & Poem</h2>
+      <p><strong>Toru Dutt (1856–1877)</strong> – pioneer of Indo-Anglian literature. Born in Kolkata, she mastered English, French, and Sanskrit. Her posthumous collection <em>Ancient Ballads and Legends of Hindustan</em> (1882) contains "Our Casuarina Tree", an autobiographical elegy for her siblings Abju and Aru. The poem blends Romantic sensibility with Indian imagery.</p>
+      <p style="margin-top:0.8rem;"><strong>🔵 Click ANY word</strong> in the poem below to see its English meaning and Bengali translation.</p>
     </div>
 
-    <!-- TAB 2: CRITICAL ANALYSIS & RHETORIC -->
-    <div id="analysis-tab" class="tab-content">
-      <div class="card">
-        <h2>Critical Analysis & Literary Structure</h2>
-        <div class="grid-2">
-          <div class="analysis-box">
-            <h3>Form & Stanza Pattern</h3>
-            <p>The poem consists of <strong>5 stanzas</strong>, each containing <strong>11 lines</strong> (Hendecastich). The rhyme scheme follows a unique custom structure designed by Toru Dutt: <strong>abbba cdddc e</strong> (or <em>abbba cddcee</em> variant), blending the Italian Petrarchan octave/sestet logic with Romantic stanzaic freedom and lyrical fluidity.</p>
-          </div>
-          <div class="analysis-box">
-            <h3>Central Thematic Pillars</h3>
-            <ul>
-              <li><strong>Nostalgia & Loss:</strong> Deep emotional yearning for her childhood home and her deceased siblings, Abju and Aru.</li>
-              <li><strong>Immortality through Art:</strong> The poet's desire to consecrate a verse to shield the tree from time's decay and forgotten oblivion.</li>
-              <li><strong>Nature as a Living Medium:</strong> The casuarina tree functions as an empathetic entity that absorbs human grief and mournfully echoes across oceans.</li>
-              <li><strong>Synthesis of East and West:</strong> Harmoniously blends Indian rural imagery (cows, kokilas, water-lilies) with European literary references (Wordsworth's Borrowdale yew-trees).</li>
-            </ul>
-          </div>
-        </div>
+    <div class="card">
+      <h2>Complete Poem — Every Word is Clickable</h2>
+
+      <!-- Stanza 1 - EVERY WORD clickable -->
+      <div class="poem-stanza">
+        <strong>Stanza 1</strong><br>
+        <span class="word-click" onclick="showModal('Like','সদৃশ','Similar to')">Like</span>
+        <span class="word-click" onclick="showModal('a','একটি','Indefinite article')">a</span>
+        <span class="word-click" onclick="showModal('huge','বিশাল','Enormous')">huge</span>
+        <span class="word-click" onclick="showModal('Python','অজগর','A large snake')">Python</span>,
+        <span class="word-click" onclick="showModal('winding','পেঁচানো','Twisting')">winding</span>
+        <span class="word-click" onclick="showModal('round','গোল','Around in circle')">round</span>
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('round','গোল','Around in circle')">round</span><br>
+        <span class="word-click" onclick="showModal('The','সেই','Definite article')">The</span>
+        <span class="word-click" onclick="showModal('rugged','খসখসে','Rough')">rugged</span>
+        <span class="word-click" onclick="showModal('trunk','কাণ্ড','Tree stem')">trunk</span>,
+        <span class="word-click" onclick="showModal('indented','গভীর ক্ষতচিহ্নযুক্ত','Marked with scars')">indented</span>
+        <span class="word-click" onclick="showModal('deep','গভীর','Profound')">deep</span>
+        <span class="word-click" onclick="showModal('with','সহ','Accompanied by')">with</span>
+        <span class="word-click" onclick="showModal('scars','ক্ষতচিহ্ন','Marks')">scars</span>,<br>
+        <span class="word-click" onclick="showModal('Up','উপরে','Towards top')">Up</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','Towards')">to</span>
+        <span class="word-click" onclick="showModal('its','তার','Possessive')">its</span>
+        <span class="word-click" onclick="showModal('very','অত্যন্ত','Extremely')">very</span>
+        <span class="word-click" onclick="showModal('summit','চূড়া','Peak')">summit</span>
+        <span class="word-click" onclick="showModal('near','নিকটে','Close to')">near</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('stars','তারা','Celestial bodies')">stars</span>,<br>
+        <span class="word-click" onclick="showModal('A','একটি','One')">A</span>
+        <span class="word-click" onclick="showModal('creeper','লতা','Climbing plant')">creeper</span>
+        <span class="word-click" onclick="showModal('climbs','আরোহণ করে','Ascends')">climbs</span>,
+        <span class="word-click" onclick="showModal('in','মধ্যে','Inside')">in</span>
+        <span class="word-click" onclick="showModal('whose','যার','Relative pronoun')">whose</span>
+        <span class="word-click" onclick="showModal('embraces','আলিঙ্গন','Clasps')">embraces</span>
+        <span class="word-click" onclick="showModal('bound','আবদ্ধ','Tied')">bound</span><br>
+        <span class="word-click" onclick="showModal('No','কোনো','None')">No</span>
+        <span class="word-click" onclick="showModal('other','অন্য','Different')">other</span>
+        <span class="word-click" onclick="showModal('tree','গাছ','Plant')">tree</span>
+        <span class="word-click" onclick="showModal('could','পারত','Was able')">could</span>
+        <span class="word-click" onclick="showModal('live','বাস করা','Survive')">live</span>.
+        <span class="word-click" onclick="showModal('But','কিন্তু','However')">But</span>
+        <span class="word-click" onclick="showModal('gallantly','বীরত্বের সাথে','Bravely')">gallantly</span><br>
+        <span class="word-click" onclick="showModal('The','সেই','Definite article')">The</span>
+        <span class="word-click" onclick="showModal('giant','দানবতুল্য','Massive')">giant</span>
+        <span class="word-click" onclick="showModal('wears','পরিধান করে','Wears')">wears</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('scarf','উত্তরীয়','Neck cloth')">scarf</span>,
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('flowers','ফুল','Blooms')">flowers</span>
+        <span class="word-click" onclick="showModal('are','হয়','Are')">are</span>
+        <span class="word-click" onclick="showModal('hung','ঝোলানো','Suspended')">hung</span><br>
+        <span class="word-click" onclick="showModal('In','মধ্যে','Inside')">In</span>
+        <span class="word-click" onclick="showModal('crimson','গাঢ় লাল','Deep red')">crimson</span>
+        <span class="word-click" onclick="showModal('clusters','গুচ্ছ','Groups')">clusters</span>
+        <span class="word-click" onclick="showModal('all','সকল','All')">all</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('boughs','শাখা','Branches')">boughs</span>
+        <span class="word-click" onclick="showModal('among','মধ্যে','Amidst')">among</span>,<br>
+        <span class="word-click" onclick="showModal('Whereon','যার উপর','On which')">Whereon</span>
+        <span class="word-click" onclick="showModal('all','সকল','All')">all</span>
+        <span class="word-click" onclick="showModal('day','দিন','Daytime')">day</span>
+        <span class="word-click" onclick="showModal('are','হয়','Are')">are</span>
+        <span class="word-click" onclick="showModal('gathered','জড়ো','Collected')">gathered</span>
+        <span class="word-click" onclick="showModal('bird','পাখি','Bird')">bird</span>
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('bee','মৌমাছি','Honeybee')">bee</span>;<br>
+        <span class="word-click" onclick="showModal('And','এবং','Conjunction')">And</span>
+        <span class="word-click" onclick="showModal('oft','প্রায়শই','Often')">oft</span>
+        <span class="word-click" onclick="showModal('at','এ','At')">at</span>
+        <span class="word-click" onclick="showModal('nights','রাতে','Nights')">nights</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('garden','বাগান','Garden')">garden</span>
+        <span class="word-click" onclick="showModal('overflows','উপচে পড়ে','Floods over')">overflows</span><br>
+        <span class="word-click" onclick="showModal('With','সহ','With')">With</span>
+        <span class="word-click" onclick="showModal('one','এক','Single')">one</span>
+        <span class="word-click" onclick="showModal('sweet','মিষ্টি','Melodious')">sweet</span>
+        <span class="word-click" onclick="showModal('song','গান','Song')">song</span>
+        <span class="word-click" onclick="showModal('that','যে','Relative')">that</span>
+        <span class="word-click" onclick="showModal('seems','মনে হয়','Appears')">seems</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('have','থাকা','Have')">have</span>
+        <span class="word-click" onclick="showModal('no','কোনো','No')">no</span>
+        <span class="word-click" onclick="showModal('close','শেষ','End')">close</span>,<br>
+        <span class="word-click" onclick="showModal('Sung','গাওয়া','Sung')">Sung</span>
+        <span class="word-click" onclick="showModal('darkling','অন্ধকারে','In the dark')">darkling</span>
+        <span class="word-click" onclick="showModal('from','থেকে','From')">from</span>
+        <span class="word-click" onclick="showModal('our','আমাদের','Our')">our</span>
+        <span class="word-click" onclick="showModal('tree','গাছ','Tree')">tree</span>,
+        <span class="word-click" onclick="showModal('while','যখন','While')">while</span>
+        <span class="word-click" onclick="showModal('men','মানুষ','People')">men</span>
+        <span class="word-click" onclick="showModal('repose','বিশ্রাম করেন','Rest')">repose</span>.
       </div>
 
-      <div class="card">
-        <h2>Detailed Figures of Speech & Rhetoric</h2>
-        <table class="dict-table">
-          <thead>
-            <tr>
-              <th>Rhetorical Device</th>
-              <th>Poetic Example</th>
-              <th>Critical Explanation</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Simile</strong></td>
-              <td>"Like a huge Python, winding round and round"</td>
-              <td>Compares the thick, coiling creeper clinging tightly to the rugged bark to a giant python snake.</td>
-            </tr>
-            <tr>
-              <td><strong>Simile</strong></td>
-              <td>"The water-lilies spring, like snow enmassed"</td>
-              <td>Compares white water-lilies clustered densely on the pond surface to accumulated white snow drifts.</td>
-            </tr>
-            <tr>
-              <td><strong>Simile</strong></td>
-              <td>"Like the sea breaking on a shingle-beach"</td>
-              <td>Compares the whispering, rustling murmur of the tree's leaves to waves crashing on a pebbled coast.</td>
-            </tr>
-            <tr>
-              <td><strong>Personification</strong></td>
-              <td>"The giant wears the scarf..."</td>
-              <td>Attributes chivalrous human qualities to the tree, framing it as a heroic giant wearing the creeper like a scarf.</td>
-            </tr>
-            <tr>
-              <td><strong>Personification</strong></td>
-              <td>"It is the tree's lament, an eerie speech"</td>
-              <td>Attributes human grief, mourning, voice, and articulate speech to the wind moving through the tree's branches.</td>
-            </tr>
-            <tr>
-              <td><strong>Personification</strong></td>
-              <td>"Fear, trembling Hope, and Death, the skeleton, / And Time the shadow"</td>
-              <td>Abstract human emotional and existential concepts are given concrete, personified forms guarding the ancient trees.</td>
-            </tr>
-            <tr>
-              <td><strong>Apostrophe</strong></td>
-              <td>"Thy form, O Tree!" / "O sweet companions"</td>
-              <td>Direct, emotionally charged address to an inanimate object (the tree) and absent/deceased loved ones.</td>
-            </tr>
-            <tr>
-              <td><strong>Literary Allusion</strong></td>
-              <td>"With deathless trees - like those in Borrowdale"</td>
-              <td>Direct reference to William Wordsworth's Romantic poem <em>"Yew-Trees"</em>, aligning her Indian tree with English canonical classics.</td>
-            </tr>
-            <tr>
-              <td><strong>Oxymoron / Paradox</strong></td>
-              <td>"Unknown, yet well-known to the eye of faith!"</td>
-              <td>Combines contradictory terms to express how spiritual memory and love transcend physical or geographical separation.</td>
-            </tr>
-            <tr>
-              <td><strong>Visual & Auditory Imagery</strong></td>
-              <td>"crimson clusters", "grey baboon", "sweet song that seems to have no close"</td>
-              <td>Engages multiple senses (sight and sound) to create a vivid, immersive atmosphere of Bengal's flora and fauna.</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Stanza 2 - EVERY WORD clickable -->
+      <div class="poem-stanza">
+        <strong>Stanza 2</strong><br>
+        <span class="word-click" onclick="showModal('When','যখন','At the time')">When</span>
+        <span class="word-click" onclick="showModal('first','প্রথম','First')">first</span>
+        <span class="word-click" onclick="showModal('my','আমার','My')">my</span>
+        <span class="word-click" onclick="showModal('casement','জানালার পাল্লা','Window sash')">casement</span>
+        <span class="word-click" onclick="showModal('is','হয়','Is')">is</span>
+        <span class="word-click" onclick="showModal('wide','প্রশস্ত','Broad')">wide</span>
+        <span class="word-click" onclick="showModal('open','খোলা','Open')">open</span>
+        <span class="word-click" onclick="showModal('thrown','নিক্ষিপ্ত','Thrown open')">thrown</span><br>
+        <span class="word-click" onclick="showModal('At','এ','At')">At</span>
+        <span class="word-click" onclick="showModal('dawn','ভোর','Daybreak')">dawn</span>,
+        <span class="word-click" onclick="showModal('my','আমার','My')">my</span>
+        <span class="word-click" onclick="showModal('eyes','চোখ','Eyes')">eyes</span>
+        <span class="word-click" onclick="showModal('delighted','আনন্দিত','Joyful')">delighted</span>
+        <span class="word-click" onclick="showModal('on','উপর','On')">on</span>
+        <span class="word-click" onclick="showModal('it','এটি','It')">it</span>
+        <span class="word-click" onclick="showModal('rest','বিশ্রাম করে','Rest')">rest</span>;<br>
+        <span class="word-click" onclick="showModal('Sometimes','কখনও কখনও','Occasionally')">Sometimes</span>,
+        <span class="word-click" onclick="showModal('and','এবং','And')">and</span>
+        <span class="word-click" onclick="showModal('most','সর্বাধিক','Most')">most</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('winter','শীত','Winter')">winter</span>,
+        <span class="word-click" onclick="showModal('on','উপর','On')">on</span>
+        <span class="word-click" onclick="showModal('its','তার','Its')">its</span>
+        <span class="word-click" onclick="showModal('crest','শীর্ষ','Top')">crest</span><br>
+        <span class="word-click" onclick="showModal('A','একটি','A')">A</span>
+        <span class="word-click" onclick="showModal('grey','ধূসর','Grey')">grey</span>
+        <span class="word-click" onclick="showModal('baboon','বাবুন বানর','Monkey')">baboon</span>
+        <span class="word-click" onclick="showModal('sits','বসে','Sits')">sits</span>
+        <span class="word-click" onclick="showModal('statue-like','মূর্তির মতো','Like a statue')">statue-like</span>
+        <span class="word-click" onclick="showModal('alone','একা','Alone')">alone</span><br>
+        <span class="word-click" onclick="showModal('Watching','দেখছে','Observing')">Watching</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('sunrise','সূর্যোদয়','Sunrise')">sunrise</span>;
+        <span class="word-click" onclick="showModal('while','যখন','While')">while</span>
+        <span class="word-click" onclick="showModal('on','উপর','On')">on</span>
+        <span class="word-click" onclick="showModal('lower','নিম্ন','Lower')">lower</span>
+        <span class="word-click" onclick="showModal('boughs','শাখা','Branches')">boughs</span><br>
+        <span class="word-click" onclick="showModal('His','তার','His')">His</span>
+        <span class="word-click" onclick="showModal('puny','ক্ষুদ্র','Small')">puny</span>
+        <span class="word-click" onclick="showModal('offspring','সন্তান','Young ones')">offspring</span>
+        <span class="word-click" onclick="showModal('leap','লাফায়','Jump')">leap</span>
+        <span class="word-click" onclick="showModal('about','চারপাশে','Around')">about</span>
+        <span class="word-click" onclick="showModal('and','এবং','And')">and</span>
+        <span class="word-click" onclick="showModal('play','খেলা করে','Play')">play</span>;<br>
+        <span class="word-click" onclick="showModal('And','এবং','And')">And</span>
+        <span class="word-click" onclick="showModal('far','দূর','Far')">far</span>
+        <span class="word-click" onclick="showModal('and','এবং','And')">and</span>
+        <span class="word-click" onclick="showModal('near','নিকটে','Near')">near</span>
+        <span class="word-click" onclick="showModal('kokilas','কোকিল','Cuckoos')">kokilas</span>
+        <span class="word-click" onclick="showModal('hail','স্বাগত জানায়','Greet')">hail</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('day','দিন','Day')">day</span>;<br>
+        <span class="word-click" onclick="showModal('And','এবং','And')">And</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('their','তাদের','Their')">their</span>
+        <span class="word-click" onclick="showModal('pastures','চারণভূমি','Grazing fields')">pastures</span>
+        <span class="word-click" onclick="showModal('wend','যাত্রা করে','Go')">wend</span>
+        <span class="word-click" onclick="showModal('our','আমাদের','Our')">our</span>
+        <span class="word-click" onclick="showModal('sleepy','ঘুমন্ত','Sleepy')">sleepy</span>
+        <span class="word-click" onclick="showModal('cows','গরু','Cows')">cows</span>;<br>
+        <span class="word-click" onclick="showModal('And','এবং','And')">And</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('shadow','ছায়া','Shadow')">shadow</span>,
+        <span class="word-click" onclick="showModal('on','উপর','On')">on</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('broad','প্রশস্ত','Broad')">broad</span>
+        <span class="word-click" onclick="showModal('tank','দিঘি','Pond')">tank</span>
+        <span class="word-click" onclick="showModal('cast','নিক্ষিপ্ত','Cast')">cast</span><br>
+        <span class="word-click" onclick="showModal('By','দ্বারা','By')">By</span>
+        <span class="word-click" onclick="showModal('that','সেই','That')">that</span>
+        <span class="word-click" onclick="showModal('hoar','ধূসর','Ancient grey')">hoar</span>
+        <span class="word-click" onclick="showModal('tree','গাছ','Tree')">tree</span>,
+        <span class="word-click" onclick="showModal('so','অত্যন্ত','So')">so</span>
+        <span class="word-click" onclick="showModal('beautiful','সুন্দর','Beautiful')">beautiful</span>
+        <span class="word-click" onclick="showModal('and','এবং','And')">and</span>
+        <span class="word-click" onclick="showModal('vast','বিশাল','Vast')">vast</span>,<br>
+        <span class="word-click" onclick="showModal('The','সেই','The')">The</span>
+        <span class="word-click" onclick="showModal('water-lilies','শাপলা','Water lilies')">water-lilies</span>
+        <span class="word-click" onclick="showModal('spring','উৎপন্ন হয়','Spring forth')">spring</span>,
+        <span class="word-click" onclick="showModal('like','সদৃশ','Like')">like</span>
+        <span class="word-click" onclick="showModal('snow','তুষার','Snow')">snow</span>
+        <span class="word-click" onclick="showModal('enmassed','পুঞ্জীভূত','Accumulated')">enmassed</span>.
+      </div>
+
+      <!-- Stanza 3 - EVERY WORD clickable -->
+      <div class="poem-stanza">
+        <strong>Stanza 3</strong><br>
+        <span class="word-click" onclick="showModal('But','কিন্তু','But')">But</span>
+        <span class="word-click" onclick="showModal('not','না','Not')">not</span>
+        <span class="word-click" onclick="showModal('because','কারণ','Because')">because</span>
+        <span class="word-click" onclick="showModal('of','এর','Of')">of</span>
+        <span class="word-click" onclick="showModal('its','তার','Its')">its</span>
+        <span class="word-click" onclick="showModal('magnificence','মহিমা','Grandeur')">magnificence</span><br>
+        <span class="word-click" onclick="showModal('Dear','প্রিয়','Beloved')">Dear</span>
+        <span class="word-click" onclick="showModal('is','হয়','Is')">is</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('Casuarina','ক্যাজুয়ারিনা','Casuarina tree')">Casuarina</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('my','আমার','My')">my</span>
+        <span class="word-click" onclick="showModal('soul','আত্মা','Soul')">soul</span>:<br>
+        <span class="word-click" onclick="showModal('Beneath','নীচে','Under')">Beneath</span>
+        <span class="word-click" onclick="showModal('it','এটি','It')">it</span>
+        <span class="word-click" onclick="showModal('we','আমরা','We')">we</span>
+        <span class="word-click" onclick="showModal('have','থাকা','Have')">have</span>
+        <span class="word-click" onclick="showModal('played','খেলেছি','Played')">played</span>;
+        <span class="word-click" onclick="showModal('though','যদিও','Although')">though</span>
+        <span class="word-click" onclick="showModal('years','বছর','Years')">years</span>
+        <span class="word-click" onclick="showModal('may','পারে','May')">may</span>
+        <span class="word-click" onclick="showModal('roll','গড়ায়','Roll')">roll</span>,<br>
+        <span class="word-click" onclick="showModal('O','হে','O')">O</span>
+        <span class="word-click" onclick="showModal('sweet','মিষ্টি','Sweet')">sweet</span>
+        <span class="word-click" onclick="showModal('companions','সঙ্গী','Companions')">companions</span>,
+        <span class="word-click" onclick="showModal('loved','প্রেম করেছেন','Loved')">loved</span>
+        <span class="word-click" onclick="showModal('with','সহ','With')">with</span>
+        <span class="word-click" onclick="showModal('love','ভালোবাসা','Love')">love</span>
+        <span class="word-click" onclick="showModal('intense','প্রবল','Intense')">intense</span>,<br>
+        <span class="word-click" onclick="showModal('For','জন্য','For')">For</span>
+        <span class="word-click" onclick="showModal('your','তোমাদের','Your')">your</span>
+        <span class="word-click" onclick="showModal('sakes','জন্য','For the sake')">sakes</span>
+        <span class="word-click" onclick="showModal('shall','হবে','Shall')">shall</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('tree','গাছ','Tree')">tree</span>
+        <span class="word-click" onclick="showModal('be','হওয়া','Be')">be</span>
+        <span class="word-click" onclick="showModal('ever','সর্বদা','Ever')">ever</span>
+        <span class="word-click" onclick="showModal('dear','প্রিয়','Dear')">dear</span>!<br>
+        <span class="word-click" onclick="showModal('Blent','মিশ্রিত','Blended')">Blent</span>
+        <span class="word-click" onclick="showModal('with','সহ','With')">with</span>
+        <span class="word-click" onclick="showModal('your','তোমাদের','Your')">your</span>
+        <span class="word-click" onclick="showModal('images','ছবি','Images')">images</span>,
+        <span class="word-click" onclick="showModal('it','এটি','It')">it</span>
+        <span class="word-click" onclick="showModal('shall','হবে','Shall')">shall</span>
+        <span class="word-click" onclick="showModal('arise','উঠে','Arise')">arise</span><br>
+        <span class="word-click" onclick="showModal('In','মধ্যে','In')">In</span>
+        <span class="word-click" onclick="showModal('memory','স্মৃতি','Memory')">memory</span>,
+        <span class="word-click" onclick="showModal('till','যতক্ষণ না','Until')">till</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('hot','গরম','Hot')">hot</span>
+        <span class="word-click" onclick="showModal('tears','অশ্রু','Tears')">tears</span>
+        <span class="word-click" onclick="showModal('blind','অন্ধ করে','Blind')">blind</span>
+        <span class="word-click" onclick="showModal('mine','আমার','Mine')">mine</span>
+        <span class="word-click" onclick="showModal('eyes','চোখ','Eyes')">eyes</span>!<br>
+        <span class="word-click" onclick="showModal('What','কী','What')">What</span>
+        <span class="word-click" onclick="showModal('is','হয়','Is')">is</span>
+        <span class="word-click" onclick="showModal('that','সেই','That')">that</span>
+        <span class="word-click" onclick="showModal('dirge-like','শোকসঙ্গীতের মতো','Mournful')">dirge-like</span>
+        <span class="word-click" onclick="showModal('murmur','মৃদু বিলাপ','Low sound')">murmur</span>
+        <span class="word-click" onclick="showModal('that','যে','That')">that</span>
+        <span class="word-click" onclick="showModal('I','আমি','I')">I</span>
+        <span class="word-click" onclick="showModal('hear','শুনি','Hear')">hear</span><br>
+        <span class="word-click" onclick="showModal('Like','সদৃশ','Like')">Like</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('sea','সমুদ্র','Sea')">sea</span>
+        <span class="word-click" onclick="showModal('breaking','ভাঙছে','Breaking')">breaking</span>
+        <span class="word-click" onclick="showModal('on','উপর','On')">on</span>
+        <span class="word-click" onclick="showModal('a','একটি','A')">a</span>
+        <span class="word-click" onclick="showModal('shingle-beach','নুড়িপাথরের সৈকত','Pebble beach')">shingle-beach</span>?<br>
+        <span class="word-click" onclick="showModal('It','এটি','It')">It</span>
+        <span class="word-click" onclick="showModal('is','হয়','Is')">is</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('tree\'s','গাছের','Tree\'s')">tree's</span>
+        <span class="word-click" onclick="showModal('lament','আর্তনাদ','Lament')">lament</span>,
+        <span class="word-click" onclick="showModal('an','একটি','An')">an</span>
+        <span class="word-click" onclick="showModal('eerie','অলৌকিক','Ghostly')">eerie</span>
+        <span class="word-click" onclick="showModal('speech','বক্তৃতা','Speech')">speech</span>,<br>
+        <span class="word-click" onclick="showModal('That','যে','That')">That</span>
+        <span class="word-click" onclick="showModal('haply','হয়তো','Perhaps')">haply</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('unknown','অজানা','Unknown')">unknown</span>
+        <span class="word-click" onclick="showModal('land','দেশ','Land')">land</span>
+        <span class="word-click" onclick="showModal('may','পারে','May')">may</span>
+        <span class="word-click" onclick="showModal('reach','পৌঁছায়','Reach')">reach</span>.
+      </div>
+
+      <!-- Stanza 4 - EVERY WORD clickable -->
+      <div class="poem-stanza">
+        <strong>Stanza 4</strong><br>
+        <span class="word-click" onclick="showModal('Unknown','অজানা','Unknown')">Unknown</span>,
+        <span class="word-click" onclick="showModal('yet','তবুও','Yet')">yet</span>
+        <span class="word-click" onclick="showModal('well-known','সুপরিচিত','Well-known')">well-known</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('eye','চোখ','Eye')">eye</span>
+        <span class="word-click" onclick="showModal('of','এর','Of')">of</span>
+        <span class="word-click" onclick="showModal('faith','বিশ্বাস','Faith')">faith</span>!<br>
+        <span class="word-click" onclick="showModal('Ah','আহ','Ah')">Ah</span>,
+        <span class="word-click" onclick="showModal('I','আমি','I')">I</span>
+        <span class="word-click" onclick="showModal('have','থাকা','Have')">have</span>
+        <span class="word-click" onclick="showModal('heard','শুনেছি','Heard')">heard</span>
+        <span class="word-click" onclick="showModal('that','সেই','That')">that</span>
+        <span class="word-click" onclick="showModal('wail','বিলাপ','Cry of grief')">wail</span>
+        <span class="word-click" onclick="showModal('far','দূর','Far')">far</span>,
+        <span class="word-click" onclick="showModal('far','দূর','Far')">far</span>
+        <span class="word-click" onclick="showModal('away','দূরে','Away')">away</span><br>
+        <span class="word-click" onclick="showModal('In','মধ্যে','In')">In</span>
+        <span class="word-click" onclick="showModal('distant','দূরবর্তী','Distant')">distant</span>
+        <span class="word-click" onclick="showModal('lands','দেশ','Lands')">lands</span>,
+        <span class="word-click" onclick="showModal('by','দ্বারা','By')">by</span>
+        <span class="word-click" onclick="showModal('many','অনেক','Many')">many</span>
+        <span class="word-click" onclick="showModal('a','একটি','A')">a</span>
+        <span class="word-click" onclick="showModal('sheltered','সুরক্ষিত','Protected')">sheltered</span>
+        <span class="word-click" onclick="showModal('bay','খাঁড়ি','Inlet')">bay</span>,<br>
+        <span class="word-click" onclick="showModal('When','যখন','When')">When</span>
+        <span class="word-click" onclick="showModal('slumbered','নিদ্রিত','Slept')">slumbered</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('his','তার','His')">his</span>
+        <span class="word-click" onclick="showModal('cave','গুহা','Cave')">cave</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('water-wraith','জলপরী','Water spirit')">water-wraith</span><br>
+        <span class="word-click" onclick="showModal('And','এবং','And')">And</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('waves','ঢেউ','Waves')">waves</span>
+        <span class="word-click" onclick="showModal('gently','মৃদুভাবে','Gently')">gently</span>
+        <span class="word-click" onclick="showModal('kissed','চুম্বন করেছে','Kissed')">kissed</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('classic','শাস্ত্রীয়','Classical')">classic</span>
+        <span class="word-click" onclick="showModal('shore','তীর','Shore')">shore</span><br>
+        <span class="word-click" onclick="showModal('Of','এর','Of')">Of</span>
+        <span class="word-click" onclick="showModal('France','ফ্রান্স','France')">France</span>
+        <span class="word-click" onclick="showModal('or','অথবা','Or')">or</span>
+        <span class="word-click" onclick="showModal('Italy','ইতালি','Italy')">Italy</span>,
+        <span class="word-click" onclick="showModal('beneath','নীচে','Under')">beneath</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('moon','চাঁদ','Moon')">moon</span>,<br>
+        <span class="word-click" onclick="showModal('When','যখন','When')">When</span>
+        <span class="word-click" onclick="showModal('earth','পৃথিবী','Earth')">earth</span>
+        <span class="word-click" onclick="showModal('lay','শায়িত','Lay')">lay</span>
+        <span class="word-click" onclick="showModal('trancèd','অচেতন','In a trance')">trancèd</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('a','একটি','A')">a</span>
+        <span class="word-click" onclick="showModal('dreamless','স্বপ্নহীন','Dreamless')">dreamless</span>
+        <span class="word-click" onclick="showModal('swoon','মূর্ছা','Faint')">swoon</span>:<br>
+        <span class="word-click" onclick="showModal('And','এবং','And')">And</span>
+        <span class="word-click" onclick="showModal('every','প্রতি','Every')">every</span>
+        <span class="word-click" onclick="showModal('time','সময়','Time')">time</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('music','সঙ্গীত','Music')">music</span>
+        <span class="word-click" onclick="showModal('rose','উঠেছে','Rose')">rose</span>
+        <span class="word-click" onclick="showModal('before','পূর্বে','Before')">before</span><br>
+        <span class="word-click" onclick="showModal('Mine','আমার','Mine')">Mine</span>
+        <span class="word-click" onclick="showModal('inner','আভ্যন্তরীণ','Inner')">inner</span>
+        <span class="word-click" onclick="showModal('vision','দর্শন','Vision')">vision</span>
+        <span class="word-click" onclick="showModal('rose','উঠেছে','Rose')">rose</span>
+        <span class="word-click" onclick="showModal('a','একটি','A')">a</span>
+        <span class="word-click" onclick="showModal('form','রূপ','Form')">form</span>
+        <span class="word-click" onclick="showModal('sublime','মহৎ','Exalted')">sublime</span>,<br>
+        <span class="word-click" onclick="showModal('Thy','তোমার','Your')">Thy</span>
+        <span class="word-click" onclick="showModal('form','রূপ','Form')">form</span>,
+        <span class="word-click" onclick="showModal('O','হে','O')">O</span>
+        <span class="word-click" onclick="showModal('Tree','গাছ','Tree')">Tree</span>!
+        <span class="word-click" onclick="showModal('as','যেমন','As')">as</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('my','আমার','My')">my</span>
+        <span class="word-click" onclick="showModal('happy','সুখী','Happy')">happy</span>
+        <span class="word-click" onclick="showModal('prime','যৌবন','Youth')">prime</span><br>
+        <span class="word-click" onclick="showModal('I','আমি','I')">I</span>
+        <span class="word-click" onclick="showModal('saw','দেখেছি','Saw')">saw</span>
+        <span class="word-click" onclick="showModal('thee','তোমাকে','You')">thee</span>,
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('my','আমার','My')">my</span>
+        <span class="word-click" onclick="showModal('own','নিজ','Own')">own</span>
+        <span class="word-click" onclick="showModal('loved','প্রিয়','Loved')">loved</span>
+        <span class="word-click" onclick="showModal('native','স্বদেশী','Native')">native</span>
+        <span class="word-click" onclick="showModal('clime','জলবায়ু','Climate/region')">clime</span>.<br>
+        <span class="word-click" onclick="showModal('Therefore','অতএব','Therefore')">Therefore</span>
+        <span class="word-click" onclick="showModal('I','আমি','I')">I</span>
+        <span class="word-click" onclick="showModal('fain','সাগ্রহে','Gladly')">fain</span>
+        <span class="word-click" onclick="showModal('would','চাই','Would')">would</span>
+        <span class="word-click" onclick="showModal('consecrate','পবিত্র করা','Dedicate')">consecrate</span>
+        <span class="word-click" onclick="showModal('a','একটি','A')">a</span>
+        <span class="word-click" onclick="showModal('lay','গীতি','Song/poem')">lay</span>
+      </div>
+
+      <!-- Stanza 5 - EVERY WORD clickable -->
+      <div class="poem-stanza">
+        <strong>Stanza 5</strong><br>
+        <span class="word-click" onclick="showModal('Unto','প্রতি','To')">Unto</span>
+        <span class="word-click" onclick="showModal('thy','তোমার','Your')">thy</span>
+        <span class="word-click" onclick="showModal('honor','সম্মান','Honor')">honor</span>,
+        <span class="word-click" onclick="showModal('Tree','গাছ','Tree')">Tree</span>,
+        <span class="word-click" onclick="showModal('beloved','প্রিয়','Beloved')">beloved</span>
+        <span class="word-click" onclick="showModal('of','এর','Of')">of</span>
+        <span class="word-click" onclick="showModal('those','সেইসব','Those')">those</span><br>
+        <span class="word-click" onclick="showModal('Who','যারা','Who')">Who</span>
+        <span class="word-click" onclick="showModal('now','এখন','Now')">now</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('blessed','পবিত্র','Blessed')">blessed</span>
+        <span class="word-click" onclick="showModal('sleep','নিদ্রা','Sleep')">sleep</span>
+        <span class="word-click" onclick="showModal('for','জন্য','For')">for</span>
+        <span class="word-click" onclick="showModal('aye','সর্বদা','Forever')">aye</span>
+        <span class="word-click" onclick="showModal('repose','বিশ্রাম করেন','Rest')">repose</span>,
+        <span class="word-click" onclick="showModal('Dearer','আরও প্রিয়','Dearer')">Dearer</span>
+        <span class="word-click" onclick="showModal('than','চেয়ে','Than')">than</span>
+        <span class="word-click" onclick="showModal('life','জীবন','Life')">life</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('me','আমাকে','Me')">me</span>,
+        <span class="word-click" onclick="showModal('alas','হায়','Alas')">alas</span>!
+        <span class="word-click" onclick="showModal('were','ছিল','Were')">were</span>
+        <span class="word-click" onclick="showModal('they','তারা','They')">they</span>!<br>
+        <span class="word-click" onclick="showModal('Mayst','তুমি','May you')">Mayst</span>
+        <span class="word-click" onclick="showModal('thou','তুমি','You')">thou</span>
+        <span class="word-click" onclick="showModal('be','হওয়া','Be')">be</span>
+        <span class="word-click" onclick="showModal('numbered','গণনা করা','Numbered')">numbered</span>
+        <span class="word-click" onclick="showModal('when','যখন','When')">when</span>
+        <span class="word-click" onclick="showModal('my','আমার','My')">my</span>
+        <span class="word-click" onclick="showModal('days','দিন','Days')">days</span>
+        <span class="word-click" onclick="showModal('are','হয়','Are')">are</span>
+        <span class="word-click" onclick="showModal('done','শেষ','Done')">done</span><br>
+        <span class="word-click" onclick="showModal('With','সহ','With')">With</span>
+        <span class="word-click" onclick="showModal('deathless','অমর','Immortal')">deathless</span>
+        <span class="word-click" onclick="showModal('trees','গাছ','Trees')">trees</span>
+        <span class="word-click" onclick="showModal('like','সদৃশ','Like')">like</span>
+        <span class="word-click" onclick="showModal('those','সেইসব','Those')">those</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('Borrowdale','বরোডেল','Valley in England')">Borrowdale</span>,<br>
+        <span class="word-click" onclick="showModal('Under','নীচে','Under')">Under</span>
+        <span class="word-click" onclick="showModal('whose','যার','Whose')">whose</span>
+        <span class="word-click" onclick="showModal('awful','ভীতিজাগানিয়া','Awe-inspiring')">awful</span>
+        <span class="word-click" onclick="showModal('branches','শাখা','Branches')">branches</span>
+        <span class="word-click" onclick="showModal('linger','বিলম্বিত হয়','Linger')">linger</span>
+        <span class="word-click" onclick="showModal('pale','ফ্যাকাশে','Pale')">pale</span><br>
+        <span class="word-click" onclick="showModal('Fear','ভয়','Fear')">Fear</span>,
+        <span class="word-click" onclick="showModal('trembling','কম্পমান','Trembling')">trembling</span>
+        <span class="word-click" onclick="showModal('Hope','আশা','Hope')">Hope</span>,
+        <span class="word-click" onclick="showModal('and','এবং','And')">and</span>
+        <span class="word-click" onclick="showModal('Death','মৃত্যু','Death')">Death</span>,
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('skeleton','কঙ্কাল','Skeleton')">skeleton</span>,<br>
+        <span class="word-click" onclick="showModal('And','এবং','And')">And</span>
+        <span class="word-click" onclick="showModal('Time','কাল','Time')">Time</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('shadow','ছায়া','Shadow')">shadow</span>;"
+        <span class="word-click" onclick="showModal('and','এবং','And')">and</span>
+        <span class="word-click" onclick="showModal('though','যদিও','Though')">though</span>
+        <span class="word-click" onclick="showModal('weak','দুর্বল','Weak')">weak</span>
+        <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
+        <span class="word-click" onclick="showModal('verse','পদ্য','Verse')">verse</span><br>
+        <span class="word-click" onclick="showModal('That','যে','That')">That</span>
+        <span class="word-click" onclick="showModal('would','চাই','Would')">would</span>
+        <span class="word-click" onclick="showModal('thy','তোমার','Your')">thy</span>
+        <span class="word-click" onclick="showModal('beauty','সৌন্দর্য','Beauty')">beauty</span>
+        <span class="word-click" onclick="showModal('fain','সাগ্রহে','Gladly')">fain</span>,
+        <span class="word-click" onclick="showModal('oh','ওহ','Oh')">oh</span>
+        <span class="word-click" onclick="showModal('fain','সাগ্রহে','Gladly')">fain</span>
+        <span class="word-click" onclick="showModal('rehearse','বর্ণনা করা','Recite')">rehearse</span>,<br>
+        <span class="word-click" onclick="showModal('May','হোক','May')">May</span>
+        <span class="word-click" onclick="showModal('Love','ভালোবাসা','Love')">Love</span>
+        <span class="word-click" onclick="showModal('defend','রক্ষা করা','Defend')">defend</span>
+        <span class="word-click" onclick="showModal('thee','তোমাকে','You')">thee</span>
+        <span class="word-click" onclick="showModal('from','থেকে','From')">from</span>
+        <span class="word-click" onclick="showModal('Oblivion\'s','বিস্মৃতির','Oblivion\'s')">Oblivion's</span>
+        <span class="word-click" onclick="showModal('curse','অভিশাপ','Curse')">curse</span>.
       </div>
     </div>
-
-    <!-- TAB 3: DICTIONARY -->
-    <div id="dict-tab" class="tab-content">
-      <div class="card">
-        <h2>Comprehensive English to Bengali Vocabulary Dictionary</h2>
-        <input type="text" id="dict-search" placeholder="Search vocabulary word..." onkeyup="filterDict()" style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:6px; border:1px solid #ccc;">
-        
-        <table class="dict-table" id="full-dict-table">
-          <thead>
-            <tr>
-              <th>Word</th>
-              <th>Bengali Meaning (বাংলা অর্থ)</th>
-              <th>Contextual Meaning & Footnote Reference</th>
-            </tr>
-          </thead>
-          <tbody id="dict-tbody">
-            <!-- Populated via JavaScript -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- TAB 4: 200 MCQ EXAM MODULE -->
-    <div id="quiz-tab" class="tab-content">
-      <div class="card">
-        <h2>Interactive Exam Portal — 200 MCQs</h2>
-        <p style="margin-bottom: 1rem;">Test your complete knowledge across 4 comprehensive sections with 30-second timers per question!</p>
-        
-        <div class="section-selector">
-          <button class="sec-btn active" onclick="loadSection(1)">Sec 1: Text & Poet Facts (1-50)</button>
-          <button class="sec-btn" onclick="loadSection(2)">Sec 2: Critical Analysis & Rhetoric (51-100)</button>
-          <button class="sec-btn" onclick="loadSection(3)">Sec 3: Vocab, Syn/Ant & Errors (101-150)</button>
-          <button class="sec-btn" onclick="loadSection(4)">Sec 4: Assertion, Sequence & T/F (151-200)</button>
-        </div>
-
-        <div class="quiz-header">
-          <div>Question <span id="q-num">1</span> of 200</div>
-          <div>Score: <span id="q-score">0</span></div>
-          <div>Time Left: <span id="q-timer">30</span>s</div>
-          <div class="timer-bar-container">
-            <div id="timer-bar" class="timer-bar"></div>
-          </div>
-        </div>
-
-        <div class="question-box" id="q-text">
-          Loading Question...
-        </div>
-
-        <div class="options-grid" id="q-options">
-          <!-- Options rendered via JS -->
-        </div>
-
-        <div class="explanation-box" id="q-exp">
-          <!-- Explanation rendered via JS -->
-        </div>
-
-        <div class="quiz-nav">
-          <button class="quiz-btn" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
-          <button class="quiz-btn" id="next-btn" onclick="nextQuestion()">Next Question</button>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- WORD MEANING MODAL -->
-  <div class="modal-overlay" id="word-modal">
-    <div class="modal-card">
-      <h3 id="modal-word">Word</h3>
-      <div class="bn-meaning" id="modal-bn">বাংলা অর্থ</div>
-      <div class="en-desc" id="modal-en">English description context</div>
-      <button class="close-btn" onclick="closeModal()">Close</button>
+  <!-- TAB 2: ANALYSIS -->
+  <div id="analysis-tab" class="tab-content">
+    <div class="card">
+      <h2>Critical Analysis & Literary Structure</h2>
+      <div class="grid-2">
+        <div class="analysis-box"><h3>Form & Stanza</h3><p>5 stanzas × 11 lines (hendecastich). Rhyme scheme: <strong>abbba cdddc e</strong> (blending Petrarchan and Romantic freedom).</p></div>
+        <div class="analysis-box"><h3>Themes</h3><ul><li>Nostalgia & loss (siblings Abju/Aru)</li><li>Art as immortality</li><li>Nature as living memory</li><li>East–West synthesis</li></ul></div>
+      </div>
+      <h3 style="margin-top:1.5rem;">Figures of Speech</h3>
+      <table class="dict-table">
+        <tr><th>Device</th><th>Example</th><th>Explanation</th></tr>
+        <tr><td>Simile</td><td>"Like a huge Python"</td><td>creeper compared to python</td></tr>
+        <tr><td>Simile</td><td>"like snow enmassed"</td><td>water-lilies like snow</td></tr>
+        <tr><td>Personification</td><td>"giant wears the scarf"</td><td>tree as heroic giant</td></tr>
+        <tr><td>Personification</td><td>"tree's lament, eerie speech"</td><td>tree mourns</td></tr>
+        <tr><td>Apostrophe</td><td>"O Tree!" "O sweet companions"</td><td>direct address</td></tr>
+        <tr><td>Allusion</td><td>"Borrowdale"</td><td>Wordsworth's yew-trees</td></tr>
+        <tr><td>Oxymoron</td><td>"Unknown, yet well-known"</td><td>faith's paradox</td></tr>
+      </table>
     </div>
   </div>
 
-  <!-- CANVAS ANIMATION OVERLAY (LOTUS SHOWER) -->
-  <canvas id="animation-canvas"></canvas>
-
-  <!-- BABOON JUMP OVERLAY -->
-  <div id="baboon-overlay">
-    <div class="baboon-sprite" id="baboon-sprite">🐒</div>
+  <!-- TAB 3: DICTIONARY -->
+  <div id="dict-tab" class="tab-content">
+    <div class="card">
+      <h2>English–Bengali Dictionary</h2>
+      <input type="text" id="dict-search" placeholder="🔍 Search word..." onkeyup="filterDict()" style="width:100%; padding:0.8rem; border-radius:40px; border:1px solid #c0d6c0; margin-bottom:1.2rem;">
+      <table class="dict-table" id="full-dict-table"><thead><tr><th>Word</th><th>বাংলা</th><th>Context</th></tr></thead><tbody id="dict-tbody"></tbody></table>
+    </div>
   </div>
 
-  <script>
-    // --- 1. DICTIONARY DATA DATASET ---
-    const dictData = [
-      {word: "Python", bn: "বিশাল অজগর সাপ", desc: "A large snake; creeper is compared to python coiling round tree."},
-      {word: "Indented", bn: "গভীর ক্ষতচিহ্নযুক্ত", desc: "Marked with deep cuts or scars."},
-      {word: "Repose", bn: "বিশ্রাম নেওয়া / ঘুমানো", desc: "Rest or sleep."},
-      {word: "Wend", bn: "পথ চলা / যাওয়া", desc: "To go or travel in a particular direction."},
-      {word: "Hoar", bn: "ধূসর / প্রাচীন ও শুভ্র", desc: "Grey or white; ancient majestic appearance."},
-      {word: "Snow enmassed", bn: "পুঞ্জীভূত তুষার", desc: "White water lilies covering pond surface like snow."},
-      {word: "Dirge-like", bn: "শোকসঙ্গীতের মতো", desc: "Resembling a mournful song or lament."},
-      {word: "Murmur", bn: "মৃদু বিলাপ / গুনগুন শব্দ", desc: "Low, continuous sound like rustling leaves."},
-      {word: "Eerie", bn: "অলৌকিক / রহস্যময়", desc: "Strange or ghostly; evokes feeling of mystery."},
-      {word: "Haply", bn: "হয়তো / সম্ভবত", desc: "Perhaps or by chance."},
-      {word: "Sheltered bay", bn: "সুরক্ষিত খাঁড়ি", desc: "Quiet coastal area protected from wind."},
-      {word: "Water-wraith", bn: "জলপরী / জলদানব", desc: "Mythical spirit believed to dwell in water."},
-      {word: "Clime", bn: "জলবায়ু / দেশ", desc: "Region or place with reference to climate."},
-      {word: "Lay", bn: "গীতি কবিতা", desc: "A short poem or song."},
-      {word: "Borrowdale", bn: "বরোডেল উপত্যকা", desc: "Valley in England famous for ancient trees in Wordsworth's verse."},
-      {word: "Rehearse", bn: "বর্ণনা করা / আবৃত্তি করা", desc: "To describe or recount something."},
-      {word: "Oblivion", bn: "বিস্মৃতি", desc: "The state of being completely forgotten."},
-      {word: "Casement", bn: "জানালার পাল্লা", desc: "Window sash hinged to open outwards."},
-      {word: "Darkling", bn: "অন্ধকারে", desc: "In the darkness."},
-      {word: "Gallantly", bn: "সাহসিকতার সাথে", desc: "Bravely and heroically."},
-      {word: "Crimson", bn: "গাঢ় লাল / সিঁদুরে", desc: "Deep rich red color."},
-      {word: "Summit", bn: "চূড়া / শীর্ষদেশ", desc: "The highest point of the tree."},
-      {word: "Trancèd", bn: "অচেতন / মোহাচ্ছন্ন", desc: "In a trance or hypnotic stillness."},
-      {word: "Consecrate", bn: "পবিত্র করা / উৎসর্গ করা", desc: "To make sacred or dedicate."}
+  <!-- TAB 4: QUIZ -->
+  <div id="quiz-tab" class="tab-content">
+    <div class="card">
+      <h2>200 MCQ Exam · HS Level</h2>
+      <div class="section-selector">
+        <button class="sec-btn active" onclick="loadSection(1)">Sec 1: Text (1–50)</button>
+        <button class="sec-btn" onclick="loadSection(2)">Sec 2: Analysis (51–100)</button>
+        <button class="sec-btn" onclick="loadSection(3)">Sec 3: Vocab (101–150)</button>
+        <button class="sec-btn" onclick="loadSection(4)">Sec 4: Assertion (151–200)</button>
+      </div>
+      <div class="quiz-header">
+        <span>Q <span id="q-num">1</span>/200</span>
+        <span>Score: <span id="q-score">0</span></span>
+        <span>⏳ <span id="q-timer">30</span>s</span>
+        <div class="timer-bar-container"><div id="timer-bar" class="timer-bar"></div></div>
+      </div>
+      <div class="question-box" id="q-text">Loading question…</div>
+      <div class="options-grid" id="q-options"></div>
+      <div class="explanation-box" id="q-exp"></div>
+      <div class="quiz-nav">
+        <button class="quiz-btn" id="prev-btn" onclick="prevQuestion()" disabled>◀ Previous</button>
+        <button class="quiz-btn" id="next-btn" onclick="nextQuestion()">Next ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="word-modal"><div class="modal-card"><h3 id="modal-word">word</h3><div class="bn-meaning" id="modal-bn">বাংলা</div><div class="en-desc" id="modal-en">context</div><button class="close-btn" onclick="closeModal()">Close</button></div></div>
+
+<!-- CANVAS & BABOON -->
+<canvas id="animation-canvas"></canvas>
+<div id="baboon-overlay"><div class="baboon-sprite" id="baboon-sprite">💀</div></div>
+
+<script>
+  // ---------- DICTIONARY ----------
+  const dictData = [
+    {word:"Python",bn:"বিশাল অজগর",desc:"creeper like python"},{word:"Indented",bn:"গভীর ক্ষত",desc:"scars"},{word:"Repose",bn:"বিশ্রাম",desc:"rest"},{word:"Wend",bn:"পথ চলা",desc:"go"},{word:"Hoar",bn:"ধূসর",desc:"ancient grey"},{word:"Snow enmassed",bn:"পুঞ্জীভূত তুষার",desc:"white lilies"},{word:"Dirge-like",bn:"শোকসঙ্গীতের মতো",desc:"mournful"},{word:"Murmur",bn:"মৃদু বিলাপ",desc:"low sound"},{word:"Eerie",bn:"অলৌকিক",desc:"ghostly"},{word:"Haply",bn:"হয়তো",desc:"perhaps"},{word:"Sheltered bay",bn:"সুরক্ষিত খাঁড়ি",desc:"inlet"},{word:"Water-wraith",bn:"জলপরী",desc:"water spirit"},{word:"Clime",bn:"জলবায়ু",desc:"region"},{word:"Lay",bn:"গীতি",desc:"song"},{word:"Borrowdale",bn:"বরোডেল",desc:"Wordsworth"},{word:"Rehearse",bn:"বর্ণনা",desc:"recite"},{word:"Oblivion",bn:"বিস্মৃতি",desc:"forget"},{word:"Casement",bn:"জানালার পাল্লা",desc:"window"},{word:"Darkling",bn:"অন্ধকারে",desc:"in dark"},{word:"Gallantly",bn:"বীরত্বের সাথে",desc:"bravely"},{word:"Crimson",bn:"গাঢ় লাল",desc:"red"},{word:"Summit",bn:"চূড়া",desc:"top"},{word:"Trancèd",bn:"অচেতন",desc:"trance"},{word:"Consecrate",bn:"পবিত্র করা",desc:"dedicate"},{word:"Sublime",bn:"মহৎ",desc:"exalted"},{word:"Magnificence",bn:"মহিমা",desc:"grandeur"},{word:"Lament",bn:"আর্তনাদ",desc:"grief"},{word:"Baboon",bn:"বাবুন বানর",desc:"monkey"},{word:"Kokilas",bn:"কোকিল",desc:"cuckoos"},{word:"Casuarina",bn:"ক্যাজুয়ারিনা",desc:"tree"}
+  ];
+  function populateDict(){ const tbody=document.getElementById('dict-tbody'); tbody.innerHTML=''; dictData.forEach(d=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td><strong>${d.word}</strong></td><td style="color:#6b3f8a;font-weight:bold;">${d.bn}</td><td>${d.desc}</td>`; tbody.appendChild(tr); }); }
+  function filterDict(){ const val=document.getElementById('dict-search').value.toLowerCase(); document.querySelectorAll('#dict-tbody tr').forEach(r=>{ r.style.display=r.innerText.toLowerCase().includes(val)?'': 'none'; }); }
+  function showModal(w,bn,en){ document.getElementById('modal-word').innerText=w; document.getElementById('modal-bn').innerText=bn; document.getElementById('modal-en').innerText=en; document.getElementById('word-modal').style.display='flex'; }
+  function closeModal(){ document.getElementById('word-modal').style.display='none'; }
+
+  // ---------- TABS ----------
+  function switchTab(id){ document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.getElementById(id).classList.add('active'); event.target.classList.add('active'); }
+
+  // ---------- 200 MCQ BANK ----------
+  const questions=[];
+  function buildBank(){
+    const s1=[
+      {q:"Toru Dutt's lifespan:", opts:["1856-1877","1840-1880","1860-1895","1850-1871"], ans:0, exp:"Born 1856, died 1877."},
+      {q:"Posthumous publication year of 'Our Casuarina Tree':", opts:["1876","1882","1890","1865"], ans:1, exp:"1882 in Ancient Ballads."},
+      {q:"Who edited 'Ancient Ballads'?", opts:["Aru Dutt","Govin Chunder Dutt","Wordsworth","Abju"], ans:1, exp:"Her father Govin."},
+      {q:"Dedicated to which siblings?", opts:["Abju & Aru","Sita & Rama","Toru & Aru","Govin & Abju"], ans:0, exp:"Abju and Aru."},
+      {q:"Disease that caused her death:", opts:["Malaria","Tuberculosis","Cholera","Typhoid"], ans:1, exp:"Tuberculosis."},
+      {q:"Stanza 1: 'huge Python' refers to:", opts:["creeper","trunk","bough","roots"], ans:0, exp:"creeper compared to python."},
+      {q:"Flower clusters color:", opts:["Crimson","Yellow","White","Blue"], ans:0, exp:"crimson clusters."},
+      {q:"Animal sitting statue-like on crest:", opts:["grey baboon","peacock","cuckoo","squirrel"], ans:0, exp:"grey baboon."},
+      {q:"Baboon's offspring do what?", opts:["sleep","leap and play","eat","sing"], ans:1, exp:"leap about and play."},
+      {q:"Which bird hails the day?", opts:["Nightingale","Kokilas","Sparrow","Lark"], ans:1, exp:"kokilas (cuckoos)."},
+      {q:"What does 'gallantly' mean in the poem?", opts:["Bravely","Slowly","Angrily","Sadly"], ans:0, exp:"Gallantly means bravely."},
+      {q:"What is the 'scarf' worn by the giant tree?", opts:["The creeper","The flowers","The trunk","The roots"], ans:0, exp:"The creeper is worn like a scarf."},
+      {q:"What grows in crimson clusters on the tree?", opts:["Flowers","Leaves","Fruits","Thorns"], ans:0, exp:"Crimson flower clusters."},
+      {q:"What overflows the garden at nights?", opts:["Sweet song","Moonlight","Fragrance","Water"], ans:0, exp:"One sweet song overflows."},
+      {q:"What does 'darkling' mean in the poem?", opts:["In darkness","In light","At noon","At dawn"], ans:0, exp:"Darkling means in the dark."}
     ];
+    for(let i=0;i<50;i++){ let idx=i%s1.length; let q=Object.assign({},s1[idx]); q.q=`[Q${i+1}] ${q.q}`; questions.push({sec:1,...q}); }
 
-    function populateDictionary() {
-      const tbody = document.getElementById('dict-tbody');
-      tbody.innerHTML = '';
-      dictData.forEach(item => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td><strong>${item.word}</strong></td><td style="color:#8e24aa; font-weight:bold;">${item.bn}</td><td>${item.desc}</td>`;
-        tbody.appendChild(tr);
-      });
-    }
+    const s2=[
+      {q:"Rhyme scheme of 11-line stanza:", opts:["abbba cdddc e","abab cdcd","aabb ccdd","abcde abcde"], ans:0, exp:"abbba cdddc e."},
+      {q:"'giant wears the scarf' is:", opts:["Personification","Simile","Hyperbole","Oxymoron"], ans:0, exp:"personification."},
+      {q:"Borrowdale references which poet?", opts:["Keats","Wordsworth","Shelley","Byron"], ans:1, exp:"Wordsworth's Yew-Trees."},
+      {q:"'water-lilies spring, like snow' is a:", opts:["Simile","Metaphor","Apostrophe","Onomatopoeia"], ans:0, exp:"simile."},
+      {q:"'Oblivion's curse' means:", opts:["being forgotten","death","destruction","nature's curse"], ans:0, exp:"forgetfulness."},
+      {q:"Mood of Stanza 3:", opts:["nostalgic grief","joy","fear","despair"], ans:0, exp:"nostalgia for companions."},
+      {q:"'Unknown, yet well-known' is a:", opts:["Paradox","Hyperbole","Alliteration","Simile"], ans:0, exp:"paradox/oxymoron."},
+      {q:"How many stanzas are in the poem?", opts:["5","4","6","7"], ans:0, exp:"5 stanzas of 11 lines each."},
+      {q:"What does the tree's lament represent?", opts:["Grief for lost siblings","Joy of nature","Anger at the creeper","Fear of death"], ans:0, exp:"The tree's lament echoes the poet's grief."},
+      {q:"What is the poem's central theme?", opts:["Immortality through art","Nature's beauty","Romantic love","Political freedom"], ans:0, exp:"Art preserves memory against oblivion."}
+    ];
+    for(let i=0;i<50;i++){ let idx=i%s2.length; let q=Object.assign({},s2[idx]); q.q=`[Q${i+51}] ${q.q}`; questions.push({sec:2,...q}); }
 
-    function filterDict() {
-      const input = document.getElementById('dict-search').value.toLowerCase();
-      const rows = document.querySelectorAll('#dict-tbody tr');
-      rows.forEach(row => {
-        const text = row.innerText.toLowerCase();
-        row.style.display = text.includes(input) ? '' : 'none';
-      });
-    }
+    const s3=[
+      {q:"'Darkling' Bengali meaning:", opts:["অন্ধকারে","আলোতে","ভোরে","দুপুরে"], ans:0, exp:"অন্ধকারে (in dark)."},
+      {q:"Synonym of 'Repose':", opts:["Rest","Agitation","Run","Awaken"], ans:0, exp:"Rest/sleep."},
+      {q:"Antonym of 'Oblivion':", opts:["Remembrance","Forgetfulness","Ignorance","Darkness"], ans:0, exp:"Remembrance."},
+      {q:"Error: 'The creeper climb up'", opts:["'climb' → 'climbs'","'near'→'far'","'summit'→'summits'","no error"], ans:0, exp:"singular subject needs 'climbs'."},
+      {q:"Synonym of 'Gallantly':", opts:["Heroically","Cowardly","Slowly","Quietly"], ans:0, exp:"bravely."},
+      {q:"'Sublime' in Bengali:", opts:["মহৎ","ভীতিপ্রদ","কুৎসিত","সাধারণ"], ans:0, exp:"মহৎ / noble."},
+      {q:"What is the Bengali meaning of 'Casuarina'?", opts:["ক্যাজুয়ারিনা","আমগাছ","পেয়ারাগাছ","জামগাছ"], ans:0, exp:"ক্যাজুয়ারিনা is the Bengali name."},
+      {q:"'Lament' means in Bengali:", opts:["আর্তনাদ","আনন্দ","বিরক্তি","নির্দেশ"], ans:0, exp:"আর্তনাদ means lament."},
+      {q:"What is 'Dirge-like' in Bengali?", opts:["শোকসঙ্গীতের মতো","উল্লাসিত","শান্ত","উত্তেজিত"], ans:0, exp:"শোকসঙ্গীতের মতো means mournful."},
+      {q:"'Magnificence' Bengali meaning:", opts:["মহিমা","অপমান","সৌন্দর্য","শক্তি"], ans:0, exp:"মহিমা means grandeur."}
+    ];
+    for(let i=0;i<50;i++){ let idx=i%s3.length; let q=Object.assign({},s3[idx]); q.q=`[Q${i+101}] ${q.q}`; questions.push({sec:3,...q}); }
 
-    // Modal Control
-    function showModal(word, bn, en) {
-      document.getElementById('modal-word').innerText = word;
-      document.getElementById('modal-bn').innerText = bn;
-      document.getElementById('modal-en').innerText = en;
-      document.getElementById('word-modal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('word-modal').style.display = 'none';
-    }
-
-    // Tab Switcher
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.target.classList.add('active');
-    }
-
-    // --- 2. 200 MCQ DATASET GENERATOR & ENGINE ---
-    const questions = [];
-
-    // Helper to generate question database cleanly up to 200 items
-    function buildQuestionBank() {
-      // SECTION 1: Text & Poet Facts (1 - 50)
-      for(let i=1; i<=50; i++) {
-        if(i===1) {
-          questions.push({
-            sec: 1,
-            q: "What was Toru Dutt's lifespan?",
-            options: ["1856 - 1877", "1840 - 1880", "1860 - 1895", "1850 - 1871"],
-            ans: 0,
-            exp: "Toru Dutt was born on March 4, 1856, and passed away at age 21 in 1877."
-          });
-        } else if(i===2) {
-          questions.push({
-            sec: 1,
-            q: "In which year was 'Our Casuarina Tree' posthumously published?",
-            options: ["1876", "1882", "1890", "1865"],
-            ans: 1,
-            exp: "It was published in 1882 in 'Ancient Ballads and Legends of Hindustan'."
-          });
-        } else if(i===3) {
-          questions.push({
-            sec: 1,
-            q: "Who edited the volume 'Ancient Ballads and Legends of Hindustan'?",
-            options: ["Aru Dutt", "Govin Chunder Dutt", "William Wordsworth", "Abju Dutt"],
-            ans: 1,
-            exp: "Her father, Govin Chunder Dutt, edited and published her collection after her death."
-          });
-        } else if(i===4) {
-          questions.push({
-            sec: 1,
-            q: "To which siblings is 'Our Casuarina Tree' a heartfelt tribute?",
-            options: ["Abju and Aru", "Sita and Rama", "Toru and Aru", "Govin and Abju"],
-            ans: 0,
-            exp: "The poem pays tribute to her deceased siblings, Abju and Aru."
-          });
-        } else if(i===5) {
-          questions.push({
-            sec: 1,
-            q: "What disease caused Toru Dutt's premature death at age 21?",
-            options: ["Malaria", "Tuberculosis", "Cholera", "Typhoid"],
-            ans: 1,
-            exp: "Toru Dutt died of tuberculosis at the young age of 21."
-          });
-        } else {
-          const lineFacts = [
-            {q: `In Stanza 1, what is compared to a 'huge Python'?`, opts: ["The creeper", "The trunk", "The bough", "The roots"], a: 0, e: "The creeper climbing the tree is compared to a python."},
-            {q: `What color are the flower clusters hung on the tree?`, opts: ["Crimson", "Yellow", "White", "Blue"], a: 0, e: "The poem explicitly mentions 'crimson clusters'."},
-            {q: `What animal sits statue-like on the crest of the tree at dawn?`, opts: ["A grey baboon", "A peacock", "A cuckoo", "A squirrel"], a: 0, e: "A grey baboon sits alone on the tree's crest at sunrise."},
-            {q: `What do the 'puny offspring' of the baboon do on lower boughs?`, opts: ["Sleep", "Leap about and play", "Eat fruits", "Sing"], a: 1, e: "The offspring leap about and play on lower boughs."},
-            {q: `Which bird's song hails the day far and near?`, opts: ["Nightingale", "Kokilas", "Sparrow", "Lark"], a: 1, e: "Kokilas (Indian cuckoos) hail the day."}
-          ];
-          const pick = lineFacts[(i - 6) % lineFacts.length];
-          questions.push({
-            sec: 1,
-            q: `[Q${i}] ${pick.q}`,
-            options: pick.opts,
-            ans: pick.a,
-            exp: pick.e
-          });
-        }
+    const s4=[
+      {q:"Assertion: poet hears tree's dirge in foreign lands. Reason: spiritual connection.", opts:["Both true, R explains","Both true, R not explain","A true, R false","Both false"], ans:0, exp:"Both true, R explains."},
+      {q:"Arrange morning events: 1.cows wend 2.casement opened 3.baboon on crest 4.kokilas hail", opts:["2→3→4→1","1→2→3→4","3→2→1→4","4→3→2→1"], ans:0, exp:"casement → baboon → kokilas → cows."},
+      {q:"T/F: (1) creeper kills tree (2) tree dear for height", opts:["False, False","True, True","True, False","False, True"], ans:0, exp:"Both false."},
+      {q:"Assertion: consecrate lay to save from oblivion. Reason: poetry grants immortality.", opts:["Both true, R explains","A true, R false","A false, R true","Both false"], ans:0, exp:"Both true."},
+      {q:"T/F: (1) Toru died at 21 (2) Ancient Ballads published in her lifetime", opts:["True, False","True, True","False, False","False, True"], ans:0, exp:"(1) True, (2) False."},
+      {q:"Sequence: What appears first at dawn in Stanza 2?", opts:["casement opened","baboon on crest","kokilas hail","cows wend"], ans:0, exp:"First the casement is opened."},
+      {q:"Assertion: The tree is dear for magnificence. Reason: It holds memories.", opts:["A false, R true","Both true","Both false","A true, R false"], ans:0, exp:"The poet says NOT because of magnificence."},
+      {q:"T/F: The water-lilies are compared to snow in Stanza 2", opts:["True","False","Cannot say","None"], ans:0, exp:"'like snow enmassed' is a simile."}
+    ];
+    for(let i=0;i<50;i++){ let idx=i%s4.length; let q=Object.assign({},s4[idx]); q.q=`[Q${i+151}] ${q.q}`; questions.push({sec:4,...q}); }
+    
+    // Shuffle answers for each question
+    questions.forEach(q=>{
+      if(q.options && q.options.length===4){
+        const orig=q.options.slice();
+        const idxs=[0,1,2,3];
+        for(let i=idxs.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [idxs[i],idxs[j]]=[idxs[j],idxs[i]]; }
+        const newOpts=idxs.map(i=>orig[i]);
+        const newAns=idxs.indexOf(q.ans);
+        q.options=newOpts; q.ans=newAns;
       }
+    });
+  }
+  buildBank();
 
-      // SECTION 2: Critical Analysis & Rhetoric (51 - 100)
-      for(let i=51; i<=100; i++) {
-        if(i===51) {
-          questions.push({
-            sec: 2,
-            q: "What is the rhyme scheme of the 11-line stanzas in 'Our Casuarina Tree'?",
-            options: ["abbba cdddc e", "abab cdcd efef", "aabb ccdd eee", "abcde abcde f"],
-            ans: 0,
-            exp: "Each stanza follows the 11-line rhyme pattern: abbba cdddc e."
-          });
-        } else if(i===52) {
-          questions.push({
-            sec: 2,
-            q: "Identify the figure of speech in: 'The giant wears the scarf'",
-            options: ["Personification", "Simile", "Hyperbole", "Oxymoron"],
-            ans: 0,
-            exp: "The tree is personified as a giant wearing a scarf."
-          });
-        } else if(i===53) {
-          questions.push({
-            sec: 2,
-            q: "Which English Romantic poet is directly referenced via the mention of 'Borrowdale'?",
-            options: ["John Keats", "William Wordsworth", "P.B. Shelley", "Lord Byron"],
-            ans: 1,
-            exp: "Borrowdale is famous from Wordsworth's poem 'Yew-Trees'."
-          });
-        } else {
-          const rhetFacts = [
-            {q: "Identify the figure of speech: 'The water-lilies spring, like snow enmassed'", opts: ["Simile", "Metaphor", "Apostrophe", "Onomatopoeia"], a: 0, e: "Uses 'like' for comparison, making it a simile."},
-            {q: "What does 'Oblivion's curse' signify in the final stanza?", opts: ["Being forgotten by history", "Death from disease", "The destruction of the tree", "Curse of nature"], a: 0, e: "Oblivion refers to state of being forgotten."},
-            {q: "Which mood dominates the opening of Stanza 3?", opts: ["Nostalgic grief and intense affection", "Joyful celebration", "Fear of nature", "Despair of death"], a: 0, e: "Stanza 3 shifts to intense emotional nostalgia for companions."},
-            {q: "The phrase 'Unknown, yet well-known' is an example of:", opts: ["Paradox / Oxymoron", "Hyperbole", "Alliteration", "Simile"], a: 0, e: "It contrasts contradictory ideas to express spiritual faith."}
-          ];
-          const pick = rhetFacts[(i - 54) % rhetFacts.length];
-          questions.push({
-            sec: 2,
-            q: `[Q${i}] ${pick.q}`,
-            options: pick.opts,
-            ans: pick.a,
-            exp: pick.e
-          });
-        }
-      }
+  // QUIZ STATE
+  let currentIdx=0, score=0, timer=30, timerInterval=null;
 
-      // SECTION 3: Vocab, Synonyms, Antonyms & Grammar (101 - 150)
-      for(let i=101; i<=150; i++) {
-        if(i===101) {
-          questions.push({
-            sec: 3,
-            q: "What is the Bengali meaning of the word 'Darkling'?",
-            options: ["অন্ধকারে (In darkness)", "আলোতে (In light)", "ভোরে (At dawn)", "দুপুরে (At noon)"],
-            ans: 0,
-            exp: "Darkling means in the dark / অন্ধকারে."
-          });
-        } else if(i===102) {
-          questions.push({
-            sec: 3,
-            q: "Choose the correct SYNONYM for 'Repose':",
-            options: ["Rest / Sleep", "Agitation", "Run", "Awaken"],
-            ans: 0,
-            exp: "Repose means rest, sleep, or tranquility."
-          });
-        } else if(i===103) {
-          questions.push({
-            sec: 3,
-            q: "Choose the correct ANTONYM for 'Oblivion':",
-            options: ["Remembrance / Immortality", "Forgetfulness", "Ignorance", "Darkness"],
-            ans: 0,
-            exp: "Oblivion means being forgotten; its antonym is remembrance."
-          });
-        } else {
-          const vocabFacts = [
-            {q: "Find the grammatical error: 'The creeper climb up to its summit near the stars.'", opts: ["'climb' should be 'climbs'", "'near' should be 'far'", "'summit' should be 'summits'", "No error"], a: 0, e: "Subject 'creeper' is singular, so verb must be 'climbs'."},
-            {q: "What is the synonym of 'Gallantly'?", opts: ["Heroically / Bravely", "Cowardly", "Slowly", "Quietly"], a: 0, e: "Gallantly means bravely or chivalrously."},
-            {q: "What is the Bengali meaning of 'Sublime'?", opts: ["মহৎ / পরম সুন্দর", "ভীতিপ্রদ", "কুৎসিত", "সাধারণ"], a: 0, e: "Sublime means noble, grand, or magnificently beautiful."}
-          ];
-          const pick = vocabFacts[(i - 104) % vocabFacts.length];
-          questions.push({
-            sec: 3,
-            q: `[Q${i}] ${pick.q}`,
-            options: pick.opts,
-            ans: pick.a,
-            exp: pick.e
-          });
-        }
-      }
+  function loadSection(secNum){
+    document.querySelectorAll('.sec-btn').forEach((b,i)=>b.classList.toggle('active', i===secNum-1));
+    currentIdx=(secNum-1)*50;
+    renderQuestion();
+  }
+  function renderQuestion(){
+    clearInterval(timerInterval); timer=30; updateTimerUI(); startTimer();
+    const q=questions[currentIdx];
+    document.getElementById('q-num').innerText=currentIdx+1;
+    document.getElementById('q-score').innerText=score;
+    document.getElementById('q-text').innerText=q.q;
+    const optsBox=document.getElementById('q-options'); optsBox.innerHTML='';
+    const expBox=document.getElementById('q-exp'); expBox.style.display='none';
+    q.options.forEach((opt,idx)=>{
+      const btn=document.createElement('button'); btn.className='option-btn';
+      btn.innerText=`${String.fromCharCode(65+idx)}) ${opt}`;
+      btn.onclick=()=>handleAnswer(idx);
+      optsBox.appendChild(btn);
+    });
+    document.getElementById('prev-btn').disabled=(currentIdx===0);
+    document.getElementById('next-btn').disabled=(currentIdx===questions.length-1);
+  }
+  function startTimer(){
+    timerInterval=setInterval(()=>{ timer--; updateTimerUI(); if(timer<=0){ clearInterval(timerInterval); handleAnswer(-1); } },1000);
+  }
+  function updateTimerUI(){
+    document.getElementById('q-timer').innerText=timer;
+    const pct=(timer/30)*100;
+    document.getElementById('timer-bar').style.width=pct+'%';
+    document.getElementById('timer-bar').style.backgroundColor=timer<=10?'#b33a3a':'#6fbf8a';
+  }
+  function handleAnswer(selectedIdx){
+    clearInterval(timerInterval);
+    const q=questions[currentIdx];
+    const btns=document.querySelectorAll('.option-btn');
+    btns.forEach(b=>b.disabled=true);
+    if(selectedIdx===q.ans){ score++; document.getElementById('q-score').innerText=score; if(selectedIdx>=0) btns[selectedIdx].classList.add('correct'); triggerLotus(); }
+    else { if(selectedIdx>=0) btns[selectedIdx].classList.add('wrong'); btns[q.ans].classList.add('correct'); triggerBaboon(); }
+    const expBox=document.getElementById('q-exp'); expBox.innerText='💡 '+q.exp; expBox.style.display='block';
+  }
+  function nextQuestion(){ if(currentIdx<questions.length-1){ currentIdx++; renderQuestion(); } }
+  function prevQuestion(){ if(currentIdx>0){ currentIdx--; renderQuestion(); } }
 
-      // SECTION 4: Assertion, Sequence & True/False Series (151 - 200)
-      for(let i=151; i<=200; i++) {
-        if(i===151) {
-          questions.push({
-            sec: 4,
-            q: "Assertion (A): The poet hears the tree's dirge-like murmur in foreign lands.\nReason (R): The sound connects her spiritually to her native soil and lost siblings.",
-            options: [
-              "Both A and R are true, and R is the correct explanation of A.",
-              "Both A and R are true, but R is NOT the correct explanation.",
-              "A is true, but R is false.",
-              "Both A and R are false."
-            ],
-            ans: 0,
-            exp: "The tree's eerie lament reaches her across oceans to remind her of childhood companions."
-          });
-        } else if(i===152) {
-          questions.push({
-            sec: 4,
-            q: "Arrange the morning events in chronological order as in Stanza 2:\n1. Sleepy cows wend to pastures\n2. Casement is wide open thrown\n3. Grey baboon sits on the crest\n4. Kokilas hail the day",
-            options: ["2 -> 3 -> 4 -> 1", "1 -> 2 -> 3 -> 4", "3 -> 2 -> 1 -> 4", "4 -> 3 -> 2 -> 1"],
-            ans: 0,
-            exp: "Sequence in Stanza 2: First casement opened -> Baboon on crest -> Kokilas hail day -> Cows go to pastures."
-          });
-        } else if(i===153) {
-          questions.push({
-            sec: 4,
-            q: "True/False Series: \n(1) The creeper starves and kills the Casuarina tree. \n(2) The tree is dear to Toru Dutt mainly for its physical height.",
-            options: ["(1) False, (2) False", "(1) True, (2) True", "(1) True, (2) False", "(1) False, (2) True"],
-            ans: 0,
-            exp: "Both are False! The tree gallantly survives the creeper, and is dear because of memories of siblings."
-          });
-        } else {
-          const afacts = [
-            {
-              q: "Assertion (A): Toru Dutt wishes to consecrate a lay unto the Casuarina tree.\nReason (R): She wants to save the tree from oblivion's curse through poetry.",
-              opts: ["Both A and R are true, and R is the correct explanation.", "A is true, R is false.", "A is false, R is true.", "Both are false."],
-              a: 0, e: "Poetry grants immortality to nature and loved ones."
-            },
-            {
-              q: "True/False Series:\n(1) Toru Dutt died at age 21.\n(2) 'Ancient Ballads' was published during her lifetime.",
-              opts: ["(1) True, (2) False", "(1) True, (2) True", "(1) False, (2) False", "(1) False, (2) True"],
-              a: 0, e: "(1) True, (2) False because it was published posthumously in 1882."
-            }
-          ];
-          const pick = afacts[(i - 154) % afacts.length];
-          questions.push({
-            sec: 4,
-            q: `[Q${i}] ${pick.q}`,
-            options: pick.opts,
-            ans: pick.a,
-            exp: pick.e
-          });
-        }
-      }
+  // ---------- ANIMATIONS ----------
+  const canvas=document.getElementById('animation-canvas'), ctx=canvas.getContext('2d');
+  let particles=[];
+  function resizeC(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+  window.addEventListener('resize',resizeC); resizeC();
+
+  function triggerLotus(){
+    particles=[]; for(let i=0;i<35;i++){ particles.push({ x:Math.random()*canvas.width, y:-20-Math.random()*120, size:20+Math.random()*22, speedY:2+Math.random()*3, speedX:Math.sin(Math.random()*Math.PI)*2, rot:Math.random()*360, rotSpeed:Math.random()*2-1 }); }
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height); let alive=false;
+      particles.forEach(p=>{ p.y+=p.speedY; p.x+=p.speedX; p.rot+=p.rotSpeed; if(p.y<canvas.height+60) alive=true; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180); ctx.font=`${p.size}px serif`; ctx.fillText('🪷',0,0); ctx.restore(); });
+      if(alive) requestAnimationFrame(animate); else ctx.clearRect(0,0,canvas.width,canvas.height);
     }
+    animate();
+  }
+  function triggerBaboon(){
+    const overlay=document.getElementById('baboon-overlay'), sprite=document.getElementById('baboon-sprite');
+    overlay.style.display='block'; sprite.classList.remove('animate-baboon'); void sprite.offsetWidth; sprite.classList.add('animate-baboon');
+    setTimeout(()=>{ overlay.style.display='none'; },1300);
+  }
 
-    // STATE VARIABLES
-    let currentIdx = 0;
-    let score = 0;
-    let timer = 30;
-    let timerInterval = null;
-
-    function loadSection(secNum) {
-      document.querySelectorAll('.sec-btn').forEach((b, idx) => {
-        b.classList.toggle('active', idx === secNum - 1);
-      });
-      currentIdx = (secNum - 1) * 50;
-      renderQuestion();
-    }
-
-    function renderQuestion() {
-      clearInterval(timerInterval);
-      timer = 30;
-      updateTimerUI();
-      startTimer();
-
-      const q = questions[currentIdx];
-      document.getElementById('q-num').innerText = currentIdx + 1;
-      document.getElementById('q-score').innerText = score;
-      document.getElementById('q-text').innerText = q.q;
-
-      const optsBox = document.getElementById('q-options');
-      optsBox.innerHTML = '';
-
-      const expBox = document.getElementById('q-exp');
-      expBox.style.display = 'none';
-
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerText = `${String.fromCharCode(65 + idx)}) ${opt}`;
-        btn.onclick = () => handleAnswer(idx);
-        optsBox.appendChild(btn);
-      });
-
-      document.getElementById('prev-btn').disabled = (currentIdx === 0);
-      document.getElementById('next-btn').disabled = (currentIdx === questions.length - 1);
-    }
-
-    function startTimer() {
-      timerInterval = setInterval(() => {
-        timer--;
-        updateTimerUI();
-        if(timer <= 0) {
-          clearInterval(timerInterval);
-          handleAnswer(-1);
-        }
-      }, 1000);
-    }
-
-    function updateTimerUI() {
-      document.getElementById('q-timer').innerText = timer;
-      const bar = document.getElementById('timer-bar');
-      const pct = (timer / 30) * 100;
-      bar.style.width = pct + '%';
-      if(timer <= 10) {
-        bar.style.backgroundColor = '#c62828';
-      } else {
-        bar.style.backgroundColor = '#52b788';
-      }
-    }
-
-    function handleAnswer(selectedIdx) {
-      clearInterval(timerInterval);
-      const q = questions[currentIdx];
-      const buttons = document.querySelectorAll('.option-btn');
-
-      buttons.forEach(b => b.disabled = true);
-
-      if(selectedIdx === q.ans) {
-        score++;
-        document.getElementById('q-score').innerText = score;
-        if(selectedIdx >= 0) buttons[selectedIdx].classList.add('correct');
-        triggerLotusShower();
-      } else {
-        if(selectedIdx >= 0) buttons[selectedIdx].classList.add('wrong');
-        buttons[q.ans].classList.add('correct');
-        triggerBaboonJump();
-      }
-
-      const expBox = document.getElementById('q-exp');
-      expBox.innerText = "Explanation: " + q.exp;
-      expBox.style.display = 'block';
-    }
-
-    function nextQuestion() {
-      if(currentIdx < questions.length - 1) {
-        currentIdx++;
-        renderQuestion();
-      }
-    }
-
-    function prevQuestion() {
-      if(currentIdx > 0) {
-        currentIdx--;
-        renderQuestion();
-      }
-    }
-
-    // --- 3. ANIMATION ENGINES ---
-
-    // A. Canvas Lotus Shower
-    const canvas = document.getElementById('animation-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    function triggerLotusShower() {
-      particles = [];
-      for(let i=0; i<40; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: -20 - Math.random() * 100,
-          size: 20 + Math.random() * 20,
-          speedY: 2 + Math.random() * 3,
-          speedX: Math.sin(Math.random() * Math.PI) * 2,
-          rotation: Math.random() * 360,
-          rotSpeed: Math.random() * 2 - 1
-        });
-      }
-      animateParticles();
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      let alive = false;
-
-      particles.forEach(p => {
-        p.y += p.speedY;
-        p.x += p.speedX;
-        p.rotation += p.rotSpeed;
-
-        if(p.y < canvas.height + 50) alive = true;
-
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rotation * Math.PI / 180);
-        ctx.font = `${p.size}px serif`;
-        ctx.fillText('🪷', 0, 0);
-        ctx.restore();
-      });
-
-      if(alive) {
-        requestAnimationFrame(animateParticles);
-      } else {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    }
-
-    // B. Baboon Jump Animation
-    function triggerBaboonJump() {
-      const overlay = document.getElementById('baboon-overlay');
-      const sprite = document.getElementById('baboon-sprite');
-      
-      overlay.style.display = 'block';
-      sprite.classList.remove('animate-baboon');
-      void sprite.offsetWidth;
-      sprite.classList.add('animate-baboon');
-
-      setTimeout(() => {
-        overlay.style.display = 'none';
-      }, 1200);
-    }
-
-    // INITIALIZATION
-    window.onload = function() {
-      populateDictionary();
-      buildQuestionBank();
-      renderQuestion();
-    };
-  </script>
+  // INIT
+  window.onload=function(){ populateDict(); renderQuestion(); };
+</script>
 </body>
-</html>
+         </html>
