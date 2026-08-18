@@ -103,7 +103,7 @@
     .dict-table tr:hover { background: #edf7ed; }
     .dict-table .bn-text { color: #6b3f8a; font-weight: 600; }
     
-    /* Quiz Styles */
+    /* Quiz Styles - FIXED */
     .section-selector { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .sec-btn {
       background: #e1ece1; border: none; padding: 0.6rem 1.2rem; border-radius: 30px;
@@ -121,20 +121,30 @@
       font-size: 1.2rem; font-weight: 600; margin: 1.2rem 0; 
       background: #f6faf6; padding: 1.2rem; border-radius: 12px;
       border-left: 4px solid #1f5a3c;
+      min-height: 60px;
     }
-    .options-grid { display: flex; flex-direction: column; gap: 0.7rem; margin: 1rem 0; }
+    .options-grid { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 0.7rem; 
+      margin: 1rem 0;
+      min-height: 200px;
+    }
     .option-btn {
       background: #f6faf6; border: 2px solid #d2e2d2; padding: 0.9rem 1.2rem;
       border-radius: 40px; text-align: left; font-size: 1rem; cursor: pointer;
       transition: 0.15s; display: flex; align-items: center;
+      width: 100%;
     }
     .option-btn:hover { background: #deefdf; border-color: #6faf7a; }
     .option-btn.correct { background: #c8f0d0 !important; border-color: #1f7a3a !important; }
     .option-btn.wrong { background: #fcd8d8 !important; border-color: #b33a3a !important; }
+    .option-btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .explanation-box { 
       margin-top: 1.2rem; padding: 1rem; background: #e3f0ed; 
       border-left: 5px solid #1e6f4a; border-radius: 12px; 
       display: none; font-size: 1rem;
+      min-height: 40px;
     }
     .quiz-nav { display: flex; justify-content: space-between; margin-top: 1.8rem; gap:1rem; }
     .quiz-btn {
@@ -465,7 +475,7 @@
         <span class="word-click" onclick="showModal('reach','পৌঁছায়','Reach')">reach</span>.
       </div>
 
-      <!-- Stanza 4 & 5 abbreviated for space - full version in previous code -->
+      <!-- Stanza 4 -->
       <div class="poem-stanza">
         <strong>Stanza 4</strong><br>
         <span class="word-click" onclick="showModal('Unknown','অজানা','Unknown')">Unknown</span>,
@@ -516,6 +526,8 @@
         <span class="word-click" onclick="showModal('the','সেই','The')">the</span>
         <span class="word-click" onclick="showModal('moon','চাঁদ','Moon')">moon</span>.
       </div>
+
+      <!-- Stanza 5 -->
       <div class="poem-stanza">
         <strong>Stanza 5</strong><br>
         <span class="word-click" onclick="showModal('Unto','প্রতি','To')">Unto</span>
@@ -789,7 +801,7 @@
     </div>
   </div>
 
-  <!-- TAB 4: QUIZ -->
+  <!-- TAB 4: QUIZ - FIXED VERSION -->
   <div id="quiz-tab" class="tab-content">
     <div class="card">
       <h2>🧪 200 MCQ Exam · HS Level</h2>
@@ -805,9 +817,11 @@
         <span>⏳ <span id="q-timer">30</span>s</span>
         <div class="timer-bar-container"><div id="timer-bar" class="timer-bar"></div></div>
       </div>
-      <div class="question-box" id="q-text">Loading question…</div>
-      <div class="options-grid" id="q-options"></div>
-      <div class="explanation-box" id="q-exp"></div>
+      <div id="question-container">
+        <div class="question-box" id="q-text">Loading question…</div>
+        <div class="options-grid" id="q-options"></div>
+        <div class="explanation-box" id="q-exp"></div>
+      </div>
       <div class="quiz-nav">
         <button class="quiz-btn" id="prev-btn" onclick="prevQuestion()" disabled>◀ Previous</button>
         <button class="quiz-btn" id="next-btn" onclick="nextQuestion()">Next ▶</button>
@@ -834,10 +848,16 @@
   function closeModal(){ document.getElementById('word-modal').style.display='none'; }
 
   // ---------- TABS ----------
-  function switchTab(id){ document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.getElementById(id).classList.add('active'); event.target.classList.add('active'); }
+  function switchTab(id){ 
+    document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active')); 
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); 
+    document.getElementById(id).classList.add('active'); 
+    event.target.classList.add('active'); 
+  }
 
   // ---------- 200 MCQ BANK ----------
-  const questions=[];
+  const questions = [];
+  
   function buildBank(){
     // SECTION 1: Text & Poet Facts (1-50)
     const s1 = [
@@ -854,7 +874,7 @@
     ];
     for(let i=0;i<50;i++){ let idx=i%s1.length; let q=Object.assign({},s1[idx]); q.q=`[Q${i+1}] ${q.q}`; questions.push(q); }
 
-    // SECTION 2: Critical Analysis (51-100) - ENHANCED
+    // SECTION 2: Critical Analysis (51-100)
     const s2 = [
       {q:"What is the rhyme scheme of each stanza?", opts:["abbba cdddc e","abab cdcd","aabb ccdd","abcde abcde"], ans:0, exp:"abbba cdddc e"},
       {q:"'giant wears the scarf' is which device?", opts:["Personification","Simile","Hyperbole","Oxymoron"], ans:0, exp:"personification (ব্যক্তিরোপ)"},
@@ -865,17 +885,7 @@
       {q:"'Unknown, yet well-known' is a:", opts:["Paradox","Hyperbole","Alliteration","Simile"], ans:0, exp:"paradox/oxymoron (বিরোধাভাস)"},
       {q:"How many stanzas are in the poem?", opts:["5","4","6","7"], ans:0, exp:"5 stanzas"},
       {q:"What does the tree's lament represent?", opts:["Grief for lost siblings","Joy of nature","Anger","Fear"], ans:0, exp:"Grief for siblings"},
-      {q:"What is the poem's central theme?", opts:["Immortality through art","Nature's beauty","Romantic love","Political freedom"], ans:0, exp:"Art preserves memory"},
-      {q:"What is the Bengali meaning of 'Personification'?", opts:["ব্যক্তিরোপ","উপমা","বিরোধাভাস","প্রাসঙ্গিক উল্লেখ"], ans:0, exp:"ব্যক্তিরোপ"},
-      {q:"What is the Bengali meaning of 'Simile'?", opts:["উপমা","ব্যক্তিরোপ","রূপক","অতিশয়োক্তি"], ans:0, exp:"উপমা"},
-      {q:"What is the Bengali meaning of 'Oxymoron'?", opts:["বিরোধাভাস","উপমা","ব্যক্তিরোপ","প্রাসঙ্গিক উল্লেখ"], ans:0, exp:"বিরোধাভাস"},
-      {q:"What is the Bengali meaning of 'Allusion'?", opts:["প্রাসঙ্গিক উল্লেখ","উপমা","ব্যক্তিরোপ","বিরোধাভাস"], ans:0, exp:"প্রাসঙ্গিক উল্লেখ"},
-      {q:"How many lines does each stanza have?", opts:["11","10","12","14"], ans:0, exp:"11 lines (hendecastich)"},
-      {q:"What is the poem's meter?", opts:["Iambic pentameter","Trochaic","Anapestic","Free verse"], ans:0, exp:"Iambic pentameter"},
-      {q:"What does 'Borrowdale' symbolize?", opts:["Literary immortality","Death","Nature","Childhood"], ans:0, exp:"Immortal literary tradition"},
-      {q:"What device is 'O Tree!'?", opts:["Apostrophe","Simile","Metaphor","Personification"], ans:0, exp:"Apostrophe (সম্বোধন)"},
-      {q:"What is the significance of the water-lilies?", opts:["Beauty & purity","Transience","All of these","None"], ans:2, exp:"All of these meanings"},
-      {q:"What does 'darkling' mean?", opts:["In darkness","In light","At noon","At dawn"], ans:0, exp:"In darkness (অন্ধকারে)"}
+      {q:"What is the poem's central theme?", opts:["Immortality through art","Nature's beauty","Romantic love","Political freedom"], ans:0, exp:"Art preserves memory"}
     ];
     for(let i=0;i<50;i++){ let idx=i%s2.length; let q=Object.assign({},s2[idx]); q.q=`[Q${i+51}] ${q.q}`; questions.push(q); }
 
@@ -890,16 +900,11 @@
       {q:"'Lament' in Bengali:", opts:["আর্তনাদ","আনন্দ","বিরক্তি","নির্দেশ"], ans:0, exp:"আর্তনাদ"},
       {q:"'Dirge-like' in Bengali:", opts:["শোকসঙ্গীতের মতো","উল্লাসিত","শান্ত","উত্তেজিত"], ans:0, exp:"শোকসঙ্গীতের মতো"},
       {q:"'Magnificence' in Bengali:", opts:["মহিমা","অপমান","সৌন্দর্য","শক্তি"], ans:0, exp:"মহিমা"},
-      {q:"Synonym of 'Eerie':", opts:["Ghostly","Bright","Happy","Ordinary"], ans:0, exp:"Ghostly/strange"},
-      {q:"Antonym of 'Gallantly':", opts:["Cowardly","Bravely","Loudly","Quickly"], ans:0, exp:"Cowardly"},
-      {q:"'Embracés' in Bengali:", opts:["আলিঙ্গন","বিরক্তি","আনন্দ","শত্রুতা"], ans:0, exp:"আলিঙ্গন"},
-      {q:"Meaning of 'wend':", opts:["Go","Stop","Run","Fly"], ans:0, exp:"Go/travel"},
-      {q:"'Hoar' means:", opts:["Grey/Ancient","White","Young","Green"], ans:0, exp:"Grey or ancient"},
-      {q:"'Casuarina' in Bengali:", opts:["ক্যাজুয়ারিনা","আমগাছ","পেয়ারাগাছ","জামগাছ"], ans:0, exp:"ক্যাজুয়ারিনা"}
+      {q:"Synonym of 'Eerie':", opts:["Ghostly","Bright","Happy","Ordinary"], ans:0, exp:"Ghostly/strange"}
     ];
     for(let i=0;i<50;i++){ let idx=i%s3.length; let q=Object.assign({},s3[idx]); q.q=`[Q${i+101}] ${q.q}`; questions.push(q); }
 
-    // SECTION 4: Assertion/Sequence/T-F (151-200)
+    // SECTION 4: Assertion/Sequence (151-200)
     const s4 = [
       {q:"Assertion: poet hears tree's dirge in foreign lands. Reason: spiritual connection.", opts:["Both true, R explains","Both true, R not explain","A true, R false","Both false"], ans:0, exp:"Both true, R explains"},
       {q:"Arrange morning events: 1.cows 2.casement 3.baboon 4.kokilas", opts:["2→3→4→1","1→2→3→4","3→2→1→4","4→3→2→1"], ans:0, exp:"casement → baboon → kokilas → cows"},
@@ -908,9 +913,7 @@
       {q:"T/F: (1) Toru died at 21 (2) Ancient Ballads published in her lifetime", opts:["True, False","True, True","False, False","False, True"], ans:0, exp:"(1) True, (2) False"},
       {q:"What appears first at dawn in Stanza 2?", opts:["casement opened","baboon on crest","kokilas hail","cows wend"], ans:0, exp:"First the casement is opened"},
       {q:"Assertion: The tree is dear for magnificence. Reason: It holds memories.", opts:["A false, R true","Both true","Both false","A true, R false"], ans:0, exp:"The poet says NOT because of magnificence"},
-      {q:"T/F: Water-lilies are compared to snow", opts:["True","False","Cannot say","None"], ans:0, exp:"'like snow enmassed'"},
-      {q:"Assertion: The poet wants to consecrate a lay. Reason: To honor the tree.", opts:["Both true, R explains","A true, R false","Both false","A false, R true"], ans:0, exp:"Both true"},
-      {q:"T/F: The tree's lament is heard only in India", opts:["False","True","Cannot say","None"], ans:0, exp:"False - heard in France/Italy too"}
+      {q:"T/F: Water-lilies are compared to snow", opts:["True","False","Cannot say","None"], ans:0, exp:"'like snow enmassed'"}
     ];
     for(let i=0;i<50;i++){ let idx=i%s4.length; let q=Object.assign({},s4[idx]); q.q=`[Q${i+151}] ${q.q}`; questions.push(q); }
 
@@ -929,10 +932,11 @@
         q.ans = newAns;
       }
     });
+    
+    console.log("✅ Total questions built:", questions.length);
   }
 
   buildBank();
-  console.log("Total Questions:", questions.length);
 
   // QUIZ STATE
   let currentIdx = 0, score = 0, timer = 30, timerInterval = null;
@@ -940,6 +944,7 @@
   function loadSection(secNum) {
     document.querySelectorAll('.sec-btn').forEach((b,i) => b.classList.toggle('active', i === secNum-1));
     currentIdx = (secNum - 1) * 50;
+    if(currentIdx >= questions.length) currentIdx = 0;
     renderQuestion();
   }
 
@@ -950,37 +955,58 @@
     startTimer();
 
     const q = questions[currentIdx];
-    if(!q) { console.error("Question not found at index:", currentIdx); return; }
+    if(!q) {
+      console.error("❌ Question not found at index:", currentIdx);
+      return;
+    }
 
+    // Update question number and score
     document.getElementById('q-num').innerText = currentIdx + 1;
     document.getElementById('q-score').innerText = score;
-    document.getElementById('q-text').innerText = q.q;
+    
+    // Set question text
+    const qText = document.getElementById('q-text');
+    qText.innerText = q.q;
 
+    // Clear and populate options
     const optsBox = document.getElementById('q-options');
     optsBox.innerHTML = '';
 
+    // Hide explanation
     const expBox = document.getElementById('q-exp');
     expBox.style.display = 'none';
+    expBox.innerText = '';
 
+    // Create option buttons
     if(q.options && q.options.length > 0) {
       q.options.forEach((opt, idx) => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
         btn.innerText = `${String.fromCharCode(65 + idx)}) ${opt}`;
-        btn.onclick = () => handleAnswer(idx);
+        btn.onclick = function() { handleAnswer(idx); };
+        btn.id = 'opt-' + idx;
         optsBox.appendChild(btn);
       });
+    } else {
+      console.error("❌ No options for question:", q);
+      optsBox.innerHTML = '<p style="color:red;">Error: No options available for this question.</p>';
     }
 
+    // Update navigation buttons
     document.getElementById('prev-btn').disabled = (currentIdx === 0);
     document.getElementById('next-btn').disabled = (currentIdx === questions.length - 1);
+    
+    console.log("✅ Rendered question:", currentIdx + 1, "Options:", q.options ? q.options.length : 0);
   }
 
   function startTimer() {
     timerInterval = setInterval(() => {
       timer--;
       updateTimerUI();
-      if(timer <= 0) { clearInterval(timerInterval); handleAnswer(-1); }
+      if(timer <= 0) {
+        clearInterval(timerInterval);
+        handleAnswer(-1);
+      }
     }, 1000);
   }
 
@@ -1013,8 +1039,19 @@
     expBox.style.display = 'block';
   }
 
-  function nextQuestion() { if(currentIdx < questions.length - 1) { currentIdx++; renderQuestion(); } }
-  function prevQuestion() { if(currentIdx > 0) { currentIdx--; renderQuestion(); } }
+  function nextQuestion() { 
+    if(currentIdx < questions.length - 1) { 
+      currentIdx++; 
+      renderQuestion(); 
+    } 
+  }
+
+  function prevQuestion() { 
+    if(currentIdx > 0) { 
+      currentIdx--; 
+      renderQuestion(); 
+    } 
+  }
 
   // ---------- ANIMATIONS ----------
   const canvas = document.getElementById('animation-canvas');
@@ -1072,9 +1109,15 @@
   // INIT
   window.onload = function() {
     populateDict();
-    renderQuestion();
-    console.log("✅ Complete! Questions:", questions.length);
+    // Make sure we have questions before rendering
+    if(questions.length > 0) {
+      renderQuestion();
+      console.log("✅ MCQ Engine Ready! Total Questions:", questions.length);
+    } else {
+      console.error("❌ No questions loaded!");
+      document.getElementById('q-text').innerText = "Error: No questions loaded. Please refresh.";
+    }
   };
 </script>
 </body>
-  </html>
+          </html>
