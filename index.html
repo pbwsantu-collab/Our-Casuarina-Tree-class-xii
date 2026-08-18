@@ -15,7 +15,7 @@
       box-shadow: 0 8px 20px rgba(0,20,10,0.3);
     }
     header h1 { font-size: 2.6rem; font-weight: 300; letter-spacing: 2px; font-family: 'Georgia', serif; }
-    header p { opacity: 0.85; font-size: 1.1rem; }
+    header p { opacity: 0.85; font-size: 1.1rem; margin-top: 0.4rem; }
     nav {
       display: flex; flex-wrap: wrap; justify-content: center;
       background: #0f2a1e; position: sticky; top: 0; z-index: 50;
@@ -183,11 +183,11 @@
 
 <header>
   <h1>🌳 Our Casuarina Tree</h1>
-  <p>Toru Dutt · Complete Critical Analysis with Bengali Meanings · 200 MCQ</p>
+  <p>Toru Dutt · Complete Text with Word Meanings · Critical Analysis · 200 MCQ</p>
 </header>
 
 <nav>
-  <button class="tab-btn active" onclick="switchTab('text-tab')">📖 Text & Every Word</button>
+  <button class="tab-btn active" onclick="switchTab('text-tab')">📖 Complete Text (All Stanzas)</button>
   <button class="tab-btn" onclick="switchTab('analysis-tab')">🔍 Critical Analysis</button>
   <button class="tab-btn" onclick="switchTab('dict-tab')">📘 Dictionary</button>
   <button class="tab-btn" onclick="switchTab('quiz-tab')">🧪 200 MCQ</button>
@@ -200,11 +200,13 @@
     <div class="card">
       <h2>About the Poet & Poem</h2>
       <p><strong>Toru Dutt (1856–1877)</strong> – pioneer of Indo-Anglian literature. Born in Kolkata, she mastered English, French, and Sanskrit. Her posthumous collection <em>Ancient Ballads and Legends of Hindustan</em> (1882) contains "Our Casuarina Tree", an autobiographical elegy for her siblings Abju and Aru.</p>
-      <p style="margin-top:0.8rem;"><strong>🔵 Click ANY word</strong> in the poem below to see its English meaning and Bengali translation.</p>
+      <p style="margin-top:0.8rem;"><strong>🔵 Click ANY word</strong> in all 5 stanzas below to see its English meaning and Bengali translation.</p>
     </div>
 
     <div class="card">
-      <h2>Complete Poem — Every Word is Clickable</h2>
+      <h2>Complete Poem — All 5 Stanzas</h2>
+      
+      <!-- STANZA 1 -->
       <div class="poem-stanza">
         <strong>Stanza 1</strong><br>
         <span class="word-click" onclick="showModal('Like','সদৃশ','Similar to')">Like</span>
@@ -293,6 +295,370 @@
         <span class="word-click" onclick="showModal('while','যখন','While')">while</span>
         <span class="word-click" onclick="showModal('men','মানুষ','People')">men</span>
         <span class="word-click" onclick="showModal('repose','বিশ্রাম করেন','Rest')">repose</span>.
+      </div>
+
+      <!-- STANZA 2 -->
+      <div class="poem-stanza">
+        <strong>Stanza 2</strong><br>
+        <span class="word-click" onclick="showModal('When','যখন','At the time that')">When</span>
+        <span class="word-click" onclick="showModal('first','প্রথম','Initially')">first</span>
+        <span class="word-click" onclick="showModal('my','আমার','Possessive')">my</span>
+        <span class="word-click" onclick="showModal('casement','জানালা','Hinged window')">casement</span>
+        <span class="word-click" onclick="showModal('is','হয়','Is')">is</span>
+        <span class="word-click" onclick="showModal('wide','প্রশস্ত','Fully')">wide</span>
+        <span class="word-click" onclick="showModal('open','খোলা','Open')">open</span>
+        <span class="word-click" onclick="showModal('thrown','নিক্ষিপ্ত/খোলা','Pushed open')">thrown</span><br>
+        <span class="word-click" onclick="showModal('At','এ','At')">At</span>
+        <span class="word-click" onclick="showModal('dawn','উষা/প্রভাত','Daybreak')">dawn</span>,
+        <span class="word-click" onclick="showModal('my','আমার','Possessive')">my</span>
+        <span class="word-click" onclick="showModal('eyes','চোখ','Sight')">eyes</span>
+        <span class="word-click" onclick="showModal('delighted','আনন্দিত','Pleased')">delighted</span>
+        <span class="word-click" onclick="showModal('on','উপরে','Upon')">on</span>
+        <span class="word-click" onclick="showModal('it','এটির','It')">it</span>
+        <span class="word-click" onclick="showModal('rest','স্থির হয়','Rest')">rest</span>;<br>
+        <span class="word-click" onclick="showModal('Sometimes','কখনো কখনো','Occasionally')">Sometimes</span>,
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('most','সবচেয়ে','Most')">most</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('winter','শীতকাল','Winter season')">winter</span>,—
+        <span class="word-click" onclick="showModal('on','উপরে','On')">on</span>
+        <span class="word-click" onclick="showModal('its','তার','Its')">its</span>
+        <span class="word-click" onclick="showModal('crest','চূড়া','Top peak')">crest</span><br>
+        <span class="word-click" onclick="showModal('A','একটি','One')">A</span>
+        <span class="word-click" onclick="showModal('grey','ধূসর','Grey-colored')">grey</span>
+        <span class="word-click" onclick="showModal('baboon','বানরবিশেষ','Large monkey')">baboon</span>
+        <span class="word-click" onclick="showModal('sits','বসে থাকে','Sits')">sits</span>
+        <span class="word-click" onclick="showModal('statue-like','মূর্তির মতো','Motionless')">statue-like</span>
+        <span class="word-click" onclick="showModal('alone','একাকী','Solitary')">alone</span><br>
+        <span class="word-click" onclick="showModal('Watching','লক্ষ্য করছে','Observing')">Watching</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('sunrise','সূর্যোদয়','Dawn')">sunrise</span>;
+        <span class="word-click" onclick="showModal('while','যখন','While')">while</span>
+        <span class="word-click" onclick="showModal('on','উপরে','On')">on</span>
+        <span class="word-click" onclick="showModal('lower','নিম্নতর','Lower')">lower</span>
+        <span class="word-click" onclick="showModal('boughs','ডালপালা','Branches')">boughs</span><br>
+        <span class="word-click" onclick="showModal('His','তার','His')">His</span>
+        <span class="word-click" onclick="showModal('puny','ক্ষুদ্র/ক্ষীণ','Small and weak')">puny</span>
+        <span class="word-click" onclick="showModal('offspring','সন্তানাদি','Young ones')">offspring</span>
+        <span class="word-click" onclick="showModal('leap','লাফায়','Jump')">leap</span>
+        <span class="word-click" onclick="showModal('about','চারিদিকে','Around')">about</span>
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('play','খেলা করে','Play')">play</span>;<br>
+        <span class="word-click" onclick="showModal('And','এবং','Conjunction')">And</span>
+        <span class="word-click" onclick="showModal('far','দূর','Distant')">far</span>
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('near','নিকটে','Close')">near</span>
+        <span class="word-click" onclick="showModal('kokilas','কোকিল পাখি','Indian cuckoos')">kokilas</span>
+        <span class="word-click" onclick="showModal('hail','অভ্যর্থনা জানায়','Greet')">hail</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('day','দিন','Day')">day</span>;<br>
+        <span class="word-click" onclick="showModal('And','এবং','Conjunction')">And</span>
+        <span class="word-click" onclick="showModal('to','দিকে','Towards')">to</span>
+        <span class="word-click" onclick="showModal('their','তাদের','Their')">their</span>
+        <span class="word-click" onclick="showModal('pastures','তৃণভূমি','Grazing lands')">pastures</span>
+        <span class="word-click" onclick="showModal('wend','পথ চলে','Move slowly')">wend</span>
+        <span class="word-click" onclick="showModal('our','আমাদের','Our')">our</span>
+        <span class="word-click" onclick="showModal('sleepy','তন্দ্রাচ্ছন্ন','Drowsy')">sleepy</span>
+        <span class="word-click" onclick="showModal('cows','গাভীসমূহ','Cattle')">cows</span>;<br>
+        <span class="word-click" onclick="showModal('And','এবং','Conjunction')">And</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('shadow','ছায়া','Shade')">shadow</span>,
+        <span class="word-click" onclick="showModal('on','উপরে','Upon')">on</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('broad','প্রশস্ত','Wide')">broad</span>
+        <span class="word-click" onclick="showModal('tank','দিঘি/পুকুর','Pond or reservoir')">tank</span>
+        <span class="word-click" onclick="showModal('cast','নিক্ষিপ্ত/পতিত','Projected')">cast</span><br>
+        <span class="word-click" onclick="showModal('By','দ্বারা','By')">By</span>
+        <span class="word-click" onclick="showModal('that','সেই','That')">that</span>
+        <span class="word-click" onclick="showModal('hoar','প্রাচীন/ধূসর','Greyish-white with age')">hoar</span>
+        <span class="word-click" onclick="showModal('tree','গাছ','Tree')">tree</span>,
+        <span class="word-click" onclick="showModal('so','এমন','So')">so</span>
+        <span class="word-click" onclick="showModal('beautiful','সুন্দর','Lovely')">beautiful</span>
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('vast','বিশাল','Enormous')">vast</span>,<br>
+        <span class="word-click" onclick="showModal('The','সেই','Definite article')">The</span>
+        <span class="word-click" onclick="showModal('water-lilies','শাপলা ফুল','Aquatic flowers')">water-lilies</span>
+        <span class="word-click" onclick="showModal('spring','ফুটে ওঠে','Bloom')">spring</span>,
+        <span class="word-click" onclick="showModal('like','ন্যায়','Like')">like</span>
+        <span class="word-click" onclick="showModal('snow','তুষার','Snow')">snow</span>
+        <span class="word-click" onclick="showModal('enmassed','পুঞ্জীভূত','Gathered in mass')">enmassed</span>.
+      </div>
+
+      <!-- STANZA 3 -->
+      <div class="poem-stanza">
+        <strong>Stanza 3</strong><br>
+        <span class="word-click" onclick="showModal('But','কিন্তু','However')">But</span>
+        <span class="word-click" onclick="showModal('not','নয়','Not')">not</span>
+        <span class="word-click" onclick="showModal('because','কারণ','Because')">because</span>
+        <span class="word-click" onclick="showModal('of','এর','Of')">of</span>
+        <span class="word-click" onclick="showModal('its','তার','Its')">its</span>
+        <span class="word-click" onclick="showModal('magnificence','মহিমা/সৌন্দর্য','Grandeur')">magnificence</span><br>
+        <span class="word-click" onclick="showModal('Dear','প্রিয়','Beloved')">Dear</span>
+        <span class="word-click" onclick="showModal('is','হয়','Is')">is</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('Casuarina','ঝাউজাতীয় বৃক্ষ','Casuarina tree')">Casuarina</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('my','আমার','My')">my</span>
+        <span class="word-click" onclick="showModal('soul','আত্মা','Soul/Heart')">soul</span>:<br>
+        <span class="word-click" onclick="showModal('Beneath','নিচে','Underneath')">Beneath</span>
+        <span class="word-click" onclick="showModal('it','এর','It')">it</span>
+        <span class="word-click" onclick="showModal('we','আমরা','We')">we</span>
+        <span class="word-click" onclick="showModal('have','নিয়োজিত ছিলাম','Have')">have</span>
+        <span class="word-click" onclick="showModal('played','খেলেছি','Played')">played</span>,
+        <span class="word-click" onclick="showModal('though','যদিও','Though')">though</span>
+        <span class="word-click" onclick="showModal('years','বছরসমূহ','Years')">years</span>
+        <span class="word-click" onclick="showModal('may','পারে','May')">may</span>
+        <span class="word-click" onclick="showModal('roll','অতিবাহিত হওয়া','Pass by')">roll</span>,<br>
+        <span class="word-click" onclick="showModal('O','হে','O')">O</span>
+        <span class="word-click" onclick="showModal('sweet','মিষ্টি/প্রিয়','Dear')">sweet</span>
+        <span class="word-click" onclick="showModal('companions','সহচরগণ','Comrades')">companions</span>,
+        <span class="word-click" onclick="showModal('loved','ভালোবাসতাম','Loved')">loved</span>
+        <span class="word-click" onclick="showModal('with','সহ','With')">with</span>
+        <span class="word-click" onclick="showModal('love','ভালোবাসা','Love')">love</span>
+        <span class="word-click" onclick="showModal('intense','গভীর','Profound')">intense</span>,<br>
+        <span class="word-click" onclick="showModal('For','জন্য','For')">For</span>
+        <span class="word-click" onclick="showModal('your','তোমাদের','Your')">your</span>
+        <span class="word-click" onclick="showModal('sakes','খাতিরে/জন্য','Sakes')">sakes</span>
+        <span class="word-click" onclick="showModal('shall','হবে','Shall')">shall</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('tree','গাছ','Tree')">tree</span>
+        <span class="word-click" onclick="showModal('be','হওয়া','Be')">be</span>
+        <span class="word-click" onclick="showModal('ever','চিরকাল','Ever')">ever</span>
+        <span class="word-click" onclick="showModal('dear','প্রিয়','Precious')">dear</span>,<br>
+        <span class="word-click" onclick="showModal('Blent','মিশ্রিত','Blended/Intertwined')">Blent</span>
+        <span class="word-click" onclick="showModal('with','সাথে','With')">with</span>
+        <span class="word-click" onclick="showModal('your','তোমাদের','Your')">your</span>
+        <span class="word-click" onclick="showModal('images','প্রতিচ্ছবি','Images')">images</span>,
+        <span class="word-click" onclick="showModal('it','এটি','It')">it</span>
+        <span class="word-click" onclick="showModal('shall','হবে','Shall')">shall</span>
+        <span class="word-click" onclick="showModal('arise','উদ্বেলিত হওয়া','Rise up')">arise</span><br>
+        <span class="word-click" onclick="showModal('In','মধ্যে','In')">In</span>
+        <span class="word-click" onclick="showModal('memory','স্মৃতি','Memory')">memory</span>,
+        <span class="word-click" onclick="showModal('till','পর্যন্ত','Until')">till</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('hot','তপ্ত','Hot')">hot</span>
+        <span class="word-click" onclick="showModal('tears','অশ্রুজল','Tears')">tears</span>
+        <span class="word-click" onclick="showModal('blind','অন্ধ করে','Blind')">blind</span>
+        <span class="word-click" onclick="showModal('mine','আমার','My')">mine</span>
+        <span class="word-click" onclick="showModal('eyes','চোখ','Eyes')">eyes</span>!<br>
+        <span class="word-click" onclick="showModal('What','কী','What')">What</span>
+        <span class="word-click" onclick="showModal('is','হয়','Is')">is</span>
+        <span class="word-click" onclick="showModal('that','সেই','That')">that</span>
+        <span class="word-click" onclick="showModal('dirge-like','শোকসঙ্গীতের মতো','Mournful')">dirge-like</span>
+        <span class="word-click" onclick="showModal('murmur','মৃদু বিলাপ','Soft murmur')">murmur</span>
+        <span class="word-click" onclick="showModal('that','যেটি','That')">that</span>
+        <span class="word-click" onclick="showModal('I','আমি','I')">I</span>
+        <span class="word-click" onclick="showModal('hear','শুনি','Hear')">hear</span><br>
+        <span class="word-click" onclick="showModal('Like','ন্যায়','Like')">Like</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('sea','সমুদ্র','Sea')">sea</span>
+        <span class="word-click" onclick="showModal('breaking','আছড়ে পড়া','Crashing')">breaking</span>
+        <span class="word-click" onclick="showModal('on','উপরে','On')">on</span>
+        <span class="word-click" onclick="showModal('a','একটি','A')">a</span>
+        <span class="word-click" onclick="showModal('shingle-beach','নুড়িময় সৈকত','Pebbly beach')">shingle-beach</span>?<br>
+        <span class="word-click" onclick="showModal('It','এটি','It')">It</span>
+        <span class="word-click" onclick="showModal('is','হয়','Is')">is</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('tree\'s','গাছটির','Tree\'s')">tree's</span>
+        <span class="word-click" onclick="showModal('lament','বিলাপ','Mourning')">lament</span>,
+        <span class="word-click" onclick="showModal('an','একটি','An')">an</span>
+        <span class="word-click" onclick="showModal('eerie','অলৌকিক/রহস্যময়','Ghostly/Uncanny')">eerie</span>
+        <span class="word-click" onclick="showModal('speech','ধ্বনি/বাক্য','Speech')">speech</span>,<br>
+        <span class="word-click" onclick="showModal('That','যা','That')">That</span>
+        <span class="word-click" onclick="showModal('haply','হয়তো/সম্ভবত','Perhaps')">haply</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('unknown','অজানা','Unknown')">unknown</span>
+        <span class="word-click" onclick="showModal('land','দেশ/জগৎ','Realm')">land</span>
+        <span class="word-click" onclick="showModal('may','পারে','May')">may</span>
+        <span class="word-click" onclick="showModal('reach','পৌঁছাতে','Reach')">reach</span>.
+      </div>
+
+      <!-- STANZA 4 -->
+      <div class="poem-stanza">
+        <strong>Stanza 4</strong><br>
+        <span class="word-click" onclick="showModal('Unknown','অজানা','Unknown')">Unknown</span>,
+        <span class="word-click" onclick="showModal('yet','তথাপি','Yet')">yet</span>
+        <span class="word-click" onclick="showModal('well-known','সুপরিচিত','Familiar')">well-known</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('eye','দৃষ্টি/নয়ন','Eye of faith')">eye</span>
+        <span class="word-click" onclick="showModal('of','এর','Of')">of</span>
+        <span class="word-click" onclick="showModal('faith','বিশ্বাস','Faith')">faith</span>,<br>
+        <span class="word-click" onclick="showModal('Ah','আহা','Ah')">Ah</span>,
+        <span class="word-click" onclick="showModal('I','আমি','I')">I</span>
+        <span class="word-click" onclick="showModal('have','পেয়েছি','Have')">have</span>
+        <span class="word-click" onclick="showModal('heard','শুনেছি','Heard')">heard</span>
+        <span class="word-click" onclick="showModal('that','সেই','That')">that</span>
+        <span class="word-click" onclick="showModal('wail','আর্তনাদ/বিলাপ','Mournful cry')">wail</span>
+        <span class="word-click" onclick="showModal('far','দূরে','Far')">far</span>,
+        <span class="word-click" onclick="showModal('far','দূরে','Far')">far</span>
+        <span class="word-click" onclick="showModal('away','দূরে','Away')">away</span><br>
+        <span class="word-click" onclick="showModal('In','মধ্যে','In')">In</span>
+        <span class="word-click" onclick="showModal('distant','দূরবর্তী','Distant')">distant</span>
+        <span class="word-click" onclick="showModal('lands','দেশসমূহ','Lands')">lands</span>,
+        <span class="word-click" onclick="showModal('by','দ্বারা/তীরে','By')">by</span>
+        <span class="word-click" onclick="showModal('many','অনেক','Many')">many</span>
+        <span class="word-click" onclick="showModal('a','একটি','A')">a</span>
+        <span class="word-click" onclick="showModal('sheltered','সুরক্ষিত','Sheltered')">sheltered</span>
+        <span class="word-click" onclick="showModal('bay','উপকূল/উপসাগর','Bay')">bay</span>,<br>
+        <span class="word-click" onclick="showModal('When','যখন','When')">When</span>
+        <span class="word-click" onclick="showModal('slumber','নিদ্রা','Sleep')">slumber</span>
+        <span class="word-click" onclick="showModal('waved','দুলিয়ে দিল','Waved')">waved</span>
+        <span class="word-click" onclick="showModal('his','তার','His')">his</span>
+        <span class="word-click" onclick="showModal('mantic','জাদুকরী/ভবিষ্যদ্বাণীমূলক','Prophetic/Magical')">mantic</span>
+        <span class="word-click" onclick="showModal('wand','জাদুদণ্ড','Wand')">wand</span><br>
+        <span class="word-click" onclick="showModal('O\'er','উপরে','Over')">O'er</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('still','নিস্তব্ধ','Silent')">still</span>
+        <span class="word-click" onclick="showModal('earth','পৃথিবী','Earth')">earth</span>,
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('when','যখন','When')">when</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('moon','চাঁদ','Moon')">moon</span>
+        <span class="word-click" onclick="showModal('was','ছিল','Was')">was</span>
+        <span class="word-click" onclick="showModal('gazed','একদৃষ্টে তাকানো','Gazed')">gazed</span><br>
+        <span class="word-click" onclick="showModal('In','মধ্যে','In')">In</span>
+        <span class="word-click" onclick="showModal('water','জল','Water')">water</span>,
+        <span class="word-click" onclick="showModal('sleeping','সুপ্ত','Sleeping')">sleeping</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('their','তাদের','Their')">their</span>
+        <span class="word-click" onclick="showModal('cave','গুহা','Cave')">cave</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('waves','তরঙ্গমালা','Waves')">waves</span>;<br>
+        <span class="word-click" onclick="showModal('When','যখন','When')">When</span>
+        <span class="word-click" onclick="showModal('happy','সুখী','Happy')">happy</span>
+        <span class="word-click" onclick="showModal('shores','তীরবর্তী অঞ্চল','Shores')">shores</span>
+        <span class="word-click" onclick="showModal('of','এর','Of')">of</span>
+        <span class="word-click" onclick="showModal('France','ফ্রান্স','France')">France</span>
+        <span class="word-click" onclick="showModal('or','অথবা','Or')">or</span>
+        <span class="word-click" onclick="showModal('Italy','ইতালি','Italy')">Italy</span><br>
+        <span class="word-click" onclick="showModal('Were','ছিল','Were')">Were</span>
+        <span class="word-click" onclick="showModal('bathed','স্নাত','Bathed')">bathed</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('that','সেই','That')">that</span>
+        <span class="word-click" onclick="showModal('bright','উজ্জ্বল','Bright')">bright</span>
+        <span class="word-click" onclick="showModal('silver','রৌপ্য শুভ্র','Silver')">silver</span>
+        <span class="word-click" onclick="showModal('trance','স্মৃতি-মুগ্ধতা/তন্দ্রা','Trance')">trance</span>;<br>
+        <span class="word-click" onclick="showModal('And','এবং','Conjunction')">And</span>
+        <span class="word-click" onclick="showModal('as','যেমন','As')">as</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('music','সঙ্গীত','Music')">music</span>
+        <span class="word-click" onclick="showModal('rose','উত্থিত হলো','Rose')">rose</span>,—<span class="word-click" onclick="showModal('before','সামনে','Before')">before</span>
+        <span class="word-click" onclick="showModal('mine','আমার','Mine')">mine</span>
+        <span class="word-click" onclick="showModal('inner','অন্তরের','Inner')">inner</span>
+        <span class="word-click" onclick="showModal('eye','দৃষ্টি','Eye')">eye</span><br>
+        <span class="word-click" onclick="showModal('Thy','তোমার','Thy')">Thy</span>
+        <span class="word-click" onclick="showModal('form','রূপ/অবয়ব','Form')">form</span>,
+        <span class="word-click" onclick="showModal('O','হে','O')">O</span>
+        <span class="word-click" onclick="showModal('Tree','বৃক্ষ','Tree')">Tree</span>,
+        <span class="word-click" onclick="showModal('as','যেমন','As')">as</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('my','আমার','My')">my</span>
+        <span class="word-click" onclick="showModal('happy','সুখী','Happy')">happy</span>
+        <span class="word-click" onclick="showModal('prime','যৌবন/শৈশবকাল','Prime')">prime</span><br>
+        <span class="word-click" onclick="showModal('I','আমি','I')">I</span>
+        <span class="word-click" onclick="showModal('saw','দেখেছিলাম','Saw')">saw</span>
+        <span class="word-click" onclick="showModal('thee','তোমাকে','Thee')">thee</span>,
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('my','আমার','My')">my</span>
+        <span class="word-click" onclick="showModal('own','নিজের','Own')">own</span>
+        <span class="word-click" onclick="showModal('loved','প্রিয়','Loved')">loved</span>
+        <span class="word-click" onclick="showModal('native','স্বদেশী','Native')">native</span>
+        <span class="word-click" onclick="showModal('clime','জলবায়ু/দেশ','Clime/Land')">clime</span>.
+      </div>
+
+      <!-- STANZA 5 -->
+      <div class="poem-stanza">
+        <strong>Stanza 5</strong><br>
+        <span class="word-click" onclick="showModal('Therefore','অতএব','Therefore')">Therefore</span>
+        <span class="word-click" onclick="showModal('I','আমি','I')">I</span>
+        <span class="word-click" onclick="showModal('fain','আনন্দের সাথে','Gladly')">fain</span>
+        <span class="word-click" onclick="showModal('would','চাই','Would')">would</span>
+        <span class="word-click" onclick="showModal('consecrate','পবিত্র করা/উৎসর্গ করা','Consecrate')">consecrate</span>
+        <span class="word-click" onclick="showModal('a','একটি','A')">a</span>
+        <span class="word-click" onclick="showModal('lay','কবিতা/গীতি','Song or poem')">lay</span><br>
+        <span class="word-click" onclick="showModal('Unto','প্রতি','Unto')">Unto</span>
+        <span class="word-click" onclick="showModal('thy','তোমার','Thy')">thy</span>
+        <span class="word-click" onclick="showModal('honor','সম্মান','Honor')">honor</span>,
+        <span class="word-click" onclick="showModal('Tree','বৃক্ষ','Tree')">Tree</span>,
+        <span class="word-click" onclick="showModal('beloved','প্রিয়','Beloved')">beloved</span>
+        <span class="word-click" onclick="showModal('of','দ্বারা','Of')">of</span>
+        <span class="word-click" onclick="showModal('those','তাদের','Those')">those</span><br>
+        <span class="word-click" onclick="showModal('Who','যারা','Who')">Who</span>
+        <span class="word-click" onclick="showModal('now','এখন','Now')">now</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('blessed','ধন্য/স্বর্গীয়','Blessed')">blessed</span>
+        <span class="word-click" onclick="showModal('sleep','চিরনিদ্রা','Sleep')">sleep</span>
+        <span class="word-click" onclick="showModal('repose','বিশ্রাম নিচ্ছেন','Repose')">repose</span>,<br>
+        <span class="word-click" onclick="showModal('Dearer','অধিকতর প্রিয়','More dear')">Dearer</span>
+        <span class="word-click" onclick="showModal('than','চেয়ে','Than')">than</span>
+        <span class="word-click" onclick="showModal('life','জীবন','Life')">life</span>
+        <span class="word-click" onclick="showModal('to','প্রতি','To')">to</span>
+        <span class="word-click" onclick="showModal('me','আমার','Me')">me</span>,
+        <span class="word-click" onclick="showModal('alas','হাই!','Alas')">alas</span>,
+        <span class="word-click" onclick="showModal('were','ছিল','Were')">were</span>
+        <span class="word-click" onclick="showModal('they','তারা','They')">they</span>!<br>
+        <span class="word-click" onclick="showModal('Mayst','পারো','Mayest')">Mayst</span>
+        <span class="word-click" onclick="showModal('thou','তুমি','Thou')">thou</span>
+        <span class="word-click" onclick="showModal('be','হওয়া','Be')">be</span>
+        <span class="word-click" onclick="showModal('numbered','সংখ্যাভুক্ত','Numbered')">numbered</span>
+        <span class="word-click" onclick="showModal('with','সাথে','With')">with</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('trees','বৃক্ষরাজি','Trees')">trees</span><br>
+        <span class="word-click" onclick="showModal('That','যেগুলো','That')">That</span>
+        <span class="word-click" onclick="showModal('are','হয়','Are')">are</span>
+        <span class="word-click" onclick="showModal('deathless','অমর','Immortal')">deathless</span>,
+        <span class="word-click" onclick="showModal('like','ন্যায়','Like')">like</span>
+        <span class="word-click" onclick="showModal('those','সেগুলো','Those')">those</span>
+        <span class="word-click" onclick="showModal('in','মধ্যে','In')">in</span>
+        <span class="word-click" onclick="showModal('Borrowdale','বোরোডেল উপত্যকা','Valley in Lake District')">Borrowdale</span>,<br>
+        <span class="word-click" onclick="showModal('Under','নিচে','Under')">Under</span>
+        <span class="word-click" onclick="showModal('whose','যাদের','Whose')">whose</span>
+        <span class="word-click" onclick="showModal('awful','গম্ভীর/ভীতিপ্রদ','Awe-inspiring')">awful</span>
+        <span class="word-click" onclick="showModal('branches','শাখাপ্রশাখা','Branches')">branches</span>
+        <span class="word-click" onclick="showModal('lingered','অবস্থান করত','Lingered')">lingered</span><br>
+        <span class="word-click" onclick="showModal('Pale','ফ্যাকাশে','Pale')">Pale</span>
+        <span class="word-click" onclick="showModal('Fear','ভয়','Fear')">Fear</span>,
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('trembling','কম্পমান','Trembling')">trembling</span>
+        <span class="word-click" onclick="showModal('Hope','আশা','Hope')">Hope</span>,
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('Death','মৃত্যু','Death')">Death</span>,
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('skeleton','কঙ্কাল','Skeleton')">skeleton</span>,<br>
+        <span class="word-click" onclick="showModal('And','এবং','Conjunction')">And</span>
+        <span class="word-click" onclick="showModal('Time','কাল/সময়','Time')">Time</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('shadow','ছায়া','Shadow')">shadow</span>;
+        <span class="word-click" onclick="showModal('and','এবং','Conjunction')">and</span>
+        <span class="word-click" onclick="showModal('though','যদিও','Though')">though</span>
+        <span class="word-click" onclick="showModal('weak','দুর্বল','Weak')">weak</span>
+        <span class="word-click" onclick="showModal('the','সেই','Definite article')">the</span>
+        <span class="word-click" onclick="showModal('verse','কবিতা','Verse')">verse</span><br>
+        <span class="word-click" onclick="showModal('That','যা','That')">That</span>
+        <span class="word-click" onclick="showModal('would','চায়','Would')">would</span>
+        <span class="word-click" onclick="showModal('thy','তোমার','Thy')">thy</span>
+        <span class="word-click" onclick="showModal('beauty','সৌন্দর্য','Beauty')">beauty</span>
+        <span class="word-click" onclick="showModal('fain','আনন্দের সাথে','Gladly')">fain</span>,
+        <span class="word-click" onclick="showModal('oh','ওহ','Oh')">oh</span>,
+        <span class="word-click" onclick="showModal('fain','আনন্দের সাথে','Fain')">fain</span>
+        <span class="word-click" onclick="showModal('rehearse','উচ্চারণ করা/কীর্তন করা','Recite/Celebrate')">rehearse</span>,<br>
+        <span class="word-click" onclick="showModal('Mayst','পারুক','Mayest')">Mayst</span>
+        <span class="word-click" onclick="showModal('thou','তুমি','Thou')">thou</span>
+        <span class="word-click" onclick="showModal('be','হওয়া','Be')">be</span>
+        <span class="word-click" onclick="showModal('spared','রক্ষা পাওয়া','Spared')">spared</span>
+        <span class="word-click" onclick="showModal('from','থেকে','From')">from</span>
+        <span class="word-click" onclick="showModal('Oblivion\'s','বিস্মৃতির','Oblivion\'s')">Oblivion's</span>
+        <span class="word-click" onclick="showModal('curse','অভিশাপ','Curse')">curse</span>.<br>
+        <span class="word-click" onclick="showModal('May','পারুক','May')">May</span>
+        <span class="word-click" onclick="showModal('Love','ভালোবাসা','Love')">Love</span>
+        <span class="word-click" onclick="showModal('defend','রক্ষা করা','Defend')">defend</span>
+        <span class="word-click" onclick="showModal('thee','তোমাকে','Thee')">thee</span>
+        <span class="word-click" onclick="showModal('from','থেকে','From')">from</span>
+        <span class="word-click" onclick="showModal('Oblivion\'s','বিস্মৃতির','Oblivion\'s')">Oblivion's</span>
+        <span class="word-click" onclick="showModal('curse','অভিশাপ','Curse')">curse</span>!
       </div>
     </div>
   </div>
@@ -455,21 +821,47 @@
 <div id="baboon-overlay"><div class="baboon-sprite" id="baboon-sprite">💀</div></div>
 
 <script>
-  // DICTIONARY
+  // DICTIONARY DATA
   const dictData = [
     {word:"Python",bn:"বিশাল অজগর",desc:"creeper like python"},
     {word:"Indented",bn:"গভীর ক্ষত",desc:"scars on trunk"},
-    {word:"Repose",bn:"বিশ্রাম",desc:"rest/sleep"},
+    {word:"Summit",bn:"চূড়া/শীর্ষ",desc:"top near stars"},
+    {word:"Creeper",bn:"লতাগাছ",desc:"climbing plant"},
+    {word:"Gallantly",bn:"বীরত্বের সাথে",desc:"bravely"},
+    {word:"Scarf",bn:"উত্তরীয়/গলাবন্ধ",desc:"worns like scarf"},
+    {word:"Crimson",bn:"গাঢ় লাল",desc:"crimson clusters"},
+    {word:"Boughs",bn:"শাখাপ্রশাখা",desc:"tree branches"},
+    {word:"Darkling",bn:"অন্ধকারে",desc:"sung darkling"},
+    {word:"Repose",bn:"বিশ্রাম নেওয়া",desc:"while men repose"},
+    {word:"Casement",bn:"জানালা",desc:"window hinged on side"},
+    {word:"Dawn",bn:"প্রভাত/উষা",desc:"early morning"},
+    {word:"Baboon",bn:"ধূসর বানর",desc:"grey baboon"},
+    {word:"Statue-like",bn:"মূর্তির মতো স্থির",desc:"sitting alone"},
+    {word:"Offspring",bn:"সন্তানাদি",desc:"puny offspring"},
+    {word:"Puny",bn:"ক্ষুদ্র ও দুর্বল",desc:"puny offspring"},
+    {word:"Kokilas",bn:"কোকিল পাখি",desc:"hail the day"},
+    {word:"Pastures",bn:"তৃণভূমি",desc:"grazing grounds"},
     {word:"Wend",bn:"পথ চলা",desc:"go on way"},
-    {word:"Hoar",bn:"ধূসর/সাদা",desc:"ancient grey"},
-    {word:"Snow enmassed",bn:"পুঞ্জীভূত তুষার",desc:"white lilies"},
+    {word:"Hoar",bn:"ধূসর/প্রাচীন",desc:"ancient grey tree"},
+    {word:"Enmassed",bn:"পুঞ্জীভূত",desc:"snow enmassed"},
+    {word:"Magnificence",bn:"মহিমা/সৌন্দর্য",desc:"grandeur"},
+    {word:"Companions",bn:"সহচরগণ",desc:"Abju and Aru"},
+    {word:"Blent",bn:"মিশ্রিত",desc:"blended in memory"},
     {word:"Dirge-like",bn:"শোকসঙ্গীতের মতো",desc:"mournful song"},
     {word:"Murmur",bn:"মৃদু বিলাপ",desc:"low soft sound"},
-    {word:"Eerie",bn:"অলৌকিক/রহস্যময়",desc:"ghostly"},
+    {word:"Shingle-beach",bn:"নুড়িময় সৈকত",desc:"pebbly beach"},
+    {word:"Lament",bn:"বিলাপ",desc:"tree's lament"},
+    {word:"Eerie",bn:"অলৌকিক/রহস্যময়",desc:"ghostly speech"},
     {word:"Haply",bn:"হয়তো",desc:"perhaps/by chance"},
-    {word:"Gallantly",bn:"বীরত্বের সাথে",desc:"bravely"},
-    {word:"Casement",bn:"জানালা",desc:"window hinged on side"},
+    {word:"Wail",bn:"আর্তনাদ",desc:"mournful cry"},
+    {word:"Slumber",bn:"নিদ্রা",desc:"sleep"},
+    {word:"Mantic",bn:"জাদুকরী/ভবিষ্যদ্বাণীমূলক",desc:"mantic wand"},
+    {word:"Trance",bn:"স্মৃতি-মুগ্ধতা",desc:"silver trance"},
+    {word:"Prime",bn:"যৌবন/উৎকর্ষকাল",desc:"happy prime"},
+    {word:"Clime",bn:"জলবায়ু/দেশ",desc:"native clime"},
+    {word:"Fain",bn:"আনন্দের সাথে",desc:"gladly"},
     {word:"Consecrate",bn:"পবিত্র রূপে উৎসর্গ করা",desc:"make sacred"},
+    {word:"Lay",bn:"গীতি/কবিতা",desc:"short poem"},
     {word:"Oblivion",bn:"বিস্মৃতি",desc:"state of being forgotten"},
     {word:"Sublime",bn:"উন্নত/মহৎ",desc:"exalted/grand"}
   ];
@@ -560,7 +952,7 @@
     {q:"What language was 'Our Casuarina Tree' originally written in?", opts:["English","Bengali","French","Sanskrit"], ans:0, exp:"Toru Dutt wrote her poetry in English (Indo-Anglian literature)."},
 
     // --- SECTION 2: ANALYSIS & POETICS (51-100) ---
-    {q:"In Line 1, 'Like a huge Python' is an example of which figure of speech?", opts:["Simile","Metaphor","Personification","Hyperbole"], ans:0, exp:"Comparison using 'Like' is a explicit Simile."},
+    {q:"In Line 1, 'Like a huge Python' is an example of which figure of speech?", opts:["Simile","Metaphor","Personification","Hyperbole"], ans:0, exp:"Comparison using 'Like' is an explicit Simile."},
     {q:"'The giant wears the scarf' uses which figure of speech?", opts:["Personification","Simile","Oxymoron","Synecdoche"], ans:0, exp:"Attributing human actions (wearing a scarf) to a tree is Personification."},
     {q:"'A creeper climbs in whose embraces bound / No other tree could live' implies:", opts:["The creeper is parasitic yet protective","The creeper is dead","The tree is weak","The tree is dying"], ans:0, exp:"It highlights the supreme strength of the Casuarina tree to bear such a creeper."},
     {q:"What visual image is created by 'crimson clusters'?", opts:["Deep red flower groups against green foliage","Bright yellow fruits","White snow drops","Dark blue berries"], ans:0, exp:"Crimson refers to rich, deep red color."},
